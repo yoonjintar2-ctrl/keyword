@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#153a35" />
+    <meta name="theme-color" content="#1c1e21" />
     <title>네이버 쿼리 추정기</title>
     <style>
       :root {
@@ -1742,6 +1742,161 @@
         .top-meta #resultDate {
           display: none;
         }
+      }
+
+      /* ===== 무채색 테마 ===== */
+      :root {
+        --bg: #f3f4f5;
+        --ink: #202326;
+        --muted: #80868b;
+        --line: #e2e4e6;
+        --green: #2b2f33;
+        --mint: #eceef0;
+        --chrome: #1c1e21;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+      }
+      header.topbar {
+        background: var(--chrome);
+      }
+      .logo-field {
+        border-color: #c9cdd0;
+        color: #e9ebed;
+      }
+      .logo-field i {
+        background: #ffffff;
+      }
+      .top-meta,
+      .brand .top-meta span {
+        color: #9aa0a5;
+        margin-right: 0;
+      }
+      .brand .top-meta .badge {
+        color: #c9cdd0;
+      }
+      .top-meta .badge {
+        background: #2d3034;
+        color: #c9cdd0;
+      }
+      .budget-line {
+        color: #9aa0a5;
+      }
+      .budget-line strong {
+        color: #f2f3f4;
+      }
+      .budget-line .bar {
+        background: #3a3e43;
+      }
+      .budget-line .bar i {
+        background: #d4d7da;
+      }
+      .topbar .header-right button {
+        background: #2a2d31;
+        border-color: #3d4146;
+        color: #e4e6e8;
+      }
+      .topbar .header-right button:hover {
+        background: #34383d;
+      }
+      .panel-toggle {
+        background: var(--chrome);
+        border-color: #34383d;
+        color: #eceef0;
+        box-shadow: 0 4px 14px #0000002e;
+      }
+      .panel-toggle:hover {
+        background: #2a2d31;
+      }
+      button:hover {
+        background: #f1f2f3;
+      }
+      button:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible,
+      select:focus-visible,
+      a:focus-visible {
+        outline-color: #9aa0a5;
+      }
+      .primary,
+      .search-button {
+        background: #24272b;
+        border-color: #24272b;
+        color: #fff;
+      }
+      .primary:hover {
+        background: #34383d;
+      }
+      .brand-autofill button {
+        background: #eef0f1;
+        border-color: #cdd0d3;
+        color: #2b2f33;
+      }
+      .text-button,
+      a {
+        color: #2b2f33;
+      }
+      .badge {
+        background: #eceef0;
+        color: #4b5156;
+      }
+      .segments {
+        background: #eceef0;
+      }
+      .pills button {
+        background: #f6f7f8;
+        color: #7b8186;
+      }
+      .pills .active {
+        background: #e7e9eb;
+        border-color: #a3a8ac;
+        color: #24272b;
+      }
+      .group-select.active {
+        background: #eceef0;
+      }
+      .filter-count {
+        color: #24272b;
+      }
+      .tooltip,
+      .flow-tooltip {
+        background: #1f2226f2;
+      }
+      .flow-tooltip .issue-line {
+        color: #d9dcdf;
+      }
+      .toast {
+        background: #1f2226;
+      }
+      .extraction-overlay {
+        background: rgba(243, 244, 245, 0.85);
+      }
+      .extraction-track {
+        background: #d6d9dc;
+      }
+      .extraction-track i {
+        background: #2b2f33;
+      }
+      .extraction-gauge span {
+        color: #2b2f33;
+      }
+      .run-progress {
+        background: #eef0f1;
+        border-color: #d9dcdf;
+      }
+      .progress i {
+        background: #2b2f33;
+      }
+      .methodology strong {
+        color: #4b5156;
+      }
+      .pan-btn {
+        border-color: #d9dcdf;
+        color: #2b2f33;
+      }
+      dialog::backdrop {
+        background: #1c1e2170;
       }
     </style>
   </head>

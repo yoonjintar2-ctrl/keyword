@@ -128,12 +128,13 @@ const SEGMENTS = {
     { id: "female", name: "여성", color: "#e0688b" },
   ],
   age: [
-    { id: "under19", name: "18세 이하", color: "#9ccfc4" },
-    { id: "age19_29", name: "19~29세", color: "#46b39d" },
-    { id: "age30_39", name: "30대", color: "#138b7c" },
-    { id: "age40_49", name: "40대", color: "#2f6f9f" },
-    { id: "age50_59", name: "50대", color: "#6a5aa8" },
-    { id: "age60plus", name: "60세 이상", color: "#a35a8f" },
+    // 같은 색상(청록)에서 명도·채도만 단계적으로
+    { id: "under19", name: "18세 이하", color: "#d6ebe6", line: "#7fb3a7" },
+    { id: "age19_29", name: "19~29세", color: "#b0d9cf", line: "#5a9d8e" },
+    { id: "age30_39", name: "30대", color: "#82c2b4", line: "#3c8574" },
+    { id: "age40_49", name: "40대", color: "#52a593", line: "#1f6a5b" },
+    { id: "age50_59", name: "50대", color: "#2d8573", line: "#0e4d41" },
+    { id: "age60plus", name: "60세 이상", color: "#155f51", line: "#062e27" },
   ],
 };
 /* 집단별 상대 추이: 키워드별 지수를 기간 평균으로 나눠 월간 검색수로 가중 합산.
@@ -502,7 +503,7 @@ function mainFlow(opts = {}) {
         maxTot = Math.max(1, ...values.slice(vis0, vis1 + 1).filter((v) => v != null)),
         maxAll = Math.max(1, ...values.filter((v) => v != null)),
         yz = (v) => T + ph - (v / maxAll) * (T + ph - NAV_TOP),
-        bw = Math.max(2, Math.min(28, dayW * 0.7)),
+        bw = Math.max(2, Math.min(30, dayW * 0.78)),
         rects = [];
       segLines = sers.map((se) => ({ ...se, parts: new Array(n).fill(null) }));
       for (let k = 0; k < n; k++) {
@@ -517,13 +518,21 @@ function mainFlow(opts = {}) {
           const bot = yz(acc),
             top = yz(acc + part);
           acc += part;
-          const r = add("rect", { x: cx(k) - bw / 2, width: bw, y: top, height: Math.max(0, bot - top), fill: se.color, "fill-opacity": 0.88, rx: Math.min(3, bw / 4) }, undefined, gMain);
+          const r = add("rect", { x: cx(k) - bw / 2, width: bw, y: top, height: Math.max(0, bot - top), fill: se.color, "shape-rendering": "crispEdges" }, undefined, gMain);
+          (se.mid ||= new Array(n).fill(null))[k] = (top + bot) / 2;
           rects.push({ el: r, k, color: se.color, x: cx(k) - bw / 2, w: bw, top, bot, fromTop: baseYs[k] ?? top, fromBot: baseYs[k] ?? bot });
         });
       }
       segLines.share = share;
       if (animate) tweenRects(rects, "split", 900);
-      prevSeg = { mode: "age", rects: rects.map((r) => ({ k: r.k, x: r.x, w: r.w, color: r.color, top: r.top, bot: r.bot })) };
+      // 연령별 추세선: 각 칸의 가운데 높이를 얇게 이음
+      const trendLines = segLines.map((se) => {
+        const ys = se.mid || new Array(n).fill(null),
+          path = add("path", { fill: "none", stroke: se.line, "stroke-width": 1.6, "stroke-opacity": 0.9, "stroke-linejoin": "round", "stroke-linecap": "round" }, undefined, gMain);
+        morphPath(path, cx, animate ? baseYs : null, ys, animate ? 900 : 0);
+        return { color: se.line, ys, width: 1.6 };
+      });
+      prevSeg = { mode: "age", lines: trendLines, rects: rects.map((r) => ({ k: r.k, x: r.x, w: r.w, color: r.color, top: r.top, bot: r.bot })) };
       void maxTot;
     }
   }
@@ -918,13 +927,21 @@ function mergeInto(prev, naverYs, line, gMain, gArea, cx) {
       el.setAttribute("x", r.x);
       el.setAttribute("width", r.w);
       el.setAttribute("fill", r.color);
-      el.setAttribute("fill-opacity", 0.88);
+      el.setAttribute("shape-rendering", "crispEdges");
       el.setAttribute("y", r.top);
       el.setAttribute("height", Math.max(0, r.bot - r.top));
       tmp.append(el);
       const ny = naverYs[r.k] ?? r.top;
       return { el, fromTop: ny, fromBot: ny, top: r.top, bot: r.bot };
     });
+    for (const l of prev.lines || []) {
+      const p = document.createElementNS(ns, "path");
+      p.setAttribute("fill", "none");
+      p.setAttribute("stroke", l.color);
+      p.setAttribute("stroke-width", l.width || 1.6);
+      tmp.append(p);
+      morphPath(p, cx, l.ys, naverYs, 750);
+    }
     tweenRects(rects, "merge", 750, done);
   }
 }

@@ -1,0 +1,9 @@
+{
+  "name": "naver-search-lab",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-public.mjs",
+    "build:worker": "node scripts/compile-worker.mjs"
+  }
+}

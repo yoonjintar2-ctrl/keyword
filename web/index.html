@@ -1,0 +1,1786 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#153a35" />
+    <title>네이버 쿼리 추정기</title>
+    <style>
+      :root {
+        --bg: #f4f7f6;
+        --ink: #1c3832;
+        --muted: #798b84;
+        --line: #dde7e2;
+        --green: #138372;
+        --mint: #e7f4ef;
+        --blue: #5b86c8;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          13px/1.65 -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          "Noto Sans KR",
+          sans-serif;
+      }
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+        color: inherit;
+      }
+      button {
+        cursor: pointer;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        background: white;
+        padding: 7px 11px;
+      }
+      button:hover {
+        background: #eef7f2;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      button:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible,
+      select:focus-visible,
+      a:focus-visible {
+        outline: 3px solid #79cdb7;
+        outline-offset: 2px;
+      }
+      input,
+      textarea,
+      select {
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        padding: 8px;
+        background: white;
+      }
+      textarea {
+        resize: vertical;
+      }
+      header {
+        background: #153a35;
+        color: #fff;
+        min-height: 70px;
+        padding: 13px 3%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+      .brand {
+        font-size: 19px;
+        font-weight: 750;
+        letter-spacing: -0.7px;
+        white-space: nowrap;
+      }
+      .brand span {
+        color: #6ed0b5;
+        margin-right: 9px;
+      }
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .header-right button {
+        background: #255046;
+        color: #e8f6ef;
+        border-color: #43695d;
+        font-size: 11px;
+      }
+      .budget-mini {
+        font-size: 9px;
+        color: #b5d0c5;
+        max-width: 170px;
+        line-height: 1.45;
+        text-align: right;
+      }
+      .budget-mini strong {
+        font-size: 12px;
+        color: #f2fff9;
+      }
+      .budget-mini .bar {
+        height: 3px;
+        background: #406155;
+        border-radius: 5px;
+        margin-top: 4px;
+        overflow: hidden;
+      }
+      .budget-mini .bar i {
+        display: block;
+        background: #6bceb0;
+        height: 100%;
+        width: 0;
+      }
+      .workspace {
+        max-width: 1680px;
+        display: grid;
+        grid-template-columns: 365px minmax(0, 1fr);
+        gap: 22px;
+        padding: 25px 3%;
+        margin: auto;
+        align-items: start;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+      }
+      .input-card {
+        padding: 20px;
+        position: sticky;
+        top: 18px;
+      }
+      .eyebrow {
+        font-size: 10px;
+        letter-spacing: 1.4px;
+        color: var(--muted);
+        font-weight: 650;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      h1 {
+        font-size: 19px;
+        margin: 3px 0 9px;
+      }
+      h2 {
+        font-size: 16px;
+        letter-spacing: -0.3px;
+      }
+      h3 {
+        font-size: 13px;
+      }
+      .hint {
+        font-size: 10px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .input-card > .hint {
+        margin-bottom: 14px;
+      }
+      .editor-scroll {
+        max-height: 460px;
+        overflow: auto;
+      }
+      .group-editor {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+      .group-editor th {
+        text-align: left;
+        font-size: 10px;
+        color: var(--muted);
+        padding: 6px 2px;
+        font-weight: 500;
+      }
+      .group-editor th:first-child {
+        width: 91px;
+      }
+      .group-editor td {
+        vertical-align: top;
+        padding: 4px 3px;
+      }
+      .group-editor input,
+      .group-editor textarea {
+        width: 100%;
+        font-size: 11px;
+        padding: 8px;
+      }
+      .group-editor textarea {
+        min-height: 87px;
+        line-height: 1.7;
+      }
+      .group-editor input {
+        font-weight: 600;
+      }
+      .edit-keywords {
+        position: relative;
+      }
+      .edit-keywords textarea {
+        padding-right: 22px;
+      }
+      .remove-row {
+        position: absolute;
+        right: 9px;
+        top: 10px;
+        font-size: 12px;
+        color: #9d716c;
+        border: 0;
+        padding: 0 3px;
+        background: none;
+      }
+      .editor-tools {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0 15px;
+      }
+      .text-button {
+        border: 0;
+        padding: 0;
+        background: none;
+        font-size: 10px;
+        color: var(--green);
+      }
+      .count {
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .date-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+        margin: 15px 0 7px;
+      }
+      .date-grid label {
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .date-grid input {
+        display: block;
+        width: 100%;
+        font-size: 11px;
+        margin-top: 4px;
+        padding: 8px 5px;
+      }
+      .primary {
+        background: var(--green);
+        color: white;
+        border-color: var(--green);
+      }
+      .primary:hover {
+        background: #106d60;
+      }
+      .search-button {
+        width: 100%;
+        padding: 12px 6px;
+        margin-top: 14px;
+      }
+      .search-button strong,
+      .search-button small {
+        display: block;
+      }
+      .search-button strong {
+        font-size: 12px;
+      }
+      .search-button small {
+        font-size: 10px;
+        font-weight: 400;
+        opacity: 0.8;
+        margin-top: 2px;
+      }
+      .input-note {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 10px;
+      }
+      .upload-box {
+        border-top: 1px solid var(--line);
+        margin-top: 18px;
+        padding-top: 15px;
+        font-size: 11px;
+      }
+      .upload-box summary {
+        cursor: pointer;
+        font-weight: 650;
+      }
+      .upload-box p {
+        font-size: 10px;
+        color: var(--muted);
+        margin: 9px 0;
+      }
+      .upload-box input {
+        width: 100%;
+        font-size: 10px;
+        padding: 7px;
+      }
+      .upload-box button {
+        font-size: 11px;
+        margin-top: 8px;
+        width: 100%;
+      }
+      .result {
+        min-width: 0;
+      }
+      .result-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 15px;
+      }
+      .result-head p {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .badge {
+        font-size: 9px;
+        background: var(--mint);
+        color: var(--green);
+        border-radius: 5px;
+        padding: 4px 8px;
+        white-space: nowrap;
+      }
+      .selection-card {
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .section-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .section-head p {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+      .inline-tools {
+        display: flex;
+        gap: 11px;
+      }
+      .filter-tools {
+        justify-content: flex-end;
+        margin-bottom: 10px;
+      }
+      .selection-card > .section-head {
+        margin-bottom: 0;
+      }
+      #filterPanel {
+        margin-top: 12px;
+      }
+      #toggleFilters {
+        white-space: nowrap;
+        font-size: 11px;
+      }
+      #toggleFilters[aria-expanded="true"] span {
+        display: inline-block;
+        transform: rotate(180deg);
+      }
+      .selection-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .selection-table th {
+        width: 105px;
+        text-align: left;
+        vertical-align: top;
+        padding: 10px 8px 10px 0;
+        border-top: 1px solid var(--line);
+      }
+      .selection-table td {
+        padding: 9px 0;
+        border-top: 1px solid var(--line);
+      }
+      .group-select {
+        border-left: 4px solid var(--group-color);
+        min-width: 85px;
+        text-align: left;
+        font-size: 11px;
+        font-weight: 650;
+      }
+      .group-select.active {
+        background: var(--mint);
+      }
+      .group-select small {
+        display: block;
+        font-size: 9px;
+        font-weight: 400;
+        color: var(--muted);
+      }
+      .pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+      .pills button {
+        font-size: 10px;
+        padding: 4px 8px;
+        background: #f7faf8;
+        color: #789087;
+      }
+      .pills .active {
+        background: #e4f3ed;
+        border-color: #88bca9;
+        color: #1a7261;
+      }
+      .selection-hint {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+      .chart-card {
+        padding-top: 17px;
+        margin-bottom: 16px;
+      }
+      .chart-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 0 18px;
+      }
+      .chart-head p {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+      .chart-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        padding: 11px 18px 4px;
+      }
+      .chart-controls select,
+      .chart-head select {
+        font-size: 11px;
+        padding: 6px 8px;
+        max-width: 240px;
+      }
+      .segments {
+        display: flex;
+        gap: 2px;
+        background: #eef4f0;
+        border-radius: 6px;
+        padding: 3px;
+      }
+      .segments button {
+        font-size: 10px;
+        padding: 3px 8px;
+        border: 0;
+        background: none;
+      }
+      .segments .active {
+        background: #fff;
+        box-shadow: 0 1px 3px #0001;
+      }
+      .legend {
+        font-size: 10px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        max-height: 70px;
+        overflow: auto;
+      }
+      .legend .dot {
+        display: inline-block;
+        height: 7px;
+        width: 7px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+      .chart {
+        height: 270px;
+        position: relative;
+        margin: 0 9px;
+      }
+      .chart.small {
+        height: 225px;
+      }
+      .chart svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .chart .empty {
+        font-size: 12px;
+        text-align: center;
+        color: var(--muted);
+        padding: 75px 20px;
+      }
+      .tooltip {
+        position: absolute;
+        background: #183e34f5;
+        color: white;
+        padding: 9px 12px;
+        z-index: 2;
+        border-radius: 8px;
+        font-size: 10px;
+        pointer-events: none;
+        max-width: 240px;
+        max-height: 225px;
+        overflow: hidden;
+        line-height: 1.9;
+      }
+      .chart-foot {
+        font-size: 10px;
+        color: var(--muted);
+        padding: 9px 18px;
+        border-top: 1px solid var(--line);
+        line-height: 1.75;
+      }
+      .group-summary {
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .bar-row {
+        display: grid;
+        grid-template-columns: 95px 1fr 110px;
+        gap: 10px;
+        align-items: center;
+        font-size: 11px;
+        margin: 13px 0;
+      }
+      .bar-track {
+        height: 14px;
+        background: #f0f4f1;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .bar-fill {
+        height: 100%;
+        border-radius: 4px;
+      }
+      .bar-value {
+        text-align: right;
+      }
+      .bar-value small {
+        display: block;
+        font-size: 9px;
+        color: var(--muted);
+      }
+      .detail-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin: 23px 0 12px;
+      }
+      .detail-heading p {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .detail-heading select {
+        max-width: 250px;
+        font-size: 11px;
+      }
+      .detail-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 15px;
+      }
+      .full-width {
+        grid-column: 1/-1;
+      }
+      .cross {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .cross select {
+        font-size: 10px;
+        max-width: 160px;
+      }
+      .device-card {
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .device-scroll {
+        overflow-x: auto;
+      }
+      .device-columns {
+        display: flex;
+        align-items: flex-end;
+        gap: 13px;
+        min-height: 285px;
+        padding: 15px 7px 0;
+        min-width: 100%;
+      }
+      .device-column {
+        min-width: 67px;
+        flex: 1;
+        max-width: 105px;
+        text-align: center;
+        font-size: 9px;
+        color: var(--muted);
+      }
+      .stack-zone {
+        height: 225px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        position: relative;
+      }
+      .stack {
+        width: 36px;
+        display: flex;
+        flex-direction: column-reverse;
+        border-radius: 4px 4px 0 0;
+        overflow: hidden;
+        background: #eff3f0;
+      }
+      .stack .pc {
+        background: #628bd0;
+      }
+      .stack .mo {
+        background: #2da58b;
+      }
+      .column-total {
+        font-size: 9px;
+        position: absolute;
+        white-space: nowrap;
+      }
+      .column-label {
+        min-height: 43px;
+        padding-top: 7px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+        color: #506f61;
+      }
+      .run-progress {
+        background: #e6f3ed;
+        border: 1px solid #c2e3d5;
+        border-radius: 9px;
+        padding: 13px 16px;
+        margin-bottom: 15px;
+        font-size: 11px;
+      }
+      .run-progress p {
+        font-size: 10px;
+        color: #678274;
+      }
+      .progress {
+        height: 5px;
+        margin: 8px 0;
+        background: #d6e9de;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .progress i {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: #21997e;
+      }
+      .empty-state {
+        text-align: center;
+        padding: 75px 20px;
+        color: var(--muted);
+      }
+      .methodology {
+        max-width: 1600px;
+        margin: 5px auto 25px;
+        padding: 0 3%;
+        font-size: 10px;
+        color: var(--muted);
+        line-height: 1.9;
+      }
+      .methodology p {
+        margin-top: 5px;
+      }
+      .methodology strong {
+        color: #5c796b;
+      }
+      .toast {
+        position: fixed;
+        bottom: 22px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #173f35;
+        color: white;
+        border-radius: 9px;
+        padding: 11px 17px;
+        font-size: 12px;
+        max-width: 90vw;
+        z-index: 40;
+      }
+      dialog {
+        width: calc(100% - 30px);
+        max-width: 480px;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        padding: 23px;
+        color: var(--ink);
+        box-shadow: 0 20px 70px #0003;
+      }
+      dialog::backdrop {
+        background: #17372d70;
+      }
+      dialog h2 {
+        margin-bottom: 10px;
+      }
+      dialog p {
+        font-size: 12px;
+        color: #678273;
+        margin: 8px 0;
+      }
+      .dialog-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+        margin-top: 20px;
+      }
+      .dialog-actions button {
+        font-size: 11px;
+      }
+      .error {
+        color: #b7594c;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      a {
+        color: var(--green);
+      }
+      @media (max-width: 1150px) {
+        .workspace {
+          grid-template-columns: 315px minmax(0, 1fr);
+          gap: 16px;
+        }
+        .input-card {
+          padding: 16px;
+        }
+        .detail-grid {
+          grid-template-columns: 1fr;
+        }
+        .chart-head {
+          flex-wrap: wrap;
+        }
+        .brand {
+          font-size: 17px;
+        }
+        .group-editor th:first-child {
+          width: 77px;
+        }
+        .group-editor input {
+          padding: 8px 5px;
+        }
+        .chart {
+          height: 255px;
+        }
+      }
+      @media (max-width: 760px) {
+        header {
+          padding: 12px 4%;
+          gap: 8px;
+        }
+        .brand {
+          font-size: 15px;
+        }
+        .brand span {
+          display: none;
+        }
+        .header-right {
+          gap: 6px;
+        }
+        .header-right button {
+          padding: 6px 8px;
+          font-size: 10px;
+        }
+        .budget-mini {
+          font-size: 8px;
+          max-width: 110px;
+        }
+        .budget-mini strong {
+          font-size: 10px;
+        }
+        .workspace {
+          display: block;
+          padding: 16px 4%;
+        }
+        .input-card {
+          position: static;
+          margin-bottom: 19px;
+        }
+        .group-editor th:first-child {
+          width: 85px;
+        }
+        .editor-scroll {
+          max-height: 350px;
+        }
+        .group-editor textarea {
+          min-height: 70px;
+        }
+        .date-grid input {
+          font-size: 12px;
+          padding: 8px;
+        }
+        .detail-heading {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .detail-heading select {
+          width: 100%;
+          max-width: 100%;
+        }
+        .selection-card {
+          padding: 15px;
+        }
+        .selection-table th {
+          width: 85px;
+        }
+        .group-select {
+          min-width: 74px;
+          padding: 6px;
+          font-size: 10px;
+        }
+        .group-select small {
+          font-size: 8px;
+        }
+        .pills button {
+          font-size: 9px;
+          padding: 4px 6px;
+        }
+        .chart-head {
+          padding: 0 14px;
+        }
+        .chart-controls {
+          padding-left: 14px;
+          padding-right: 14px;
+        }
+        .chart {
+          height: 235px;
+        }
+        .chart.small {
+          height: 215px;
+        }
+        .bar-row {
+          grid-template-columns: 65px 1fr 95px;
+          font-size: 10px;
+        }
+        .section-head {
+          align-items: flex-start;
+        }
+        .result-head h2 {
+          font-size: 15px;
+        }
+        .cross {
+          flex-wrap: wrap;
+        }
+        .device-columns {
+          gap: 10px;
+        }
+        .header-right .refresh-label {
+          display: none;
+        }
+        .header-right #reloadData {
+          font-size: 16px;
+          line-height: 16px;
+        }
+        .methodology {
+          padding: 0 4%;
+        }
+        .group-summary,
+        .device-card {
+          padding: 15px;
+        }
+      }
+
+      .workspace {
+        grid-template-columns: 300px minmax(0, 1fr);
+        max-width: 1900px;
+        gap: 20px;
+        padding-top: 22px;
+      }
+      .input-card {
+        padding: 19px;
+        position: static;
+      }
+      .field-label {
+        display: block;
+        font-size: 10px;
+        color: var(--muted);
+        margin: 13px 0 5px;
+      }
+      .full-input,
+      #keywords {
+        width: 100%;
+        font-size: 12px;
+      }
+      #keywords {
+        min-height: 175px;
+        line-height: 1.9;
+      }
+      .upload-box select {
+        width: 100%;
+        margin-top: 8px;
+        font-size: 11px;
+      }
+      .flow-card {
+        padding-top: 24px;
+        margin-bottom: 18px;
+        overflow: hidden;
+      }
+      .flow-card h2 {
+        font-size: 24px;
+        letter-spacing: -1px;
+      }
+      .flow-card .chart-head {
+        padding: 0 25px;
+      }
+      .flow-card .chart-head p {
+        font-size: 11px;
+      }
+      .flow-scroll {
+        overflow-x: auto;
+      }
+      .flow-chart {
+        position: relative;
+        min-width: 850px;
+        min-height: 460px;
+      }
+      .flow-chart > svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        min-height: 460px;
+      }
+      .flow-legend {
+        max-height: none;
+        padding: 10px 25px;
+        gap: 9px;
+        font-size: 11px;
+        align-items: center;
+      }
+      .query-key {
+        color: #138372;
+        font-weight: 650;
+        margin-right: 8px;
+      }
+      .flow-tooltip {
+        max-height: 390px;
+        max-width: 270px;
+        line-height: 1.8;
+      }
+      .selection-card h2 {
+        font-size: 13px;
+      }
+      .selection-card {
+        background: #f9fbfa;
+      }
+      .flow-card .chart-foot {
+        font-size: 10px;
+      }
+      .detail-heading {
+        margin-top: 28px;
+      }
+      @media (max-width: 1150px) {
+        .workspace {
+          grid-template-columns: 270px minmax(0, 1fr);
+          gap: 15px;
+        }
+        .flow-card .chart-head {
+          padding: 0 18px;
+        }
+      }
+      @media (max-width: 760px) {
+        .workspace {
+          display: flex;
+          flex-direction: column;
+          padding: 15px 4%;
+        }
+        .input-card,
+        .result {
+          width: 100%;
+        }
+        .input-card {
+          order: 0;
+        }
+        .result {
+          order: 1;
+        }
+        .flow-card h2 {
+          font-size: 23px;
+        }
+        .flow-card .chart-head {
+          gap: 12px;
+        }
+        .flow-chart {
+          min-width: 850px;
+          min-height: 400px;
+        }
+        .flow-chart > svg {
+          min-height: 400px;
+        }
+        .flow-legend {
+          padding-left: 18px;
+        }
+      }
+      .brand-autofill {
+        display: flex;
+        gap: 7px;
+        align-items: stretch;
+      }
+      .brand-autofill input {
+        min-width: 0;
+        flex: 1;
+      }
+      .brand-autofill button {
+        font-size: 12px;
+        white-space: nowrap;
+        padding: 8px 13px;
+        background: #e6f3ee;
+        border-color: #a1cdbd;
+        color: #176f5e;
+        font-weight: 650;
+      }
+      .brand-autofill button:disabled {
+        opacity: 0.55;
+      }
+      .recommend-meta {
+        margin: 6px 0 3px;
+      }
+      .recommend-meta .text-button {
+        margin-top: 4px;
+      }
+      #recommendStatus.error {
+        color: #b7594c;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .extraction-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background: rgba(240, 246, 243, 0.83);
+        backdrop-filter: blur(2px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: progress;
+      }
+      .extraction-gauge {
+        width: min(420px, 75vw);
+        outline: none;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .extraction-track {
+        height: 9px;
+        flex: 1;
+        background: #cddfd6;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .extraction-track i {
+        display: block;
+        width: 0;
+        height: 100%;
+        background: #178775;
+        border-radius: 20px;
+        transition: width 0.2s ease;
+      }
+      .extraction-gauge span {
+        font-size: 17px;
+        font-weight: 650;
+        font-variant-numeric: tabular-nums;
+        color: #205c4c;
+        min-width: 48px;
+      }
+      .extracting {
+        overflow: hidden;
+      }
+      .header-right {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .header-right #importExcel {
+        font-size: 11px;
+      }
+      @media (max-width: 760px) {
+        header {
+          align-items: flex-start;
+          flex-wrap: wrap;
+        }
+        .header-right {
+          width: 100%;
+          justify-content: flex-end;
+        }
+        .header-right #importExcel {
+          font-size: 10px;
+        }
+      }
+
+      /* ===== 2026-10-20 그래프 중심 레이아웃 ===== */
+      :root {
+        --top-h: 36px;
+        --naver: #138b7c;
+        --gweb: #4f7fe0;
+        --gyt: #e0574f;
+        --social: #9a6fc9;
+        --issue: #d9822b;
+      }
+      body {
+        overflow-x: hidden;
+      }
+      header.topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        min-height: 0;
+        height: var(--top-h);
+        padding: 0 16px;
+        gap: 14px;
+        flex-wrap: nowrap;
+      }
+      .topbar .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        letter-spacing: -0.4px;
+      }
+      .logo-field {
+        display: inline-flex;
+        align-items: center;
+        gap: 1px;
+        height: 18px;
+        min-width: 30px;
+        padding: 0 5px;
+        border: 1.5px solid #6ed0b5;
+        border-radius: 4px;
+        font: 700 11px/1 ui-monospace, "SF Mono", Menlo, monospace;
+        color: #6ed0b5;
+      }
+      .logo-field i {
+        width: 1.5px;
+        height: 11px;
+        background: #e8fff7;
+        animation: caret 1.05s steps(1) infinite;
+      }
+      @keyframes caret {
+        50% {
+          opacity: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .logo-field i {
+          animation: none;
+        }
+      }
+      .topbar .header-right {
+        flex-wrap: nowrap;
+        gap: 8px;
+      }
+      .topbar .header-right button {
+        padding: 3px 10px;
+        font-size: 11px;
+        line-height: 1.5;
+      }
+      .budget-line {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 10px;
+        color: #b5d0c5;
+        white-space: nowrap;
+        margin-right: 6px;
+      }
+      .budget-line .label {
+        letter-spacing: 0.8px;
+        font-size: 9px;
+      }
+      .budget-line strong {
+        font-size: 12px;
+        color: #f2fff9;
+        font-variant-numeric: tabular-nums;
+      }
+      .budget-line .bar {
+        width: 150px;
+        height: 4px;
+        background: #406155;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .budget-line .bar i {
+        display: block;
+        background: #6bceb0;
+        height: 100%;
+        width: 0;
+      }
+
+      /* 플로팅 입력 패널 */
+      .query-panel {
+        position: fixed;
+        top: calc(var(--top-h) + 10px);
+        left: 12px;
+        z-index: 40;
+        width: 300px;
+        max-width: calc(100vw - 24px);
+      }
+      .panel-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: #153a35;
+        color: #e8f6ef;
+        border: 1px solid #2c5a4f;
+        border-radius: 999px;
+        padding: 6px 13px 6px 11px;
+        font-size: 12px;
+        font-weight: 650;
+        box-shadow: 0 4px 14px #0f2a2533;
+      }
+      .panel-toggle:hover {
+        background: #1d4a42;
+      }
+      .panel-toggle .chev {
+        transition: transform 0.15s;
+        opacity: 0.8;
+      }
+      .panel-toggle[aria-expanded="true"] .chev {
+        transform: rotate(90deg);
+      }
+      .query-panel .input-card {
+        margin-top: 8px;
+        padding: 16px 17px;
+        box-shadow: 0 14px 40px #0f2a2538;
+        max-height: calc(100vh - var(--top-h) - 70px);
+        overflow: auto;
+      }
+      .query-panel #keywords {
+        min-height: 140px;
+      }
+
+      /* 메인 그래프: 화면 높이에 맞춤 */
+      .stage {
+        padding: 10px 12px 0;
+      }
+      .stage .flow-card {
+        height: calc(100vh - var(--top-h) - 20px);
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        padding-top: 10px;
+        margin-bottom: 14px;
+      }
+      .stage .flow-card .chart-head {
+        padding: 0 16px 0 210px;
+        align-items: center;
+        flex-wrap: wrap;
+        row-gap: 6px;
+      }
+      .flow-title {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        flex-wrap: wrap;
+        min-width: 0;
+      }
+      .stage .flow-card h2 {
+        font-size: 18px;
+        letter-spacing: -0.6px;
+      }
+      .flow-title p {
+        font-size: 10px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .head-tools {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .series-toggles {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      .series-toggles button {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        padding: 3px 9px;
+        border-radius: 999px;
+        background: #fff;
+        color: #5f7369;
+      }
+      .series-toggles button i {
+        width: 14px;
+        height: 3px;
+        border-radius: 3px;
+        background: var(--c);
+      }
+      .series-toggles button i.dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #fff;
+        border: 2px solid var(--c);
+      }
+      .series-toggles button[aria-pressed="false"] {
+        opacity: 0.45;
+      }
+      .series-toggles button[aria-pressed="false"] i {
+        filter: grayscale(1);
+      }
+      .series-toggles button:disabled {
+        opacity: 0.35;
+      }
+      .stage .flow-chart {
+        flex: 1;
+        min-height: 0;
+        min-width: 0;
+        position: relative;
+        margin: 4px 6px 0;
+      }
+      .stage .flow-chart > svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+      }
+      .stage .flow-scroll {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        overflow: hidden;
+      }
+      .stage .flow-scroll > .flow-chart {
+        min-width: 0;
+      }
+      .stage .flow-card .chart-foot {
+        padding: 5px 16px;
+        font-size: 9.5px;
+      }
+      .issue-label {
+        position: absolute;
+        transform: translateX(-50%);
+        z-index: 3;
+        max-width: 190px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 11px;
+        font-weight: 650;
+        padding: 2px 9px;
+        border-radius: 999px;
+        border: 1.5px solid var(--issue);
+        color: #8a4a10;
+        background: #fff8f0;
+        cursor: pointer;
+        line-height: 1.5;
+      }
+      .issue-label.spike {
+        border-style: dashed;
+        border-color: #9aaba0;
+        color: #5f7369;
+        background: #fbfcfb;
+        font-weight: 500;
+      }
+      .issue-label:hover,
+      .issue-label:focus-visible,
+      .issue-label.active {
+        background: var(--issue);
+        color: #fff;
+      }
+      .issue-label.spike:hover,
+      .issue-label.spike:focus-visible,
+      .issue-label.spike.active {
+        background: #5f7369;
+        border-color: #5f7369;
+        color: #fff;
+      }
+      .issue-card {
+        position: absolute;
+        z-index: 6;
+        width: 290px;
+        background: #fff;
+        border: 1px solid #ead7c3;
+        border-radius: 10px;
+        box-shadow: 0 14px 34px #1a2e2830;
+        padding: 12px 14px;
+        font-size: 11px;
+        line-height: 1.65;
+      }
+      .issue-card .date {
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .issue-card strong {
+        display: block;
+        font-size: 13px;
+        margin: 2px 0 5px;
+        color: #1c3832;
+      }
+      .issue-card p {
+        color: #4f6158;
+        margin: 0 0 7px;
+      }
+      .issue-card .meta {
+        font-size: 10px;
+        color: #7a6a58;
+      }
+      .issue-card a {
+        font-weight: 650;
+      }
+      .flow-tooltip strong {
+        display: block;
+        font-size: 11px;
+        margin-bottom: 2px;
+      }
+      .flow-tooltip .row {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        white-space: nowrap;
+      }
+      .flow-tooltip .row i {
+        width: 9px;
+        height: 3px;
+        border-radius: 2px;
+        background: var(--c);
+      }
+      .flow-tooltip .row b {
+        margin-left: auto;
+        padding-left: 12px;
+        font-variant-numeric: tabular-nums;
+      }
+      .flow-tooltip .issue-line {
+        margin-top: 4px;
+        color: #ffd7ae;
+        white-space: normal;
+      }
+      .below {
+        max-width: 1500px;
+        margin: 0 auto;
+      }
+      @media (max-width: 760px) {
+        :root {
+          --top-h: 44px;
+        }
+        header.topbar {
+          height: auto;
+          min-height: var(--top-h);
+          padding: 6px 10px;
+          flex-wrap: wrap;
+        }
+        .budget-line .label,
+        .budget-line .bar {
+          display: none;
+        }
+        .topbar .header-right {
+          width: auto;
+          flex-wrap: wrap;
+        }
+        .stage .flow-card {
+          height: calc(100vh - var(--top-h) - 30px);
+        }
+        .query-panel {
+          position: static;
+          width: auto;
+          margin: 10px 12px 0;
+        }
+        .stage .flow-card .chart-head {
+          padding: 0 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="appSurface">
+      <header class="topbar">
+        <div class="brand">
+          <span class="logo-field" aria-hidden="true">Q<i></i></span>네이버 쿼리
+          추정기
+        </div>
+        <div class="header-right">
+          <div
+            class="budget-line"
+            title="이 사이트가 파악한 호출 시도 기준이며 계정 전체 공식 사용량과 다를 수 있습니다."
+          >
+            <span class="label">MONTHLY API BUDGET</span>
+            <strong id="quotaRemain">확인 중</strong>
+            <span class="bar"><i id="quotaBar"></i></span>
+            <span id="quotaDaily">일간 한도 없음</span>
+          </div>
+          <button id="downloadAll">↓ 전체 엑셀</button
+          ><button id="importExcel" type="button">기존 분석 불러오기</button
+          ><input
+            type="file"
+            id="excelFile"
+            accept=".xlsx"
+            aria-label="복원할 엑셀 파일"
+            hidden
+          /><span
+            id="importStatus"
+            class="sr-only"
+            role="status"
+            aria-live="polite"
+          ></span
+          ><button
+            id="reloadData"
+            title="다른 PC에서 저장한 최신 결과 불러오기"
+          >
+            ↻ <span class="refresh-label">결과 새로고침</span>
+          </button>
+        </div>
+      </header>
+      <aside class="query-panel" id="queryPanel">
+        <button
+          id="panelToggle"
+          class="panel-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="panelBody"
+        >
+          <span aria-hidden="true">⌕</span>키워드 쿼리 추출<span
+            class="chev"
+            aria-hidden="true"
+            >›</span
+          >
+        </button>
+        <div id="panelBody" class="card input-card" hidden>
+          <p class="hint">
+            키워드를 한 줄에 하나씩 입력하세요.<br />입력한 키워드 전체를 하나의
+            분석 대상으로 묶습니다.
+          </p>
+          <label class="field-label" for="brandName">브랜드명</label>
+          <div class="brand-autofill">
+            <input
+              id="brandName"
+              maxlength="30"
+              placeholder="예: BMW"
+              class="full-input"
+            /><button
+              id="recommendKeywords"
+              type="button"
+              aria-label="연관 키워드 자동 추천"
+            >
+              자동
+            </button>
+          </div>
+          <div class="recommend-meta">
+            <p
+              id="recommendStatus"
+              class="hint"
+              role="status"
+              aria-live="polite"
+            >
+              네이버 연관 키워드 최대 30개 · 추천 후 직접 수정할 수 있습니다.
+            </p>
+            <button id="undoRecommend" type="button" class="text-button" hidden>
+              추천 전으로
+            </button>
+          </div>
+          <label class="field-label" for="keywords">키워드</label
+          ><textarea
+            id="keywords"
+            rows="8"
+            placeholder="BMW&#10;BMWX3&#10;BMWX5"
+          ></textarea
+          ><span id="inputCount" class="count"></span>
+          <div class="date-grid">
+            <label
+              >추출 시작일<input
+                type="date"
+                id="startDate"
+                min="2016-01-01" /></label
+            ><label
+              >추출 종료일<input type="date" id="endDate" min="2016-01-01"
+            /></label>
+          </div>
+          <p class="hint" id="dateHint"></p>
+          <button id="extract" class="primary search-button">
+            <strong>새로운 키워드 검색하기</strong
+            ><small id="expectedBudget"></small>
+          </button>
+          <p class="input-note">
+            5개 키워드당 트렌드 API 23회. 자동 수집은 하지 않습니다.
+          </p>
+        </div>
+      </aside>
+      <main class="stage">
+        <div id="runProgress" class="run-progress" hidden>
+          <strong id="runTitle"></strong>
+          <div class="progress"><i id="runBar"></i></div>
+          <p id="runDetail"></p>
+          <button id="retryJob" hidden>진행 중인 추출 이어서 실행</button>
+        </div>
+        <div id="empty" class="card empty-state">
+          저장된 결과를 불러오고 있습니다.
+        </div>
+        <section id="results" hidden>
+          <section class="card flow-card">
+            <div class="chart-head">
+              <div class="flow-title">
+                <h2>일별 흐름</h2>
+                <p id="resultDate"></p>
+                <span id="resultBadge" class="badge">현재 결과</span>
+              </div>
+              <div class="head-tools">
+                <div
+                  id="mainLegend"
+                  class="series-toggles"
+                  role="group"
+                  aria-label="그래프에 표시할 지표"
+                ></div>
+                <div id="periods" class="segments">
+                  <button data-days="30">30일</button
+                  ><button data-days="90">90일</button
+                  ><button data-days="0" class="active">전체 기간</button>
+                </div>
+              </div>
+            </div>
+            <div class="flow-scroll">
+              <div id="mainChart" class="flow-chart"></div>
+            </div>
+            <p id="flowFoot" class="chart-foot"></p>
+          </section>
+          <div class="below">
+            <section class="card selection-card">
+              <div class="section-head">
+                <div>
+                  <h2>세부 분석 키워드</h2>
+                  <p id="filterSummary">전체 키워드 선택</p>
+                </div>
+                <button
+                  id="toggleFilters"
+                  aria-expanded="false"
+                  aria-controls="filterPanel"
+                >
+                  필터 <span aria-hidden="true">⌄</span>
+                </button>
+              </div>
+              <div id="filterPanel" hidden>
+                <div class="inline-tools filter-tools">
+                  <button id="selectAll" class="text-button">전체</button
+                  ><button id="selectNone" class="text-button">해제</button>
+                </div>
+                <table class="selection-table">
+                  <tbody id="selectionRows"></tbody>
+                </table>
+                <p id="selectionHint" class="selection-hint"></p>
+              </div>
+            </section>
+            <section class="card chart-card">
+              <div class="chart-head">
+                <div>
+                  <h2>키워드별 일별 추정 쿼리수</h2>
+                  <p>세부 키워드의 추정 검색량을 비교합니다.</p>
+                </div>
+              </div>
+              <div id="trendLegend" class="legend chart-controls"></div>
+              <div id="trendChart" class="chart"></div>
+              <div id="trendFoot" class="chart-foot"></div>
+            </section>
+            <section class="card device-card">
+              <div class="section-head">
+                <div>
+                  <h2>키워드별 PC · 모바일 추정 쿼리</h2>
+                  <p>선택한 조회 기간의 일별 추정 쿼리 합계</p>
+                </div>
+                <div class="legend">
+                  <span><i class="dot" style="background: #628bd0"></i>PC</span
+                  ><span
+                    ><i class="dot" style="background: #2da58b"></i>MO</span
+                  >
+                </div>
+              </div>
+              <div class="device-scroll">
+                <div id="deviceColumns" class="device-columns"></div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+      <footer class="methodology">
+        <strong>환산 공식</strong>
+        <p>
+          일별 추정 쿼리수 = 월간 PC 검색수 × 해당일 PC 지수 ÷ 기준 30일 PC 지수
+          합 + 월간 MO 검색수 × 해당일 MO 지수 ÷ 기준 30일 MO 지수 합.
+        </p>
+        <p>
+          월간 값의 정확한 집계 기간이 응답에 없어, 수집일 전날까지 30일을
+          기준으로 가정합니다. 이 보정계수를 선택 기간에 적용하는 소급 추정이며
+          네이버가 제공하는 실제 일별 검색 건수가 아닙니다. 기준 지수 누락·합계
+          0·‘&lt;10’ 값은 추정에서 제외합니다. PC·MO의 해당 기간과 기준 기간은
+          같은 요청의 지수를 사용합니다.
+        </p>
+        <p>
+          <strong>보조 지표</strong> 구글 검색·유튜브 검색은 Google 트렌드의
+          0~100 상대 지수로, 네이버 추정량과 단위가 달라 각자의 축에 그립니다.
+          절대량 비교가 아니라 추이 비교용입니다. 키워드가 너무 적게 검색되면
+          Google이 0을 반환하므로 브랜드 주제 단위로 수집할 수 있으며, 수집
+          기준은 마우스 오버 시 표시합니다.
+        </p>
+        <p>
+          <strong>이슈 표시</strong> 주황 원은 날짜가 확인된 언론 보도, 회색
+          점선은 전후 7일 중앙값보다 15% 이상 높은 급등일(원인 미확인)입니다.
+          급등일은 상관관계 표시일 뿐 원인을 뜻하지 않습니다.
+        </p>
+        <p>
+          성·연령별 원본 지수는 일별 건수로 환산할 수 없어 화면에서 제외하고
+          복원 정보에 보관합니다. 성·연령별 절대 검색량은 확보할 수 없어 엑셀의
+          세부 성·연령 행에서는 PC·MO·추정 쿼리수를 공란으로 둡니다. ‘전체’ 행의
+          PC·MO는 선택 기간의 기기별 추정 합계이며, 합계는 정수로 반올림합니다.
+          날짜·원본 지수는 엑셀의 숨김 복원 시트에 포함됩니다.
+        </p>
+        <p>
+          새 추출·엑셀 불러오기를 완료하면 이전 결과를 교체합니다. 필요한 결과는
+          먼저 전체 엑셀로 저장하세요. 자동 수집은 하지 않습니다.
+        </p>
+      </footer>
+    </div>
+    <div id="extractionOverlay" class="extraction-overlay" hidden>
+      <div
+        id="extractionGauge"
+        class="extraction-gauge"
+        role="progressbar"
+        aria-label="데이터 추출 진행률"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+        tabindex="0"
+      >
+        <div class="extraction-track"><i id="extractionFill"></i></div>
+        <span id="extractionPercent" aria-hidden="true">0%</span>
+      </div>
+    </div>
+    <dialog id="replaceDialog">
+      <h2>기존 결과를 엑셀로 저장하셨나요?</h2>
+      <p>
+        새 결과가 완성되면 현재 키워드와 이전 추출 결과는 교체됩니다. 보관하려면
+        우측 상단 ‘전체 엑셀’을 먼저 내려받으세요.
+      </p>
+      <p id="replaceDetail"></p>
+      <div class="dialog-actions">
+        <button id="cancelReplace">돌아가서 저장하기</button
+        ><button id="confirmReplace" class="primary">
+          저장했습니다 · 계속
+        </button>
+      </div>
+    </dialog>
+    <script src="./config.js"></script>
+    <script src="./xlsx.js"></script>
+    <script src="./query-chart.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

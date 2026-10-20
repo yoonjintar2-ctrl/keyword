@@ -639,6 +639,9 @@ function beforeReplace(action, description) {
   }
 }
 let extractionFocus = null;
+function extractionStatus(text) {
+  $("extractionStep").textContent = text || "";
+}
 function extractionProgress(value) {
   const n = Math.min(100, Math.max(0, Math.round(value)));
   $("extractionFill").style.width = n + "%";
@@ -661,6 +664,15 @@ function setExtracting(active) {
 $("extractionGauge").addEventListener("keydown", (e) => {
   if (e.key === "Tab") e.preventDefault();
 });
+function stepLabel(step) {
+  if (/monthly/.test(step)) return "월간 검색수 조회";
+  if (/final/.test(step)) return "결과 정리";
+  if (/^(all|pc|mo)/.test(step)) return "일별 추이 수집";
+  if (/male|female/.test(step) && /age|under/.test(step)) return "성·연령별 수집";
+  if (/male|female/.test(step)) return "성별 수집";
+  if (/age|under/.test(step)) return "연령별 수집";
+  return "데이터 수집";
+}
 /* 네이버 API 호출 한도(429)·일시 오류는 기다렸다가 자동 재시도.
    완료된 단계·배치는 서버가 캐시하므로 재시도해도 중복 호출되지 않는다. */
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms)),
@@ -673,7 +685,9 @@ async function stepWithRetry(jobId, step) {
     } catch (e) {
       const retryable = /429|too many|한도|rate|50[0-9]|일시|timeout|Failed to fetch|NetworkError/i.test(e.message);
       if (!retryable || attempt >= RETRY_WAITS.length) throw e;
-      await sleep(RETRY_WAITS[attempt] + Math.random() * 500);
+      const wait = RETRY_WAITS[attempt] + Math.random() * 500;
+      extractionStatus("네이버 호출 한도로 잠시 대기 후 다시 시도 중… (" + Math.round(wait / 1000) + "초)");
+      await sleep(wait);
     }
   }
 }
@@ -684,9 +698,11 @@ async function execute(job, started = false) {
   $("runProgress").hidden = true;
   $("retryJob").hidden = true;
   extractionProgress(0);
+  extractionStatus("작업 준비 중");
   try {
     for (let i = 0; i < job.steps.length; i++) {
       const step = job.steps[i];
+      extractionStatus((i + 1) + " / " + job.steps.length + " 단계 · " + stepLabel(step));
       await stepWithRetry(job.id, step);
       await sleep(STEP_GAP_MS);
       extractionProgress(((i + 1) / job.steps.length) * 98);
@@ -696,8 +712,10 @@ async function execute(job, started = false) {
       api("/api/data"),
       api("/api/groups"),
     ]);
-    adopt(data, config.groups, "새 추출 완료");
     extractionProgress(100);
+    extractionStatus("완료 · 그래프를 불러오는 중");
+    await sleep(500);
+    adopt(data, config.groups, "새 추출 완료");
     currentJob = null;
     await loadQuota();
     toast(data.models.length + "개 키워드 추출을 완료했습니다.");
@@ -930,6 +948,56 @@ async function reloadData() {
   }
 }
 $("reloadData").onclick = reloadData;
+/* 기간 빠른 선택: 오늘(=어제까지) 기준 / 연도별 */
+const kstToday = () => new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Seoul" }),
+  dayShift = (d, n) => new Date(Date.parse(d) + n * 86400000).toISOString().slice(0, 10);
+function monthsBack(end, m) {
+  const [y, mo, d] = end.split("-").map(Number),
+    t = new Date(Date.UTC(y, mo - 1 - m, d));
+  return dayShift(t.toISOString().slice(0, 10), 1);
+}
+function setRange(a, b) {
+  $("startDate").value = a;
+  $("endDate").value = b;
+  estimateBudget();
+  markPresets();
+}
+function markPresets() {
+  const a = $("startDate").value,
+    b = $("endDate").value,
+    end = dayShift(kstToday(), -1);
+  document.querySelectorAll("#rangePresets button").forEach((x) =>
+    x.classList.toggle("active", b === end && a === monthsBack(end, +x.dataset.months)),
+  );
+  document.querySelectorAll("#yearPresets button").forEach((x) => {
+    const y = x.dataset.year;
+    x.classList.toggle("active", a === y + "-01-01" && b === (y + "-12-31" < end ? y + "-12-31" : end));
+  });
+}
+(function buildPresets() {
+  const end = dayShift(kstToday(), -1),
+    thisYear = +end.slice(0, 4);
+  $("rangePresets").onclick = (e) => {
+    const x = e.target.closest("button[data-months]");
+    if (x) setRange(monthsBack(end, +x.dataset.months), end);
+  };
+  for (let y = thisYear; y >= Math.max(2016, thisYear - 5); y--) {
+    const x = document.createElement("button");
+    x.type = "button";
+    x.dataset.year = y;
+    x.textContent = y + "년";
+    x.title = y === thisYear ? y + "-01-01 ~ 어제" : y + "-01-01 ~ " + y + "-12-31";
+    $("yearPresets").append(x);
+  }
+  $("yearPresets").onclick = (e) => {
+    const x = e.target.closest("button[data-year]");
+    if (!x) return;
+    const y = x.dataset.year,
+      last = y + "-12-31" < end ? y + "-12-31" : end;
+    setRange(y + "-01-01", last);
+  };
+  ["startDate", "endDate"].forEach((id) => $(id).addEventListener("input", markPresets));
+})();
 function setPanel(open) {
   $("panelBody").hidden = !open;
   $("panelToggle").setAttribute("aria-expanded", String(open));

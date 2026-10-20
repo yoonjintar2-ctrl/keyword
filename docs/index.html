@@ -1779,6 +1779,90 @@
         box-shadow: 0 14px 40px #0000002a;
         background: #fff;
       }
+      .date-presets {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin: 2px 0 6px;
+      }
+      .date-presets button {
+        font-size: 10.5px;
+        padding: 3px 8px;
+        border-radius: 999px;
+        background: #f6f7f8;
+        color: #4b5156;
+      }
+      .date-presets button.active {
+        background: #24272b;
+        border-color: #24272b;
+        color: #fff;
+      }
+      .date-presets.years button {
+        font-variant-numeric: tabular-nums;
+      }
+      /* 추출 게이지: 화면을 불투명하게 덮고 가운데에 진행 상황만 */
+      #extractionOverlay.extraction-overlay {
+        background: #17191c;
+        backdrop-filter: none;
+      }
+      .extraction-gauge {
+        width: min(460px, 82vw);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        text-align: center;
+        color: #e9ebed;
+      }
+      .extraction-gauge .ex-title {
+        font-size: 12px;
+        letter-spacing: 2px;
+        color: #8d939a;
+      }
+      .extraction-gauge .ex-percent {
+        font-size: 54px;
+        font-weight: 750;
+        letter-spacing: -2px;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+        color: #fff;
+        min-width: 0;
+      }
+      .extraction-overlay .extraction-track {
+        flex: none;
+        height: 6px;
+        background: #2d3135;
+      }
+      .extraction-overlay .extraction-track i {
+        background: linear-gradient(90deg, #9aa0a5, #ffffff);
+        transition: width 0.45s cubic-bezier(0.3, 0.8, 0.3, 1);
+        position: relative;
+        overflow: hidden;
+      }
+      .extraction-overlay .extraction-track i::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, #ffffff99, transparent);
+        animation: shimmer 1.4s linear infinite;
+      }
+      @keyframes shimmer {
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(100%);
+        }
+      }
+      .extraction-gauge .ex-step {
+        font-size: 11px;
+        color: #8d939a;
+        min-height: 16px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .extraction-overlay .extraction-track i::after {
+          animation: none;
+        }
+      }
       .top-meta,
       .brand .top-meta span {
         color: #9aa0a5;
@@ -2018,6 +2102,13 @@
               >추출 종료일<input type="date" id="endDate" min="2016-01-01"
             /></label>
           </div>
+          <div class="date-presets" id="rangePresets" aria-label="오늘 기준 기간">
+            <button type="button" data-months="1">최근 1개월</button
+            ><button type="button" data-months="3">3개월</button
+            ><button type="button" data-months="6">6개월</button
+            ><button type="button" data-months="12">1년</button>
+          </div>
+          <div class="date-presets years" id="yearPresets" aria-label="연도별"></div>
           <p class="hint" id="dateHint"></p>
           <button id="extract" class="primary search-button">
             <strong>새로운 키워드 검색하기</strong
@@ -2139,8 +2230,10 @@
         aria-valuenow="0"
         tabindex="0"
       >
+        <div class="ex-title">쿼리 추출 중</div>
+        <div class="ex-percent" id="extractionPercent" aria-hidden="true">0%</div>
         <div class="extraction-track"><i id="extractionFill"></i></div>
-        <span id="extractionPercent" aria-hidden="true">0%</span>
+        <div class="ex-step" id="extractionStep" aria-live="polite"></div>
       </div>
     </div>
     <dialog id="replaceDialog">

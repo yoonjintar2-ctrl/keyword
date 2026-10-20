@@ -325,10 +325,18 @@ export async function collect(data, { now = new Date() } = {}) {
 }
 
 async function main() {
+  let data;
+  if (process.env.DATA_URL) {
+    // 점검용: 다른 분석 파일로 수집만 시험(저장하지 않음)
+    const j = await (await fetch(process.env.DATA_URL)).json();
+    const e = await collect(j.data || j);
+    log("점검 결과:", JSON.stringify({ issues: e.issues.map((i) => i.date + " " + i.title), spikes: Object.entries(e.spike_notes).map(([d, n]) => d + " 후보 " + n.candidates.length), notes: e.notes }));
+    return;
+  }
   const r = await fetch(API_BASE + "/api/data", { headers: { "User-Agent": UA }, cache: "no-store" });
   const text = await r.text();
   if (!r.ok || !text.trim().startsWith("{")) throw Error("분석 데이터 응답 오류 " + r.status + " " + text.slice(0, 120));
-  const data = JSON.parse(text);
+  data = JSON.parse(text);
   if (!data.models?.length) return log("분석 없음");
   const store = fs.existsSync(FILE) ? JSON.parse(fs.readFileSync(FILE, "utf8")) : { version: 1, analyses: [] };
   const id = data.job_id || data.collected_at;

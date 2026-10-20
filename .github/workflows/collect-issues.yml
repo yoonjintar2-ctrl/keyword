@@ -39,6 +39,11 @@ jobs:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           FORCE: ${{ inputs.force && '1' || '' }}
         run: node scripts/collect-issues.mjs
+      - name: 수집 점검(이전 22개 키워드 백업)
+        if: github.event_name == 'push'
+        env:
+          DATA_URL: https://raw.githubusercontent.com/yoonjintar0-commits/naver-search-lab/c8b1112c0f8fc18650e84ffca130dfb11396314a/handoff/data-2026-10-20/archive-22-keywords.json
+        run: node scripts/collect-issues.mjs
       - name: 변경 시 반영
         env:
           GH_TOKEN: ${{ github.token }}

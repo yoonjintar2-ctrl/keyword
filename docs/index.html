@@ -1300,6 +1300,7 @@
         margin: 0;
       }
       .head-tools {
+        position: relative;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -1676,6 +1677,64 @@
           animation: none;
         }
       }
+      .top-meta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: 14px;
+        font-size: 10.5px;
+        font-weight: 400;
+        letter-spacing: 0;
+        color: #a9c7bc;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .top-meta .badge {
+        background: #24524a;
+        color: #bfe8da;
+        font-size: 9.5px;
+        padding: 2px 7px;
+      }
+      .stage .flow-card .chart-head {
+        justify-content: flex-end;
+      }
+      .share-pop {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 8px);
+        z-index: 46;
+        width: 300px;
+        padding: 14px 16px;
+        box-shadow: 0 16px 40px #0f2a2533;
+        animation: pop 0.18s ease-out;
+        font-size: 11px;
+      }
+      .share-pop label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 5px 0;
+      }
+      .share-pop input {
+        width: 70px;
+        padding: 4px 6px;
+        text-align: right;
+      }
+      .share-pop .actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+      .series-toggles .share-btn {
+        border-style: dashed;
+        color: #5f7369;
+      }
+      @media (max-width: 1100px) {
+        .top-meta #resultDate {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1684,6 +1743,10 @@
         <div class="brand">
           <span class="logo-field" aria-hidden="true">Q<i></i></span>네이버 쿼리
           추정기
+          <span class="top-meta"
+            ><span id="resultDate"></span
+            ><span id="resultBadge" class="badge">현재 결과</span></span
+          >
         </div>
         <div class="header-right">
           <div
@@ -1804,11 +1867,6 @@
         <section id="results" hidden>
           <section class="card flow-card">
             <div class="chart-head">
-              <div class="flow-title">
-                <h2>일별 흐름</h2>
-                <p id="resultDate"></p>
-                <span id="resultBadge" class="badge">현재 결과</span>
-              </div>
               <div class="head-tools">
                 <div
                   id="mainLegend"

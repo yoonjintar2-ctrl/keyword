@@ -200,6 +200,14 @@ function seriesToggles(aux, hasIssues, segList) {
   };
   if (segList) {
     for (const s of segList) chip(s.name, s.color, null, { title: "집단 내 상대 추이" });
+    if (segMode === "age") {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "share-btn";
+      b.textContent = getShares("age").provided ? "연령 비율 수정" : "연령 비율 입력";
+      b.onclick = () => openSharePop(b);
+      box.append(b);
+    }
   } else {
     chip("네이버 추정 쿼리 · " + chosen().length + "개", "var(--naver)", null, {
       title: "메인 지표 · 선택한 키워드의 일별 추정 쿼리 합계",
@@ -220,7 +228,7 @@ let chartObserver = null,
   lastSize = "",
   panStart = null, // 30일 보기의 첫 날짜 인덱스
   panTimer = 0,
-  lastNaverYs = null; // 성·연령 전환 시 모핑 출발점
+  lastNaverYs = null;
 
 function watchChartSize() {
   if (chartObserver || typeof ResizeObserver === "undefined") return;
@@ -290,7 +298,7 @@ function mainFlow(opts = {}) {
   const markers = seriesOn.issues !== false && !segList ? issues.sort((a, b) => a.k - b.k) : [];
 
   // 이슈 라벨 줄 배치(콘텐츠 좌표)
-  const laneTop = 30,
+  const laneTop = 68,
     laneH = 27,
     rows = [];
   for (const m of markers) {
@@ -444,29 +452,65 @@ function mainFlow(opts = {}) {
       undefined,
       gMain,
     );
-    if (animate) drawIn(line, 1000, 0);
-    lastNaverYs = values.map((v) => (v == null ? null : y(v)));
+    const naverYs = values.map((v) => (v == null ? null : y(v)));
+    if (animate && prevSeg) mergeInto(prevSeg, naverYs, line, gMain, gArea, cx);
+    else if (animate) drawIn(line, 1000, 0);
+    prevSeg = null;
   } else {
-    // 집단별 선: 공통 축(가중 평균 1 기준)으로 네이버 띠 안에 표시
-    const sers = segList.map((s) => ({ ...s, vals: segmentSeries(s.id) })),
-      sv = sers.flatMap((s) => s.vals).filter((v) => v != null),
-      smin = Math.min(...sv),
-      smax = Math.max(...sv),
-      sy = (v) => NAV_BOT - ((v - smin) / (smax - smin || 1)) * (NAV_BOT - NAV_TOP);
-    segLines = sers.map((s) => {
-      const to = s.vals.map((v) => (v == null ? null : sy(v))),
-        path = add(
-          "path",
-          { fill: "none", stroke: s.color, "stroke-width": segMode === "gender" ? 5 : 3.6, "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-opacity": 0.92 },
-          undefined,
-          gMain,
-        );
-      const from = lastNaverYs && animate ? lastNaverYs : null;
-      morphPath(path, cx, from, to, animate ? 850 : 0);
-      return { ...s, to, max: Math.max(...s.vals.filter((v) => v != null)) };
-    });
-    if (!segLines.some((s) => s.to.some((v) => v != null)))
+    const baseYs = values.map((v) => (v == null ? null : y(v))); // 갈라지는 출발점 = 네이버 선
+    const sers = segList.map((s) => ({ ...s, vals: segmentSeries(s.id) }));
+    for (const se of sers) {
+      const ok = se.vals.filter((v) => v != null);
+      se.mean = ok.length ? ok.reduce((a, b) => a + b, 0) / ok.length : 0;
+      se.rel = se.vals.map((v) => (v == null || !se.mean ? null : v / se.mean));
+      se.max = ok.length ? Math.max(...ok) : 1;
+    }
+    if (!sers.some((se) => se.mean))
       add("text", { x: L + pw / 2, y: T + ph / 2, "text-anchor": "middle", fill: "#7d8e85", "font-size": 13 }, "선택한 키워드에 성·연령 지수가 충분하지 않습니다.");
+    if (segMode === "gender") {
+      // 성별: 공통 축의 두 선
+      const sv = sers.flatMap((se) => se.rel).filter((v) => v != null),
+        smin = Math.min(...sv),
+        smax = Math.max(...sv),
+        sy = (v) => NAV_BOT - ((v - smin) / (smax - smin || 1)) * (NAV_BOT - NAV_TOP);
+      segLines = sers.map((se) => {
+        const to = se.rel.map((v) => (v == null ? null : sy(v))),
+          path = add("path", { fill: "none", stroke: se.color, "stroke-width": 5.5, "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-opacity": 0.9 }, undefined, gMain);
+        morphPath(path, cx, animate ? baseYs : null, to, animate ? 850 : 0);
+        return { ...se, to };
+      });
+      prevSeg = { mode: "gender", lines: segLines.map((l) => ({ color: l.color, ys: l.to })) };
+    } else {
+      // 연령: 하루 추정 쿼리를 집단 비율×집단별 상대 추이로 나눈 누적 막대
+      const share = getShares("age"),
+        tot = values.map((v) => v ?? 0),
+        maxTot = Math.max(1, ...values.slice(vis0, vis1 + 1).filter((v) => v != null)),
+        maxAll = Math.max(1, ...values.filter((v) => v != null)),
+        yz = (v) => T + ph - (v / maxAll) * (T + ph - NAV_TOP),
+        bw = Math.max(2, Math.min(28, dayW * 0.7)),
+        rects = [];
+      segLines = sers.map((se) => ({ ...se, parts: new Array(n).fill(null) }));
+      for (let k = 0; k < n; k++) {
+        if (values[k] == null) continue;
+        const wts = segLines.map((se) => (se.rel[k] == null ? 0 : share.v[se.id] * se.rel[k])),
+          sum = wts.reduce((a, b) => a + b, 0);
+        if (!sum) continue;
+        let acc = 0;
+        segLines.forEach((se, j) => {
+          const part = (tot[k] * wts[j]) / sum;
+          se.parts[k] = part;
+          const bot = yz(acc),
+            top = yz(acc + part);
+          acc += part;
+          const r = add("rect", { x: cx(k) - bw / 2, width: bw, y: top, height: Math.max(0, bot - top), fill: se.color, "fill-opacity": 0.88, rx: Math.min(3, bw / 4) }, undefined, gMain);
+          rects.push({ el: r, k, color: se.color, x: cx(k) - bw / 2, w: bw, top, bot, fromTop: baseYs[k] ?? top, fromBot: baseYs[k] ?? bot });
+        });
+      }
+      segLines.share = share;
+      if (animate) tweenRects(rects, "split", 900);
+      prevSeg = { mode: "age", rects: rects.map((r) => ({ k: r.k, x: r.x, w: r.w, color: r.color, top: r.top, bot: r.bot })) };
+      void maxTot;
+    }
   }
 
   /* --- 최고점(보이는 구간의 네이버 최대값만, 함축 표기) --- */
@@ -546,13 +590,26 @@ function mainFlow(opts = {}) {
     tip.append(title);
     if (segList) {
       dot.setAttribute("visibility", "hidden");
-      for (const s of segLines) {
-        const v = s.vals[cur];
-        tip.append(row(s.color, s.name, v == null ? "–" : String(Math.round((v / s.max) * 100))));
-      }
       const note = document.createElement("div");
       note.className = "issue-line";
-      note.textContent = "집단별 최고일=100 기준 상대 지수";
+      if (segMode === "age") {
+        const sumP = segLines.reduce((a, se) => a + (se.parts[cur] || 0), 0);
+        for (const se of [...segLines].reverse()) {
+          const p = se.parts[cur];
+          tip.append(
+            row(se.color, se.name, p == null ? "–" : segLines.share.provided ? "약 " + fmt(p) + "건" : Math.round((p / sumP) * 100) + "%"),
+          );
+        }
+        note.textContent = segLines.share.provided
+          ? "입력한 연령 비율 × 연령별 상대 추이로 나눈 추정치"
+          : "연령 비율 미입력: 같은 비율 가정 · 그날의 상대 비중";
+      } else {
+        for (const se of segLines) {
+          const v = se.rel[cur];
+          tip.append(row(se.color, se.name, v == null ? "–" : "평소의 " + Math.round(v * 100) + "%"));
+        }
+        note.textContent = "집단별 기간 평균=100% 기준 상대 추이";
+      }
       tip.append(note);
     } else {
       const v = values[cur];
@@ -721,12 +778,154 @@ function mainFlow(opts = {}) {
       : !match
         ? " 이 분석의 이슈·보조 지표는 자동 수집 대기 중입니다(새 분석 후 최대 30분)."
         : " 이슈 출처: " + (match.sources || []).join(", ") + ".";
-  $("flowFoot").textContent = segList
+  $("flowFoot").textContent = segMode === "age"
+    ? (getShares("age").provided
+        ? "연령별 막대는 입력한 연령 비율과 연령별 상대 추이로 하루 추정 쿼리를 나눈 추정치입니다."
+        : "연령 비율을 입력하지 않아 6개 집단을 같은 비율로 가정하고, 집단별 상대 추이로 하루 추정 쿼리를 나눈 모양입니다. 실제 연령 구성이 아니며, 범례의 '연령 비율 입력'에 광고시스템 키워드 도구의 비율을 넣으면 추정 건수로 바뀝니다.")
+    : segList
     ? "성·연령별 선은 네이버가 집단마다 따로 정규화한 지수를 키워드 월간 검색수로 가중 합산한 상대 추이입니다. 집단별 실제 검색 건수가 아니며, 같은 축에서 오르내림의 크기만 비교하세요."
     : "굵은 선은 선택한 키워드의 일별 추정 쿼리 합계입니다. 세로 범위는 기간 최저~최고에 맞춰 확대되어 있으니 값은 그래프에 마우스를 올려 확인하세요." +
       (basis ? " 보조 지표는 각자의 축에 그린 상대 지수로 추이만 비교합니다 — " + basis + "." : "") +
       (windowed ? " 30일 보기에서는 마우스 휠이나 좌우 버튼으로 기간을 옮길 수 있습니다." : "") +
       status;
+}
+
+/* ---------- 연령 비율(광고시스템 키워드 도구 값 입력) ---------- */
+let prevSeg = null;
+const shareKey = () => "nq-share-" + (dataset?.job_id || dataset?.collected_at || "");
+function getShares(mode) {
+  const list = SEGMENTS[mode],
+    eq = Object.fromEntries(list.map((s) => [s.id, 1 / list.length]));
+  try {
+    const saved = JSON.parse(localStorage.getItem(shareKey()) || "{}")[mode];
+    if (saved) {
+      const sum = list.reduce((a, s) => a + (+saved[s.id] || 0), 0);
+      if (sum > 0)
+        return { provided: true, v: Object.fromEntries(list.map((s) => [s.id, (+saved[s.id] || 0) / sum])) };
+    }
+  } catch {}
+  return { provided: false, v: eq };
+}
+function openSharePop(anchor) {
+  document.querySelector(".share-pop")?.remove();
+  const pop = document.createElement("div"),
+    list = SEGMENTS.age,
+    cur = getShares("age");
+  pop.className = "share-pop card";
+  pop.innerHTML =
+    "<strong>연령 비율(%)</strong><p class='hint'>네이버 광고시스템 › 키워드 도구에서 이 키워드들의 연령별 비율을 입력하세요. 합계는 자동으로 100%로 맞춥니다.</p>";
+  for (const s of list) {
+    const l = document.createElement("label"),
+      i = document.createElement("input");
+    i.type = "number";
+    i.min = 0;
+    i.step = 0.1;
+    i.name = s.id;
+    i.value = cur.provided ? Math.round(cur.v[s.id] * 1000) / 10 : "";
+    i.placeholder = "%";
+    l.append(s.name, i);
+    pop.append(l);
+  }
+  const act = document.createElement("div"),
+    reset = document.createElement("button"),
+    save = document.createElement("button");
+  act.className = "actions";
+  reset.className = "text-button";
+  reset.textContent = "초기화(같은 비율)";
+  save.className = "primary";
+  save.textContent = "적용";
+  act.append(reset, save);
+  pop.append(act);
+  const store = (val) => {
+    try {
+      const all = JSON.parse(localStorage.getItem(shareKey()) || "{}");
+      if (val) all.age = val;
+      else delete all.age;
+      localStorage.setItem(shareKey(), JSON.stringify(all));
+    } catch {}
+    pop.remove();
+    mainFlow({ animate: true });
+  };
+  reset.onclick = () => store(null);
+  save.onclick = () => {
+    const val = {};
+    pop.querySelectorAll("input").forEach((i) => (val[i.name] = +i.value || 0));
+    store(Object.values(val).some((v) => v > 0) ? val : null);
+  };
+  anchor.closest(".head-tools").append(pop);
+  pop.querySelector("input")?.focus();
+  const off = (e) => {
+    if (!pop.contains(e.target) && e.target !== anchor) {
+      pop.remove();
+      document.removeEventListener("pointerdown", off);
+    }
+  };
+  setTimeout(() => document.addEventListener("pointerdown", off), 0);
+}
+
+/* 성·연령 → 합계: 선/막대가 네이버 선으로 합쳐짐 */
+function mergeInto(prev, naverYs, line, gMain, gArea, cx) {
+  const ns = "http://www.w3.org/2000/svg",
+    tmp = document.createElementNS(ns, "g");
+  gMain.insertBefore(tmp, line);
+  line.style.opacity = 0;
+  gArea.style.opacity = 0;
+  const done = () => {
+    tmp.remove();
+    line.style.transition = "opacity .35s ease";
+    gArea.style.transition = "opacity .6s ease";
+    line.style.opacity = 1;
+    gArea.style.opacity = 1;
+  };
+  if (prev.mode === "gender") {
+    prev.lines.forEach((l, i) => {
+      const p = document.createElementNS(ns, "path");
+      p.setAttribute("fill", "none");
+      p.setAttribute("stroke", l.color);
+      p.setAttribute("stroke-width", 5.5);
+      p.setAttribute("stroke-linecap", "round");
+      p.setAttribute("stroke-opacity", 0.9);
+      tmp.append(p);
+      morphPath(p, cx, l.ys, naverYs, 750, i === 0 ? done : null);
+    });
+  } else {
+    const rects = prev.rects.map((r) => {
+      const el = document.createElementNS(ns, "rect");
+      el.setAttribute("x", r.x);
+      el.setAttribute("width", r.w);
+      el.setAttribute("fill", r.color);
+      el.setAttribute("fill-opacity", 0.88);
+      el.setAttribute("y", r.top);
+      el.setAttribute("height", Math.max(0, r.bot - r.top));
+      tmp.append(el);
+      const ny = naverYs[r.k] ?? r.top;
+      return { el, fromTop: ny, fromBot: ny, top: r.top, bot: r.bot };
+    });
+    tweenRects(rects, "merge", 750, done);
+  }
+}
+/* 누적 막대 갈라짐(split: 선 위치 → 막대) / 합쳐짐(merge: 막대 → 선 위치) */
+function tweenRects(rects, dir, ms, done) {
+  const t0 = performance.now(),
+    ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  const apply = (e) => {
+    for (const r of rects) {
+      const a = dir === "split" ? e : 1 - e,
+        top = r.fromTop + (r.top - r.fromTop) * a,
+        bot = r.fromBot + (r.bot - r.fromBot) * a;
+      r.el.setAttribute("y", Math.min(top, bot));
+      r.el.setAttribute("height", Math.abs(bot - top));
+    }
+  };
+  apply(0);
+  const frame = (now) => {
+    if (!rects[0]?.el.isConnected) return done?.();
+    const t = Math.min(1, (now - t0) / ms);
+    apply(ease(t));
+    if (t < 1) requestAnimationFrame(frame);
+    else done?.();
+  };
+  requestAnimationFrame(frame);
 }
 
 /* ---------- 애니메이션 ---------- */
@@ -746,11 +945,12 @@ function drawIn(path, ms, delay) {
   } catch {}
 }
 /* from(y 배열) → to(y 배열)로 선 모양을 보간 */
-function morphPath(path, cx, from, to, ms) {
+function morphPath(path, cx, from, to, ms, done) {
   const build = (ys) => smoothPath(ys.map((v, k) => (v == null ? null : [cx(k), v])));
   if (!ms || !from) {
     path.setAttribute("d", build(to));
     if (ms) drawIn(path, ms, 0);
+    done?.();
     return;
   }
   const t0 = performance.now(),
@@ -764,6 +964,7 @@ function morphPath(path, cx, from, to, ms) {
       build(to.map((v, k) => (v == null ? null : from[k] == null ? v : from[k] + (v - from[k]) * e))),
     );
     if (t < 1) requestAnimationFrame(frame);
+    else done?.();
   };
   requestAnimationFrame(frame);
 }

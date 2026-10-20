@@ -272,7 +272,9 @@ function mainFlow() {
     pad = Math.max((vmax - vmin) * 0.12, vmax * 0.02, 1),
     lo = Math.max(0, vmin - pad),
     hi = vmax + pad * 0.6,
-    y = (v) => T + ph - ((v - lo) / (hi - lo)) * ph,
+    // 네이버는 위쪽 띠(상단 72%), 보조 지표는 아래쪽 띠에 배치
+    NAV_H = ph * 0.72,
+    y = (v) => T + NAV_H - ((v - lo) / (hi - lo)) * NAV_H,
     ns = "http://www.w3.org/2000/svg",
     svg = document.createElementNS(ns, "svg");
   svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
@@ -367,27 +369,57 @@ function mainFlow() {
       apad = Math.max((amax - amin) * 0.12, 1),
       alo = Math.max(0, amin - apad),
       ahi = amax + apad * 0.6,
-      ay = (v) => T + ph - ((v - alo) / (ahi - alo)) * ph;
+      ay = (v) => T + ph - ((v - alo) / (ahi - alo)) * ph * 0.42;
     add("path", {
       d: smoothPath(a.vals.map((v, k) => (v == null ? null : [x(k), ay(v)]))),
       fill: "none",
+      "data-aux": a.id,
       stroke: a.color,
-      "stroke-width": 1.8,
-      "stroke-opacity": 0.8,
+      "stroke-width": 1.6,
+      "stroke-opacity": 0.7,
       "stroke-linejoin": "round",
       "stroke-linecap": "round",
     });
     a.ay = ay;
   }
 
-  // 메인: 네이버 추정 쿼리
+  // 메인: 네이버 추정 쿼리 — 그라데이션 영역 + 굵은 선
+  const defs = add("defs", {}),
+    grad = add(
+      "linearGradient",
+      { id: "naverFill", x1: 0, y1: 0, x2: 0, y2: 1 },
+      undefined,
+      defs,
+    );
+  add("stop", { offset: "0%", "stop-color": "#138b7c", "stop-opacity": 0.32 }, undefined, grad);
+  add("stop", { offset: "70%", "stop-color": "#138b7c", "stop-opacity": 0.08 }, undefined, grad);
+  add("stop", { offset: "100%", "stop-color": "#138b7c", "stop-opacity": 0 }, undefined, grad);
+  const pts = values.map((v, k) => (v.value == null ? null : [x(k), y(v.value)])),
+    segs = [];
+  let segStart = -1;
+  pts.forEach((p, k) => {
+    if (p && segStart < 0) segStart = k;
+    if ((!p || k === pts.length - 1) && segStart >= 0) {
+      const end = p ? k : k - 1;
+      if (end > segStart) segs.push([segStart, end]);
+      segStart = -1;
+    }
+  });
+  for (const [a, b] of segs)
+    add("path", {
+      d:
+        smoothPath(pts.slice(a, b + 1)) +
+        `L${x(b)},${T + ph}L${x(a)},${T + ph}Z`,
+      fill: "url(#naverFill)",
+      stroke: "none",
+    });
+  // 아래 보조 지표를 영역 위로 다시 올림
+  for (const el of svg.querySelectorAll("path[data-aux]")) svg.append(el);
   add("path", {
-    d: smoothPath(
-      values.map((v, k) => (v.value == null ? null : [x(k), y(v.value)])),
-    ),
+    d: smoothPath(pts),
     fill: "none",
-    stroke: "#138b7c",
-    "stroke-width": 4.5,
+    stroke: "#0f7f70",
+    "stroke-width": 6.5,
     "stroke-linecap": "round",
     "stroke-linejoin": "round",
     "data-series": "query-total",

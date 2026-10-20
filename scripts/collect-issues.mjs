@@ -69,6 +69,88 @@ export function detectSpikes(v) {
   return out;
 }
 
+
+/* ---------- 급등 유형(데이터로 역추적) ----------
+   기기·성·연령·키워드·요일 상승 패턴으로 어떤 경로의 노출인지 분류해 검색 방향을 정한다.
+   - 대중 노출형: 모바일만 오르고 PC는 그대로/하락, 전 연령 고르게 상승 → TV·영상·SNS 확산·광고
+   - 뉴스형: 평일에 PC가 함께 상승 → 언론 보도·발표
+   - 관심층형: 특정 연령·성별만 상승 → 리뷰·커뮤니티·유튜버 */
+const SEG_AGES = ["age19_29", "age30_39", "age40_49", "age50_59", "age60plus"];
+const median = (a) => {
+  const s = [...a].sort((x, y) => x - y);
+  return s.length ? (s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2) : null;
+};
+export function spikeSignature(data, i) {
+  const lift = (arr) => {
+    if (!arr || arr[i] == null) return null;
+    const w = [];
+    for (let j = i - 7; j <= i + 7; j++) if (j !== i && arr[j] != null) w.push(arr[j]);
+    const m = median(w);
+    return m ? arr[i] / m : null;
+  };
+  const acc = {},
+    drivers = [];
+  for (const m of data.models) {
+    const wt = (typeof m.pc === "number" ? m.pc : 0) + (typeof m.mobile === "number" ? m.mobile : 0);
+    if (!wt || !m.series) continue;
+    for (const k of ["pc", "mo", "male", "female", "under19", ...SEG_AGES]) {
+      const l = lift(m.series[k]);
+      if (l == null) continue;
+      (acc[k] ||= { s: 0, w: 0 }).s += l * wt;
+      acc[k].w += wt;
+    }
+    const a = lift(m.series.all);
+    if (a != null) drivers.push({ keyword: m.keyword, lift: a, contrib: (a - 1) * wt });
+  }
+  const r = (k) => (acc[k]?.w ? acc[k].s / acc[k].w : null),
+    ages = SEG_AGES.map((k) => ({ k, v: r(k) })).filter((x) => x.v != null),
+    agesV = ages.map((x) => x.v),
+    meanA = agesV.reduce((a, b) => a + b, 0) / (agesV.length || 1),
+    cv = agesV.length ? Math.sqrt(agesV.reduce((a, b) => a + (b - meanA) ** 2, 0) / agesV.length) / meanA : null,
+    wd = new Date(data.dates[i] + "T00:00:00Z").getUTCDay(),
+    weekend = wd === 0 || wd === 6,
+    mo = r("mo"),
+    pc = r("pc"),
+    male = r("male"),
+    female = r("female");
+  drivers.sort((a, b) => b.contrib - a.contrib);
+  let type = "혼합형",
+    why = [];
+  if (mo != null && pc != null && mo >= 1.2 && pc <= 1.05 && cv != null && cv < 0.2) {
+    type = "대중 노출형";
+    why.push(pc < 0.9 ? "모바일만 상승(PC는 감소)" : "모바일만 상승(PC 변화 없음)", "전 연령 고르게 상승");
+  } else if (pc != null && pc >= 1.2 && !weekend) {
+    type = "뉴스형";
+    why.push("평일 PC 동반 상승");
+  } else if (cv != null && cv >= 0.2) {
+    type = "관심층형";
+    const top = [...ages].sort((a, b) => b.v - a.v).slice(0, 2).map((x) => x.k);
+    why.push("특정 연령 집중: " + top.join(", "));
+  }
+  if (weekend) why.push("주말");
+  if (female && male && female / male >= 1.25) why.push("여성 상승이 더 큼");
+  if (female && male && male / female >= 1.25) why.push("남성 상승이 더 큼");
+  const f = (x) => (x == null ? null : Math.round(x * 100) / 100);
+  return {
+    type,
+    why,
+    mo: f(mo),
+    pc: f(pc),
+    male: f(male),
+    female: f(female),
+    age_cv: f(cv),
+    weekday: ["일", "월", "화", "수", "목", "금", "토"][wd],
+    driver: drivers[0]?.keyword || null,
+  };
+}
+/* 유형별로 붙이는 검색어 */
+export function querySuffix(type) {
+  if (type === "대중 노출형") return ["드라마", "예능", "방송", "광고", "연예인", "PPL", "유튜브"];
+  if (type === "관심층형") return ["시승기", "리뷰", "유튜버", "커뮤니티"];
+  if (type === "뉴스형") return ["출시", "발표", "가격", "리콜"];
+  return [];
+}
+
 /* ---------- 검색어 만들기 ---------- */
 const BRANDS = ["BMW", "MINI", "KIA", "AUDI", "GV", "SKT", "KT", "LG", "SK"];
 export const spaced = (k) => {
@@ -123,8 +205,11 @@ const shortTitle = (t, n = 24) => {
 };
 
 /* ---------- 소스: 구글 뉴스 RSS (키 불필요) ---------- */
-async function googleNews(terms, from, to) {
-  const q = terms.map((t) => `"${t}"`).join(" OR ") + ` after:${addDays(from, -1)} before:${addDays(to, 1)}`;
+async function googleNews(terms, from, to, extra = []) {
+  const base = terms.map((t) => `"${t}"`).join(" OR "),
+    q =
+      (extra.length ? `(${base}) (${extra.join(" OR ")})` : base) +
+      ` after:${addDays(from, -1)} before:${addDays(to, 1)}`;
   const url = "https://news.google.com/rss/search?hl=ko&gl=KR&ceid=KR:ko&q=" + encodeURIComponent(q);
   const r = await fetch(url, { headers: { "User-Agent": UA } });
   if (!r.ok) throw Error("google news " + r.status);
@@ -255,10 +340,23 @@ export async function collect(data, { now = new Date() } = {}) {
       win = [-3, -2, -1, 0, 1].map((k) => addDays(d, k)),
       pick = (m, kind) =>
         win.flatMap((w) => (m.get(w) || []).map((it) => ({ ...it, kind })));
+    const sig = spikeSignature(data, s.i),
+      focus = sig.driver ? [spaced(sig.driver)] : terms;
     let cands = [...pick(newsDay, "뉴스"), ...pick(blogDay, "블로그")];
+    // 유형별 표적 검색: 대중 노출형이면 방송·광고·연예 키워드를 붙여 다시 찾는다
+    const extra = querySuffix(sig.type);
+    if (extra.length) {
+      try {
+        const hits = await googleNews(focus, addDays(d, -3), addDays(d, 1), extra);
+        cands.push(...hits.filter((it) => win.includes(it.date)).map((it) => ({ ...it, kind: "뉴스(" + sig.type + " 표적)" })));
+      } catch (e) {
+        notes.push("표적 검색 실패(" + d + "): " + e.message);
+      }
+      await sleep(600);
+    }
     if (YT_KEY) {
       try {
-        cands.push(...(await youtube(terms, addDays(d, -3), d)));
+        cands.push(...(await youtube(focus, addDays(d, -3), d)));
       } catch (e) {
         notes.push("유튜브 실패: " + e.message);
       }
@@ -284,6 +382,7 @@ export async function collect(data, { now = new Date() } = {}) {
       };
     });
     spike_notes[d] = {
+      signature: sig,
       summary: top.length
         ? `급등일 전후(−3~+1일) 뉴스·${NAVER_ID ? "블로그·" : ""}${YT_KEY ? "유튜브·" : ""}게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.`
         : "급등일 전후로 검색어와 맞는 게시물을 찾지 못했습니다.",

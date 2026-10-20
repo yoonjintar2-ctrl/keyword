@@ -335,7 +335,7 @@ function mainFlow(opts = {}) {
     clip = add("clipPath", { id: "plotClip" }, undefined, defs);
   add("rect", { x: L - 14, y: 0, width: pw + 28, height: H }, undefined, clip);
   const grad = add("linearGradient", { id: "naverFill", x1: 0, y1: 0, x2: 0, y2: 1 }, undefined, defs);
-  add("stop", { offset: "0%", "stop-color": "#138b7c", "stop-opacity": 0.3 }, undefined, grad);
+  add("stop", { offset: "0%", "stop-color": "#138b7c", "stop-opacity": 0.22 }, undefined, grad);
   add("stop", { offset: "65%", "stop-color": "#138b7c", "stop-opacity": 0.07 }, undefined, grad);
   add("stop", { offset: "100%", "stop-color": "#138b7c", "stop-opacity": 0 }, undefined, grad);
 
@@ -343,8 +343,8 @@ function mainFlow(opts = {}) {
     content = add("g", { class: "pan-layer", transform: `translate(${shift},0)` }, undefined, view);
   const g = (cls) => add("g", { class: cls }, undefined, content);
   const gGrid = g("grid"),
-    gAux = g("aux"),
     gArea = g("area"),
+    gAux = g("aux"),
     gMain = g("main"),
     gIssue = g("issues"),
     gPeak = g("peak");
@@ -440,7 +440,7 @@ function mainFlow(opts = {}) {
     });
     const line = add(
       "path",
-      { d: smoothPath(naverPts), fill: "none", stroke: "#0f7f70", "stroke-width": 6.5, "stroke-linecap": "round", "stroke-linejoin": "round" },
+      { d: smoothPath(naverPts), fill: "none", stroke: "#0f7f70", "stroke-width": 6.5, "stroke-opacity": 0.82, "stroke-linecap": "round", "stroke-linejoin": "round" },
       undefined,
       gMain,
     );

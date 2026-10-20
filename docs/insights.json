@@ -3,6 +3,522 @@
  "note": "보조 지표·이슈 데이터. keywords 중 하나라도 현재 분석 키워드와 겹치고 날짜가 맞을 때만 표시.",
  "analyses": [
   {
+   "job_id": "aa4d7a98-f99a-4758-b9ec-fc0faf6ef97c",
+   "collected_from": "2026-10-20T10:37:10.812Z",
+   "keywords": [
+    "SOXL"
+   ],
+   "start_date": "2025-10-20",
+   "end_date": "2026-10-19",
+   "collected_at": "2026-10-20T12:57:05.798Z",
+   "auto": true,
+   "sources": [
+    "구글 뉴스"
+   ],
+   "search_terms": [
+    "SOXL"
+   ],
+   "notes": [
+    "네이버 검색 API 키 없음 — 블로그 발화량·화제글 미수집"
+   ],
+   "aux": [],
+   "issues": [
+    {
+     "date": "2026-05-11",
+     "title": "미국 반도체주, 6주 시총 3조8000억달…",
+     "summary": "이날 관련 보도 4건. 대표 기사: 미국 반도체주, 6주 시총 3조8000억달러 급증…버블 경계 속 반도체 부족 지속 전망 - 아시아투데이",
+     "source": "아시아투데이",
+     "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB4LVRnR0czTVJxV05oUExqT0h5QkVVbDJNVTFxbnVyT01HWmp5Z1M3SXB0d29tXzBHLXU2eC12c1NIalFyQkdDdmRFZkJwXzkyekc1TDM0enJicWM3SHBTUUVQTmx4YXdRWmlhVGJR?oc=5",
+     "related": [
+      {
+       "title": "미국 반도체주, 6주 시총 3조8000억달러 급증…버블 경계 속 반도체 부족 지속 전망 - 아시아투데이",
+       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB4LVRnR0czTVJxV05oUExqT0h5QkVVbDJNVTFxbnVyT01HWmp5Z1M3SXB0d29tXzBHLXU2eC12c1NIalFyQkdDdmRFZkJwXzkyekc1TDM0enJicWM3SHBTUUVQTmx4YXdRWmlhVGJR?oc=5",
+       "source": "아시아투데이"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-08-15",
+     "title": "반도체 반등에 다시 몰린 서학개미…‘3배 …",
+     "summary": "이날 관련 보도 6건. 대표 기사: 반도체 반등에 다시 몰린 서학개미…‘3배 ETF’ 이틀간 9천억 순매수 - 산경투데이",
+     "source": "산경투데이",
+     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9wbUJ1NjhEMzlmaFhMLVdSU05NOXhxUk9JcUt2UXZ1SGM5YzVFS2lvZGVGYzhaQWpROVc3X3FxZmdkR2JrMkV2WjJTNWtKRjU5T0JVZEZhS3U1ZE5QWmtiLVVuQk8zbFpteWFyVWNKT1jSAXRBVV95cUxOek1IUTFJMzEtMjNDS2s5aXY5TmNPeXh0eFJscXphWjN5QkhRMXBWTndPa05DYnpialZQcGRGZmNTTkRXMzFvSnNGcWVkTl9yUGgxcU5iRFZrc3dOTk9LTjJra1d3Q1BzUnNmekQxbGZkZG1JRA?oc=5",
+     "related": [
+      {
+       "title": "美 반도체 3배 ETF에 다시 몰린 개인투자자…이틀간 9000억원 순매수 - 서울경제TV",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1lN0ZLZ3dVQnVPOVdmQnpNYWtSdDAtbS1zZzAtcjFMSm1IM1VrRTZaTEZjRlRQM1VTanE5MF9hdDdyWTYzOHR2Z3VBOUppeDdPcnRZS0tNM1gzRXE1V2p3aGZMUFE?oc=5",
+       "source": "서울경제TV"
+      },
+      {
+       "title": "반도체 반등에 다시 몰린 서학개미…‘3배 ETF’ 이틀간 9천억 순매수 - 산경투데이",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9wbUJ1NjhEMzlmaFhMLVdSU05NOXhxUk9JcUt2UXZ1SGM5YzVFS2lvZGVGYzhaQWpROVc3X3FxZmdkR2JrMkV2WjJTNWtKRjU5T0JVZEZhS3U1ZE5QWmtiLVVuQk8zbFpteWFyVWNKT1jSAXRBVV95cUxOek1IUTFJMzEtMjNDS2s5aXY5TmNPeXh0eFJscXphWjN5QkhRMXBWTndPa05DYnpialZQcGRGZmNTTkRXMzFvSnNGcWVkTl9yUGgxcU5iRFZrc3dOTk9LTjJra1d3Q1BzUnNmekQxbGZkZG1JRA?oc=5",
+       "source": "산경투데이"
+      },
+      {
+       "title": "서학개미 다시 ‘3배 베팅’…반도체 SOXL 이틀 만에 9300억원 쓸어담았다 - 키즈맘",
+       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9KNmNpdTFoSjBFajBRNVc2V0MxZmFRYVpXT1daZEU3eElXbDhSdnREa0NOWWVfMXJmemhTbXVPNG85QWFyLU9WdVpmeXZ6WnlXTjJDZ2hHdlRRamZUSUxyeVljRVdELVF2?oc=5",
+       "source": "키즈맘"
+      },
+      {
+       "title": "서학개미, ‘3배 SOXL’ 다시 매집…이틀간 9천억원 순매수 : 금융 - 재경일보",
+       "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFA4VHp6Mjl5cS1iaE02VXA4bTdHaUY4bEdhODdhc2VMS0xIQXczVU14dW1VaDlkOHhXeE5QMFNFVDU1a01lb2x6RFZn?oc=5",
+       "source": "재경일보"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-09-15",
+     "title": "금리 인상 우려에 하락…반도체 급락 속 '…",
+     "summary": "이날 관련 보도 5건. 대표 기사: [뉴욕증시] 금리 인상 우려에 하락…반도체 급락 속 'SOXL' 17% 폭락 - 파이낸셜뉴스",
+     "source": "파이낸셜뉴스",
+     "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE92SzI2S21TNWc1V0pkZGpjZnhXSndMeG1SODdqSXlJWU9Zc1VCeGRNekdnTXhaNV92dDJNRVJPa0ZnSTNPT2dzLXE4cVBnVDUxd0txMC0wVGRUZw?oc=5",
+     "related": [
+      {
+       "title": "마이크론 5.25%, SK하이닉스 ADR 7.6% 급락...반도체ETF 'SOXL', 무려 17% 폭락 - 비욘드포스트",
+       "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBwLVZfRGp5UlNvYUs1ODM0RlFLV3hkMEpkeXFuS3JIU1BnS3k4VTg2cDVNM2dfRmc5ZXFMa1Z2THU1M2FkdFdyTGtUQ09PeWd2aUxYQ1Y3XzBwYlQ5SDJQX2NKT0E2VDVSalpJeUFCWTctN1JvQVE4Mldxdkk?oc=5",
+       "source": "비욘드포스트"
+      },
+      {
+       "title": "[뉴욕증시] 금리 인상 우려에 하락…반도체 급락 속 'SOXL' 17% 폭락 - 파이낸셜뉴스",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE92SzI2S21TNWc1V0pkZGpjZnhXSndMeG1SODdqSXlJWU9Zc1VCeGRNekdnTXhaNV92dDJNRVJPa0ZnSTNPT2dzLXE4cVBnVDUxd0txMC0wVGRUZw?oc=5",
+       "source": "파이낸셜뉴스"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-15",
+     "title": "美 증시 '3배' 속슬 13% ↓…서학개미…",
+     "summary": "이날 관련 보도 10건. 대표 기사: 美 증시 '3배' 속슬 13% ↓…서학개미 1조원 손실 추산 - 글로벌경제신문",
+     "source": "글로벌경제신문",
+     "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE0zbE1Uci05UEp0V2FaWG92eWc3VkZPLWVhdVhuQWhwd0xid2V4cEY4TmxHTXRnbHJIUlZ5TkJKanhFZ2pFVVBPNE1sYURYZVA0RzFXbkFMcFRYd0d1OW9XVWdMU2o4Q3V1R0FCRtIBcEFVX3lxTE5ueEpqRjI3T21iWGx3R0NmVDZBWkV1c0M3YUhLRWFkMXRETXBmeGYtc3Z1R0E2N3owRjVDN3hYQ0NQbUlfMWlHWXJxRWRGYm53N1JsVkI5cDhqVk5oc05hYmlxdTZtRGZpZGZQMy1ndGc?oc=5",
+     "related": [
+      {
+       "title": "서학개미, 美반도체지수 3배 추종하는 '속슬(SOXL)' 13% 넘게 급락으로 1조원 넘게 손실 추정 - 비욘드포스트",
+       "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5JbThsd0N3UFUtdzJjZm5pNF9SdkM0LUNZV2pFaVZzblVTNDRyamxKWXZYWGM0bWdCOHgwUnhHOVN0aXJsTktuby0xNmVaZV9TMDdxa3pEb2VXTkZNbTZDWm1GSkhfcE5VUGdvcXUyR2c1aEY5WC1BM0gwRnM?oc=5",
+       "source": "비욘드포스트"
+      },
+      {
+       "title": "美 반도체 급락에 '속슬' 13% 추락…서학개미 1조원 '증발' - 뉴스핌",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBuODQ3SHp6SFlhdS1neEtZVnV0T19fU0w3RFNuaWhTQmtnakR0ZFNnY2Q2eUlNVTNpaGdTOFdBWnNLQnFBTXZabjhrNFpWdU81cDM1NWNzUVZkbm5O?oc=5",
+       "source": "뉴스핌"
+      },
+      {
+       "title": "美 증시 '3배' 속슬 13% ↓…서학개미 1조원 손실 추산 - 글로벌경제신문",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE0zbE1Uci05UEp0V2FaWG92eWc3VkZPLWVhdVhuQWhwd0xid2V4cEY4TmxHTXRnbHJIUlZ5TkJKanhFZ2pFVVBPNE1sYURYZVA0RzFXbkFMcFRYd0d1OW9XVWdMU2o4Q3V1R0FCRtIBcEFVX3lxTE5ueEpqRjI3T21iWGx3R0NmVDZBWkV1c0M3YUhLRWFkMXRETXBmeGYtc3Z1R0E2N3owRjVDN3hYQ0NQbUlfMWlHWXJxRWRGYm53N1JsVkI5cDhqVk5oc05hYmlxdTZtRGZpZGZQMy1ndGc?oc=5",
+       "source": "글로벌경제신문"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-16",
+     "title": "급락하자 또 '반도체 3배 레버리지' 사들…",
+     "summary": "이날 관련 보도 5건. 대표 기사: 급락하자 또 '반도체 3배 레버리지' 사들인 서학개미…하룻밤 4천억 순매수 - 연합인포맥스",
+     "source": "연합인포맥스",
+     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE84VFFBREJoRGVUU05rT2JNOFBaNVRDVjFneEpfd2ljSndrbk5vQi02cDcyUGdvNEhETm1IUVd1aGN3QTNHRllIT2oydDlzSXJkMFluWUMzMUlmUkpoZng3ZWI2VXBBTzBaZlBMbzRuemo?oc=5",
+     "related": [
+      {
+       "title": "급락하자 또 '반도체 3배 레버리지' 사들인 서학개미…하룻밤 4천억 순매수 - 연합인포맥스",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE84VFFBREJoRGVUU05rT2JNOFBaNVRDVjFneEpfd2ljSndrbk5vQi02cDcyUGdvNEhETm1IUVd1aGN3QTNHRllIT2oydDlzSXJkMFluWUMzMUlmUkpoZng3ZWI2VXBBTzBaZlBMbzRuemo?oc=5",
+       "source": "연합인포맥스"
+      },
+      {
+       "title": "서학개미. 주가급락에도 '반도체 3배 레버리지' 4천억 순매수 - 금융소비자뉴스",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1nSEZGRFFma1pqb1ZMNTBXOUU1d1d6TnlTdGhibEVTa3dITUlFUkFIaTFJeXUyTTRNZkZHejlWTEtvWDA1cVlGam4tSlR3N3F3SGRrS3YzenhkXzBJR01XWWR0NDg0aVRDNVE?oc=5",
+       "source": "금융소비자뉴스"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-19",
+     "title": "‘검은 10월’ 미장으로 이탈한 서학개미들…",
+     "summary": "이날 관련 보도 10건. 대표 기사: [이슈체크] ‘검은 10월’ 미장으로 이탈한 서학개미들…‘반도체 3배’에만 3.7조 샀다 - 조세금융신문",
+     "source": "조세금융신문",
+     "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE42aFc4RjBmdmtZY2VMRUVMTUxRR1Z1bW0wcWFqWEJDZEYwaHNMVEdtUUl5TlVJT3MxS1RmemRhWnJYVUYxUVZYNHNRMWNMX3Qzd091b3gzQWl5T0FTenphMTZ5Q3VvUQ?oc=5",
+     "related": [
+      {
+       "title": "[이슈체크] ‘검은 10월’ 미장으로 이탈한 서학개미들…‘반도체 3배’에만 3.7조 샀다 - 조세금융신문",
+       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE42aFc4RjBmdmtZY2VMRUVMTUxRR1Z1bW0wcWFqWEJDZEYwaHNMVEdtUUl5TlVJT3MxS1RmemRhWnJYVUYxUVZYNHNRMWNMX3Qzd091b3gzQWl5T0FTenphMTZ5Q3VvUQ?oc=5",
+       "source": "조세금융신문"
+      },
+      {
+       "title": "etaxkorea - 조세금융신문",
+       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1fYlduUlNpYzZSNFA0NVZhUFpvdUhaX0pWc09TdmdMa2c5T044ZXlFeHR4WUZjVFliU0xJSEtvbUpmNWFXaWt4RmRJNXlaNEhYd1hqR2RmblB0eHU4Ymw4ZA?oc=5",
+       "source": "조세금융신문"
+      }
+     ],
+     "auto": true
+    }
+   ],
+   "spike_notes": {
+    "2026-10-15": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 2.74,
+      "pc": 2.8,
+      "male": 2.78,
+      "female": 2.91,
+      "age_cv": 0.14,
+      "weekday": "목",
+      "driver": "SOXL"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "서학개미 ETF 1위 SOXL…반도체 3배 8조 2000억",
+       "date": "2026-10-12",
+       "source": "자본시장뉴스 외 8건",
+       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9wZVlKc0E1dHFFM0cyTDdvc2Y0YlE4NDBvdE9nVURuTkNXU1JkWjNTRy02VWpKWFFRa2t0QVRkVXBtdjJ2aFFOSWhFTl82amFvaVVYcFRCdXNUbW1TTm5xeWc5YWtGOTA?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "코어위브와 SOXL 폭락, 가트너의 경고는?",
+       "date": "2026-10-15",
+       "source": "네이버 프리미엄콘텐츠 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQNk1NVlVKbjI2N0pVU19acEk2Wk9yeVQxWTluMzRSckFqeEdvbi1UTnVkNVBCV1RpYS1Wc2ZfUWswa3d4dUlNMXVZaFM3LU5hdTk5bnV2V2VoazNJNmMtMEFPWkNfOWRiRlE3OVo3S19xa0VoUUQ3M2NUZzFQNF95VmxoMA?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "서학개미, 美반도체지수 3배 추종하는 '속슬(SOXL)' 13% 넘게 …",
+       "date": "2026-10-15",
+       "source": "비욘드포스트 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5JbThsd0N3UFUtdzJjZm5pNF9SdkM0LUNZV2pFaVZzblVTNDRyamxKWXZYWGM0bWdCOHgwUnhHOVN0aXJsTktuby0xNmVaZV9TMDdxa3pEb2VXTkZNbTZDWm1GSkhfcE5VUGdvcXUyR2c1aEY5WC1BM0gwRnM?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "반도체 3배 레버리지 투자, 이번에도 대박?…마이크론·SK하닉은 순매도…",
+       "date": "2026-10-12",
+       "source": "머니투데이 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5aR3RhMEdVVDkwSGFFYm5HcVI5VVcydExBU251R2Vva0VCUG9KYjVnM1dWNDNXNFZBbzhyWlB3V05iaDJJRXlUVlVnZ1NLT0RZZmpZUFU2aDF1akNLNUhzYWFMbU1MMDlQ0gFuQVVfeXFMT242RVhUYkpNSVBHMnVzQWJnTkUyQ2RkZlkxbzhwaVBpWURTNG0yN2J6VVlNMlJKZnEycWc4d2Z6NWdzT1pheGhDY1pKRnFpd3BKSFJSZzlQYlMzMVVIeDBTeGxfTzBMSHF2RFNJRmc?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      }
+     ],
+     "auto": true
+    },
+    "2026-04-24": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 2.83,
+      "pc": 3.22,
+      "male": 3.08,
+      "female": 2.68,
+      "age_cv": 0.16,
+      "weekday": "금",
+      "driver": "SOXL"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "속쓸(SOXL) 안 사도 된다고? 삼성전자 ‘2배 ETF’ 모든 것",
+       "date": "2026-04-21",
+       "source": "국민일보 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE13Qy0xQk13NWlZM1BOZjJuTTFWQ1BIc0R5RGhSbG9WeGItUnRiVmdiQ2JhbmdGTHl3eXRuTTlkaXFxQ3VzWU5talFrbXlXMUMwc2tPbURwSXpUeHFzRFhtWVdfQ2FaZTjSAWxBVV95cUxNdHZUaFg2aEl6WEdyLUlOT29RS2JORm5qTkpnMDY3Y3BlcFc2ellDYjBJUDNRN3dvRHg5dTRQV0kyek5Kd0p2c2t2WEh4Z0daWWZkSFhPaXJVeGJCSjRRVm1LRzlZQUpBMU5oVHU?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "돌아온 서학개미, 美 우량주 던지고 국내 반도체 ‘줍줍’",
+       "date": "2026-04-21",
+       "source": "세계일보 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5TN3p4V0xTRE1qNTNKQlluMlVnT29WWTJNMzBXMldUZy1DT3ZlMEJTak9FQUphZC0xOWJOUDF1dkxMR0ZiVHdlQ29vLUd3YmFyMnZQX2NHd2rSAVRBVV95cUxNbURxN005SmdiZjU5ZnV4WVAxaGtPbC1LZzlsSmpDb25SNUZ1MG9lR1hPM3dNa2o0eXV1bEhmcktIb0dKSVI0dVJIZ0ZaTVlQOUxmS08?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "SOXL 익절하고 QTOP 매수합니다.",
+       "date": "2026-04-22",
+       "source": "YouTube",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBuMXBRTmZZdDJwNUl1eGxmVlhaVFJjTFh6V0lBbzVWSFJVVHRxbzQ5ZnFLTXhGZVd2akRYMkd1N01wbGk3SHd2aTI2cmdUU3Y1NkxJWVBUaXVUTTJN?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "키움증권, ‘RIA 계좌’ 2만좌 돌파",
+       "date": "2026-04-23",
+       "source": "한국경제",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBmMmZaeVdjR3IzYnptUjIzampoaF9GWFQtR2xCd191bDQ4Q090b2hfNFJOUDVBdmc3ZVhXcjhKRVFCNWpjVGtwU1c4SUR4VDFvcS1wRHN0M2RFUQ?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2025-11-21": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승",
+       "남성 상승이 더 큼"
+      ],
+      "mo": 2.83,
+      "pc": 2.69,
+      "male": 3.12,
+      "female": 2.24,
+      "age_cv": 0.15,
+      "weekday": "금",
+      "driver": "SOXL"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "1. 환경을 바꾸면 일어나는 일",
+       "date": "2025-11-21",
+       "source": "브런치",
+       "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTE10VjczM1ZPc3dtZmdENUtjSG9BcWV4VDFqZ214a1RFSTl0WXBHV2VPVURVUkIzYzlZaWU2Xzh5aXhPSlk1?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-05-27": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 1.54,
+      "pc": 1.88,
+      "male": 1.55,
+      "female": 1.68,
+      "age_cv": 0.11,
+      "weekday": "수",
+      "driver": "SOXL"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "'간큰 서학개미' 반도체 3배 ETF 쓸어담아",
+       "date": "2026-05-24",
+       "source": "매일경제 마켓 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5Wakw0ZDhud29rZXM2Mkw0dm5SOXE0MUluYlZ2akNwS0VsV2JmSEozOU5rRjA5TTRvdVpMNXZoaGtBSjY0Y2pBdEwtNkRmTTI5NUE?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "뉴욕증시 유가 급락에 AI 반등…SOXL 매수 쏠림",
+       "date": "2026-05-27",
+       "source": "톱스타뉴스 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9OcU5ncHhsZG5hQXkxUWpGSlFWT0NndS1McEpmdDI0MG1hV2pJcm5YdmdJenRQN0Q2TnZaZXRiUFhmUXNKLVRuVWN5QS1JOU9CeGdkekRaU1llZXdIaTVoSHhiOVc0bnJUOXd1a1NfdUw0QQ?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "연초 대비 성과가 가장 우수한 미국 레버리지 ETF는 무엇인가? 메모리…",
+       "date": "2026-05-24",
+       "source": "TradingKey",
+       "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNWU42VzZkNjAtWWsxdmdMWkpINUFBaXZzSVl2emNjZVFvXzZSZjg2bGZqR2swanl2WTJFbi14TnUxMDhPeHdNTmJoYVppTjM0Rjc2SnE1b1Rrejc4VU5LLTR1U3pkdlo5cHRpaE04TlVfLUU0eVJBdkdxLXUtRXJ4andpcFZRTDFTMndlcmlpRVBuOXg5NjhDaF9TYkJSZw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-03-31": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 1.49,
+      "pc": 1.72,
+      "male": 1.53,
+      "female": 1.33,
+      "age_cv": 0.1,
+      "weekday": "화",
+      "driver": "SOXL"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "미국증시 전망, 1차 저가 매수할 시점이 다가온다 (feat. SOXL…",
+       "date": "2026-03-28",
+       "source": "네이버 프리미엄콘텐츠",
+       "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNUXU4dUNmb3dyMXVGeks3N2dMR3ZlM2VBYnVKUVVOeHdVbjBXX3B5MHVBTDh5Z2JGRmdBd0FzMVlsUWppcFhZV2NtQWlwYzlHQ1VFaUJMeXFsclRkWVo4TVFHUXVobl83WU05LTNxMWJtTkN6SHV2dTdzcEp0WGpLOFJDYw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "美-이란전發 변동성 역대급인데…'야수의 심장' 으로 하나된 동학ㆍ서학 …",
+       "date": "2026-03-30",
+       "source": "조선일보",
+       "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPc3k5VVJMQjZpemdleVVrLVA5cWotRDBuWHdVQ1YzVGJNQUxaWDlSY3Q2Zll3VU1MSEd5SWZNVURWRHdDanJQNXQxYXVjNmZwbTNJX0t3eHFIbTNDa0pCUDJSWklmeGZrLUNoa3ZyeVgtdk8tRTUzbzdBUUp2b2R2Tg?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-07-30": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 2.36,
+      "pc": 2.27,
+      "male": 2.35,
+      "female": 2.53,
+      "age_cv": 0.14,
+      "weekday": "목",
+      "driver": "SOXL"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "바이낸스 SOXL 2026 | 코인 거래소에서 반도체 3배 ETF 거래…",
+       "date": "2026-07-27",
+       "source": "네이버 프리미엄콘텐츠 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOdjUzTTF0LTJKa0ZxdDVSTWtka2tSRjJ2NUNoVzM1dndiY2lhTlJyOXhuV3NzV3pYWlpVYk5iTGhqV1ZCOEQyMEZlMjIxWE5NY1ppYjlEOF9xTk9WVm1SN2F3TkFDM3c2cE0wREZ5QXZ0anFIN0pqT29jS0x5QzVaWjk3QWJ3d0NyalhiMkM3MVE?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "국내 증시 조정에 서학개미 미국주식 순매수 5조원 돌파",
+       "date": "2026-07-28",
+       "source": "디지털투데이 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE96UHY1dUJYb1NhTmltUlFWS2N3eXoxZHd6TENCYjVnSkl2NXB5RlBRX1VDYWpYSmU4ZjNEaGtSRkt6R1AwTUVXRE1RMkl6LW56VmMwNjlBNENZTjN0NnkzZ0VFY0haMHpjZjh3VW1YbndwWVk?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "국장 떠나는 서학개미…7월 美주식 순매수 5조 돌파 [이런국장 저런주식]",
+       "date": "2026-07-28",
+       "source": "서울경제",
+       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5mekk1Wm1ZVUdNOU1fOXJ5bUZQcmQ3TVRZMFNIMHhRLTlId0dlU0dIUXQ5akNjRXRHaWNlRlFpZE9nUFFma2hpOFliUVVZOVhWaVHSAVNBVV95cUxQckJEY3E1eHhoZDBqRG4zbUF6S1dneFlkMzRsNThKbVZtc1JkYTNkMWtoMnF5SmRVWTc2THhQeHlyd09HVmMzT2QwWkQ1Q3o0bzNDNA?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "美반도체 주가 폭락 피해, 레버리지 ETF로 회복 어려워",
+       "date": "2026-07-30",
+       "source": "연합인포맥스",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5vWHVGcU9iM28xUnhCQ3U2Zkhobm1NamhscERCeVJvMWZEaXQ2d0ZmYV9hbjRWVnFzNzdUaXUzZE0wam83V3Y0dmQ0YnhqMG9YajNacDhkUnpkeERacFFLbW90MnBCZ0lqNzNySnpkdm0?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-05-06": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 1.87,
+      "pc": 2.08,
+      "male": 1.93,
+      "female": 1.84,
+      "age_cv": 0.14,
+      "weekday": "수",
+      "driver": "SOXL"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "\"기회다!\" 반도체주 이틀 하락에 매수 폭발…눈물의 인버스 투자도 계속…",
+       "date": "2026-05-04",
+       "source": "머니투데이",
+       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9QWVVjNkdsU2JxWUJxbGh3cW5rN2xMOVJ2T05XX0d1WUVBTFpITlJYTW52clAzLW8ydHRRR3AzWV8zMEhwam4tckZQMnVZbXZKSWJsYms5eUxMM2w2dkhLWjVHNzN2Ylh10gFuQVVfeXFMTm83ZTBwX0NKRzB4QVRhaEREQ0R0T3J6bkROT2tmRkh6cWwyTTl0VDBWamo3NUg2Vi1VaUstdlMwYjZJYTN5bGlOdVFhMXZrVUszR1pKMFhCVmJJTXVfc1o2Zzk0QTJrMnJGRXRNZlE?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "SOXL TSLL 주식매수는 언제? 차트보고 기다리자",
+       "date": "2026-05-04",
+       "source": "YouTube",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE15YTI2RTlFSGZtazhrV1hBN2U4YnY1d1RydEFsZ3dOaGhvNXJJYmtjX2Q3S3pDQ2dKb3g0MW1IbWdhVkNmaERaT0YyRWx3NkNMTjdoLVlKdTBYZzRs?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "“30대 중반 부부입니다... 아내와 '그것'에 투자해 45억 벌었는데…",
+       "date": "2026-05-06",
+       "source": "위키트리",
+       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB2MGhueDNJdnVnMkpGZ3JlbEJ0TGU3dFFld3FGUDd3VjhTN25GbWZrLVhVTDZXTDBYZFhNS0c2WF9fdkJDaUFHSElVLU0tUms1ajJ3MWN3?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-04-28": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 2.03,
+      "pc": 2.12,
+      "male": 2.13,
+      "female": 2.19,
+      "age_cv": 0.12,
+      "weekday": "화",
+      "driver": "SOXL"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "서학개미, 한 달 새 4100억 베팅한 ‘이 종목’…이번에도 정답일까?",
+       "date": "2026-04-26",
+       "source": "매일경제",
+       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5hRVhLMXZMQzM1d1I2b1JXSlE0RzlUb0NUYWpmck1IeG83YjJLb0N2a2tzcEpxVDUwZE1WT1FEbGl5a2NkMUV0Mll4cXA1NnpOUHc?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "\"반도체 하락 베팅했다 -63%\" 계좌 녹아도...뚝심의 인버스 투자[…",
+       "date": "2026-04-27",
+       "source": "머니투데이",
+       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE53SkZ2MjJpZ0wxcHBJV1RveUczWGlmZG5GZmJIZjltMUxBU2NYamx2Z0ZFN0RMV3lEWF9tQzNDQ3R1WTVtQm94Qy1kLWNWR2UxTmdMUzYzdTRTNFZLb0w3MVY4a2NIVFRm0gFuQVVfeXFMTktzX0tFSUZ1d21QNEh6UFRzdDlWLTVPUGtYUnFKSlZ6MVNXQnhvMUpYOXh2WWFTVU92c3l5YkI2OC12UWN3VC1WNmlYYkxFblNuc2NzZ0dpUFdfbHAwd05mWnNVeUl5MmJNOThVQkE?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "SOXL, TQQQ, SOXS 레버리지 ETF 투자 전략.",
+       "date": "2026-04-28",
+       "source": "네이버 프리미엄콘텐츠",
+       "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQTmk0TW1IcHppQ18waHY1Y1JRZE9ybnBSNXBWN1RrMGQtUUVrcnduTjZmYTJlMk9DVDNxM0J3ZHBZV2tIcEVZQ3Y5SEVoV3c5QVNnX2ZFN2x2VGxkdnk3cTQ2TENKVHlrUkJMUmpFZGMyT3dFTU9fdEFSMF9iUG5pOXprZUVka0xTYTVr?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "나스닥 1% 급락 중, OpenAI 실적 쇼크.",
+       "date": "2026-04-28",
+       "source": "네이버 프리미엄콘텐츠",
+       "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPUUJmcEFSc3FtY0lBOHJESEhSVWt0ZzQzUW5QcW1hbXVRc3FIUUd4WHZtVjlZT2V2emFCYjR5emkwSlc5cjNVYUFiYTUySXptYkgtRDdGbUM1V25ISk9laTBOcFF0dndOV0Fxb0Q2dFNCS2pjTjlFRTlqRzIta25sWGVnTzRzMS1OempF?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    }
+   }
+  },
+  {
    "job_id": null,
    "collected_from": "2026-10-20T06:19:31.948Z",
    "keywords": [

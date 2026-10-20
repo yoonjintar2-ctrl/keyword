@@ -729,6 +729,64 @@ async function execute(job, started = false) {
     setExtracting(false);
   }
 }
+/* 키워드를 5개씩 나눠 순서대로 추출한 뒤 브라우저에서 합쳐 서버에 저장한다.
+   서버의 월간 검색수 단계가 5개 묶음을 동시에 호출해 네이버 검색광고 API 한도(429)에 걸리는 문제를 피한다.
+   트렌드 API 호출 수는 그대로(5개당 23회)이고, 성·연령 정규화도 서버와 같은 5개 단위다. */
+async function runSteps(job, base, span, label) {
+  for (let i = 0; i < job.steps.length; i++) {
+    const step = job.steps[i];
+    extractionStatus(label + (i + 1) + " / " + job.steps.length + " 단계 · " + stepLabel(step));
+    await stepWithRetry(job.id, step);
+    await sleep(STEP_GAP_MS);
+    extractionProgress(base + span * ((i + 1) / job.steps.length));
+    if (i % 8 === 0) loadQuota();
+  }
+}
+function lockMessage(e) {
+  if (!/진행 중/.test(e.message)) return e.message;
+  return api("/api/status")
+    .then((st) => {
+      const t = st.job?.created_at ? new Date(Date.parse(st.job.created_at) + 7200000) : null;
+      return t
+        ? "이전에 실패한 추출 작업이 서버에 잠겨 있어 " +
+            t.toLocaleTimeString("ko-KR", { timeZone: "Asia/Seoul", hour: "2-digit", minute: "2-digit" }) +
+            " 이후에 새로 검색할 수 있습니다(서버의 2시간 잠금)."
+        : e.message;
+    })
+    .catch(() => e.message);
+}
+async function extractChunked(v) {
+  const brand = v.gs[0]?.name || "전체 키워드",
+    words = v.gs.flatMap((g) => g.keywords),
+    chunks = [];
+  for (let i = 0; i < words.length; i += 5) chunks.push(words.slice(i, i + 5));
+  const parts = [];
+  for (let c = 0; c < chunks.length; c++) {
+    const label = chunks.length > 1 ? "묶음 " + (c + 1) + "/" + chunks.length + " · " : "",
+      job = await api("/api/jobs", {
+        groups: [{ id: "analysis", name: brand, keywords: chunks[c], color: colors[0] }],
+        start_date: v.a,
+        end_date: v.b,
+      });
+    currentJob = job;
+    await runSteps(job, (c / chunks.length) * 96, 96 / chunks.length, label);
+    parts.push(await api("/api/data"));
+  }
+  if (parts.length === 1) return { data: parts[0], groups: (await api("/api/groups")).groups };
+  extractionStatus("묶음 결과를 합쳐 저장하는 중");
+  const first = parts[0],
+    merged = {
+      ...first,
+      models: parts.flatMap((d) => d.models),
+      analysis: { brand },
+      calibration: parts.at(-1).calibration || first.calibration,
+    };
+  const saved = await api("/api/import", {
+    data: merged,
+    groups: [{ id: "analysis", name: brand, keywords: merged.models.map((m) => m.keyword), color: colors[0] }],
+  });
+  return saved;
+}
 $("extract").onclick = () => {
   const v = estimateBudget();
   if (!v.valid || busy || recommending) return;
@@ -736,16 +794,24 @@ $("extract").onclick = () => {
     async () => {
       setExtracting(true);
       extractionProgress(0);
+      extractionStatus("작업 준비 중");
       $("runProgress").hidden = true;
       try {
-        const job = await api("/api/jobs", {
-          groups: v.gs,
-          start_date: v.a,
-          end_date: v.b,
-        });
-        await execute(job, true);
+        const res = await extractChunked(v);
+        extractionProgress(100);
+        extractionStatus("완료 · 그래프를 불러오는 중");
+        await sleep(500);
+        adopt(res.data, res.groups, "새 추출 완료");
+        currentJob = null;
+        loadQuota();
+        toast(res.data.models.length + "개 키워드 추출을 완료했습니다.");
       } catch (e) {
-        toast(e.message);
+        const msg = await lockMessage(e);
+        $("runProgress").hidden = false;
+        $("runTitle").textContent = "추출을 완료하지 못했습니다.";
+        $("runDetail").textContent = msg + " 기존 결과는 유지됩니다.";
+        $("retryJob").hidden = true;
+        toast(msg);
       } finally {
         if (busy) setExtracting(false);
       }
@@ -757,7 +823,8 @@ $("extract").onclick = () => {
       v.b +
       " · Budget " +
       v.cost +
-      "건 사용 예상",
+      "건 사용 예상" +
+      (v.n > 5 ? " · 5개씩 " + Math.ceil(v.n / 5) + "번 나눠 진행" : ""),
   );
 };
 $("confirmReplace").onclick = () => {
@@ -772,6 +839,7 @@ $("cancelReplace").onclick = () => {
 };
 $("replaceDialog").addEventListener("cancel", () => (pendingAction = null));
 $("retryJob").onclick = () => currentJob && execute(currentJob);
+$("closeRun").onclick = () => ($("runProgress").hidden = true);
 ["keywords", "brandName", "startDate", "endDate"].forEach(
   (id) => ($(id).oninput = estimateBudget),
 );
@@ -1042,11 +1110,18 @@ async function init() {
         const status = await api("/api/status");
         if (status.job) {
           currentJob = status.job;
+          const big = (status.job.models?.length || 0) > 5,
+            until = new Date(Date.parse(status.job.created_at) + 7200000).toLocaleTimeString("ko-KR", {
+              timeZone: "Asia/Seoul",
+              hour: "2-digit",
+              minute: "2-digit",
+            });
           $("runProgress").hidden = false;
           $("runTitle").textContent = "완료되지 않은 추출이 있습니다.";
-          $("runDetail").textContent =
-            "진행 중인 추출을 이어서 실행할 수 있습니다.";
-          $("retryJob").hidden = false;
+          $("runDetail").textContent = big
+            ? "키워드 " + status.job.models.length + "개 작업은 서버 쪽 호출 한도 문제로 이어서 실행할 수 없습니다. " + until + " 이후 새로 검색하면 5개씩 나눠 자동으로 진행됩니다."
+            : "진행 중인 추출을 이어서 실행할 수 있습니다.";
+          $("retryJob").hidden = big;
         }
       } catch {}
     })(),

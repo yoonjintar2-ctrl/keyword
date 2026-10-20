@@ -747,10 +747,9 @@ function lockMessage(e) {
   return api("/api/status")
     .then((st) => {
       const t = st.job?.created_at ? new Date(Date.parse(st.job.created_at) + 7200000) : null;
+      if (st.job) currentJob = st.job;
       return t
-        ? "이전에 실패한 추출 작업이 서버에 잠겨 있어 " +
-            t.toLocaleTimeString("ko-KR", { timeZone: "Asia/Seoul", hour: "2-digit", minute: "2-digit" }) +
-            " 이후에 새로 검색할 수 있습니다(서버의 2시간 잠금)."
+        ? "완료되지 않은 이전 추출 작업이 있습니다. '작업 취소'를 누른 뒤 다시 검색하세요."
         : e.message;
     })
     .catch(() => e.message);
@@ -810,7 +809,8 @@ $("extract").onclick = () => {
         $("runProgress").hidden = false;
         $("runTitle").textContent = "추출을 완료하지 못했습니다.";
         $("runDetail").textContent = msg + " 기존 결과는 유지됩니다.";
-        $("retryJob").hidden = true;
+        $("retryJob").hidden = !currentJob;
+        $("cancelJob").hidden = !currentJob;
         toast(msg);
       } finally {
         if (busy) setExtracting(false);
@@ -840,6 +840,20 @@ $("cancelReplace").onclick = () => {
 $("replaceDialog").addEventListener("cancel", () => (pendingAction = null));
 $("retryJob").onclick = () => currentJob && execute(currentJob);
 $("closeRun").onclick = () => ($("runProgress").hidden = true);
+$("cancelJob").onclick = async () => {
+  if (!currentJob?.id || busy) return;
+  $("cancelJob").disabled = true;
+  try {
+    await api("/api/jobs/" + currentJob.id + "/cancel", {});
+    currentJob = null;
+    $("runProgress").hidden = true;
+    toast("멈춘 추출 작업을 취소했습니다. 기존 결과는 그대로이며 새로 검색할 수 있습니다.");
+  } catch (e) {
+    toast("취소하지 못했습니다 · " + e.message);
+  } finally {
+    $("cancelJob").disabled = false;
+  }
+};
 ["keywords", "brandName", "startDate", "endDate"].forEach(
   (id) => ($(id).oninput = estimateBudget),
 );
@@ -1118,10 +1132,11 @@ async function init() {
             });
           $("runProgress").hidden = false;
           $("runTitle").textContent = "완료되지 않은 추출이 있습니다.";
-          $("runDetail").textContent = big
-            ? "키워드 " + status.job.models.length + "개 작업은 서버 쪽 호출 한도 문제로 이어서 실행할 수 없습니다. " + until + " 이후 새로 검색하면 5개씩 나눠 자동으로 진행됩니다."
-            : "진행 중인 추출을 이어서 실행할 수 있습니다.";
-          $("retryJob").hidden = big;
+          $("runDetail").textContent =
+            "이어서 실행하거나, 작업을 취소하고 새로 검색할 수 있습니다." + (big ? " (키워드 " + status.job.models.length + "개)" : "");
+          $("retryJob").hidden = false;
+          $("cancelJob").hidden = false;
+          void until;
         }
       } catch {}
     })(),

@@ -82,9 +82,17 @@ async function loadInsights() {
 }
 function matchInsight() {
   if (!insights?.analyses || !dataset) return null;
+  const byJob =
+    dataset.job_id &&
+    insights.analyses.find((a) => a.job_id === dataset.job_id);
+  if (byJob) return byJob;
+  // 같은 분석(수집 시각) 또는 키워드가 겹치는 수동 정리본
   const ks = new Set(dataset.models.map((m) => key(m.keyword)));
   return (
-    insights.analyses.find((a) => (a.keywords || []).some((k) => ks.has(key(k)))) ||
+    insights.analyses.find((a) => a.collected_from === dataset.collected_at) ||
+    insights.analyses.find(
+      (a) => a.manual && (a.keywords || []).some((k) => ks.has(key(k))),
+    ) ||
     null
   );
 }
@@ -181,10 +189,12 @@ function seriesToggles(aux, hasIssues, hasSpikes) {
   );
   for (const a of aux)
     chip(a.name, a.color, a.id, { title: a.kind + " · " + a.basis });
-  chip("소셜 발화량", "var(--social)", null, {
-    disabled: true,
-    title: "소셜 발화량은 데이터 소스(블로그·카페 검색 API 등) 연결 후 표시됩니다.",
-  });
+  if (!aux.some((a) => a.id === "social_blog"))
+    chip("소셜 발화량", "var(--social)", null, {
+      disabled: true,
+      title:
+        "소셜 발화량은 네이버 검색 API 키를 등록하면 자동 수집됩니다(블로그 일별 게시물 수).",
+    });
   if (hasIssues) chip("이슈", "var(--issue)", "issues", { dot: true });
   if (hasSpikes) chip("급등일", "#9aaba0", "spikes", { dot: true });
 }
@@ -684,6 +694,28 @@ function mainFlow() {
         meta.append(a);
       } else if (m.source) meta.append(m.source);
       card.append(meta);
+      const rel = (m.related || []).filter((r) => r.url !== m.url);
+      if (rel.length) {
+        const ul = document.createElement("ul");
+        ul.className = "cands";
+        for (const r of rel.slice(0, 4)) {
+          const li = document.createElement("li"),
+            a = document.createElement("a");
+          a.href = r.url;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.textContent = r.title;
+          li.append(a);
+          ul.append(li);
+        }
+        card.append(ul);
+      }
+      if (m.auto) {
+        const n = document.createElement("div");
+        n.className = "meta";
+        n.textContent = "자동 수집 · 보도량이 많은 날의 대표 기사";
+        card.append(n);
+      }
     } else {
       p.textContent =
         "네이버 추정 쿼리 " +
@@ -716,7 +748,14 @@ function mainFlow() {
           a.textContent = c.title;
           li.append(
             a,
-            " · " + md(c.date) + " " + (c.source || "") + " (" + c.relevance + ")",
+            " · " +
+              (c.kind ? c.kind + " · " : "") +
+              md(c.date) +
+              " " +
+              (c.source || "") +
+              " (" +
+              c.relevance +
+              ")",
           );
           ul.append(li);
         }
@@ -749,11 +788,17 @@ function mainFlow() {
     root.append(el);
   }
 
-  const basis = auxShown.map((a) => a.name + ": " + a.basis).join(" / ");
+  const basis = auxShown.map((a) => a.name + ": " + a.basis).join(" / "),
+    status = !insights
+      ? ""
+      : !match
+        ? " 이 분석의 이슈·보조 지표는 자동 수집 대기 중입니다(새 분석 후 최대 30분)."
+        : " 이슈 출처: " + (match.sources || []).join(", ") + ".";
   $("flowFoot").textContent =
     "굵은 선은 네이버 전체 키워드의 일별 추정 쿼리 합계입니다. 세로 범위는 기간 내 최저~최고에 맞춰 확대되어 있으니 값은 그래프에 마우스를 올려 확인하세요." +
     (basis
       ? " 보조 지표는 각자의 축에 그린 상대 지수로 추이만 비교합니다 — " + basis + "."
       : "") +
-    " 결측은 0으로 채우지 않습니다.";
+    " 결측은 0으로 채우지 않습니다." +
+    status;
 }

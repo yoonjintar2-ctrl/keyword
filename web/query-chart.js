@@ -234,7 +234,12 @@ function mainFlow() {
   for (const s of spikeAll) {
     const near = news.find((n) => Math.abs(n.k - s.k) <= 1);
     if (near) near.spike = s;
-    else spikes.push({ ...s, type: "spike" });
+    else
+      spikes.push({
+        ...s,
+        type: "spike",
+        note: match?.spike_notes?.[s.date] || null,
+      });
   }
   seriesToggles(aux, news.length > 0, spikes.length > 0);
 
@@ -687,8 +692,36 @@ function mainFlow() {
         fmt(m.med) +
         "건) 대비 +" +
         Math.round(m.pct) +
-        "%. 이 날짜와 맞는 보도는 아직 확인하지 못했습니다.";
+        "%.";
       card.append(p);
+      const note = m.note;
+      const p2 = document.createElement("p");
+      p2.textContent = note
+        ? note.summary
+        : "이 날짜와 맞는 보도는 아직 확인하지 못했습니다.";
+      card.append(p2);
+      if (note?.candidates?.length) {
+        const h = document.createElement("div");
+        h.className = "meta";
+        h.textContent = "원인 후보 (관련성)";
+        card.append(h);
+        const ul = document.createElement("ul");
+        ul.className = "cands";
+        for (const c of note.candidates) {
+          const li = document.createElement("li"),
+            a = document.createElement("a");
+          a.href = c.url;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.textContent = c.title;
+          li.append(
+            a,
+            " · " + md(c.date) + " " + (c.source || "") + " (" + c.relevance + ")",
+          );
+          ul.append(li);
+        }
+        card.append(ul);
+      }
     }
     root.append(card);
     const cw = card.offsetWidth,

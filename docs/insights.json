@@ -231,12 +231,64 @@
     },
     {
      "date": "2026-10-08",
-     "title": "i5·iX 한정판 온라인 판매 개시",
-     "summary": "10월 온라인 한정 에디션 2종(i5 10대·iX 30대)의 BMW 샵 온라인 판매가 시작된 날.",
-     "source": "헤럴드경제",
-     "url": "https://biz.heraldcorp.com/article/10891378"
+     "title": "i5·iX 한정판 판매 개시 · iX4 공개",
+     "summary": "BMW 샵 온라인에서 i5(10대)·iX(30대) 10월 한정 에디션 판매가 시작됐고, 같은 날 노이어 클라쎄 기반 쿠페형 SUV iX4가 세계 공개됐다(국내 출시는 2027년 3월 예정 보도). 이후 9~11일은 한글날 연휴.",
+     "source": "오토뷰",
+     "url": "https://www.autoview.co.kr/ko-kr/articles/102017"
     }
-   ]
+   ],
+   "spike_notes": {
+    "2026-08-30": {
+     "summary": "일요일. 하루 이틀 전 i5·iX를 직접 다룬 사고·리콜·방송·프로모션 보도는 찾지 못함. 커뮤니티·유튜브 원글은 검색 색인에 잡히지 않아 확인 못함.",
+     "candidates": [
+      {
+       "title": "중국 전용 iX3 L 사전 판매 예약 몰려",
+       "date": "2026-08-29",
+       "source": "오토뷰",
+       "url": "https://www.autoview.co.kr/ko-kr/articles/101514",
+       "relevance": "약"
+      }
+     ]
+    },
+    "2026-09-20": {
+     "summary": "일요일·분기 말. 직접 원인 보도는 찾지 못함. 분기 마감 프로모션과 해외 iX3 인도 개시 보도가 있었으나 i5·iX 직접 이슈는 아님.",
+     "candidates": [
+      {
+       "title": "주간 수입차 동향 — 분기 마감 할인, i5 금융 프로그램 언급",
+       "date": "2026-09-15",
+       "source": "겟차",
+       "url": "https://web.getcha.kr/community/all/104529?topic=13",
+       "relevance": "약~중"
+      },
+      {
+       "title": "BMW, 미국서 iX3 조기 인도 시작",
+       "date": "2026-09-18",
+       "source": "Electrek",
+       "url": "https://electrek.co/2026/09/18/bmw-begins-ix3-deliveries-early-us/",
+       "relevance": "약"
+      }
+     ]
+    },
+    "2026-10-11": {
+     "summary": "한글날 연휴(10/9~11) 마지막 날. 사흘 전 i5·iX 한정판 판매 개시와 iX4 세계 공개가 겹쳐 가장 유력한 원인 후보가 있음(인과는 미확인).",
+     "candidates": [
+      {
+       "title": "i5·iX 10월 온라인 한정 에디션 판매 개시(10/8)",
+       "date": "2026-10-08",
+       "source": "오토뷰",
+       "url": "https://www.autoview.co.kr/ko-kr/articles/101946",
+       "relevance": "강~중"
+      },
+      {
+       "title": "BMW iX4 세계 공개 — 'iX' 계열 검색 유입 가능성",
+       "date": "2026-10-08",
+       "source": "오토뷰",
+       "url": "https://www.autoview.co.kr/ko-kr/articles/102017",
+       "relevance": "중"
+      }
+     ]
+    }
+   }
   }
  ]
 }

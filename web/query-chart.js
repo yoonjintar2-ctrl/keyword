@@ -294,6 +294,21 @@ function mainFlow(opts = {}) {
     issues = (match?.issues || [])
       .filter((s) => pos.has(s.date))
       .map((s) => ({ ...s, k: pos.get(s.date) }));
+  // 급등일 중 관련성 '중' 이상 후보가 있는 날만 이슈로 표시(추정)
+  for (const [date, note] of Object.entries(match?.spike_notes || {})) {
+    const c = (note.candidates || []).find((x) => /^(강|중)/.test(x.relevance || ""));
+    if (!c || !pos.has(date) || issues.some((x) => x.date === date)) continue;
+    issues.push({
+      date,
+      k: pos.get(date),
+      title: note.label || c.title.replace(/\s*\(\d+\/\d+\)$/, "").slice(0, 20) + " 여파(추정)",
+      summary: note.summary,
+      signature: note.signature,
+      related: note.candidates.map((x) => ({ title: x.title + " · " + (x.source || ""), url: x.url })),
+      url: c.url,
+      source: c.source,
+    });
+  }
   seriesToggles(aux, issues.length > 0, segList);
   const markers = seriesOn.issues !== false && !segList ? issues.sort((a, b) => a.k - b.k) : [];
 
@@ -308,7 +323,7 @@ function mainFlow(opts = {}) {
       maxX = windowed ? 1e9 : W - R - m.w / 2;
     m.cx = Math.min(Math.max(cx(m.k), minX), maxX);
     let row = rows.findIndex((right) => m.cx - m.w / 2 > right + 8);
-    if (row < 0 && rows.length < (W < 700 ? 5 : 3)) row = rows.length;
+    if (row < 0 && rows.length < (W < 700 ? 6 : 4)) row = rows.length;
     if (row < 0) row = rows.indexOf(Math.min(...rows));
     rows[row] = m.cx + m.w / 2;
     m.row = row;
@@ -695,7 +710,16 @@ function mainFlow(opts = {}) {
     meta.className = "meta";
     if (m.url) meta.append(link(m.url, (m.source || "기사") + " 원문 보기 ↗"));
     else if (m.source) meta.append(m.source);
-    card.append(date, strong, p, meta);
+    card.append(date, strong, p);
+    if (m.signature) {
+      const sg = document.createElement("div"),
+        sgv = m.signature;
+      sg.className = "sig";
+      sg.textContent =
+        "급등 유형 · " + sgv.type + " — 같은 요일 대비 모바일 ×" + sgv.mo + " · PC ×" + sgv.pc + " · 남 ×" + sgv.male + " · 여 ×" + sgv.female;
+      card.append(sg);
+    }
+    card.append(meta);
     const rel = (m.related || []).filter((r) => r.url !== m.url);
     if (rel.length) {
       const ul = document.createElement("ul");

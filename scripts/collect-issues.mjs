@@ -81,26 +81,36 @@ const median = (a) => {
   return s.length ? (s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2) : null;
 };
 export function spikeSignature(data, i) {
+  // 요일 효과(주말 PC 감소 등)를 빼기 위해 같은 요일 ±6주를 기준으로 비교
   const lift = (arr) => {
     if (!arr || arr[i] == null) return null;
     const w = [];
-    for (let j = i - 7; j <= i + 7; j++) if (j !== i && arr[j] != null) w.push(arr[j]);
+    for (let j = i - 42; j <= i + 42; j += 7) if (j !== i && arr[j] != null) w.push(arr[j]);
+    if (w.length < 3) for (let j = i - 7; j <= i + 7; j++) if (j !== i && arr[j] != null) w.push(arr[j]);
     const m = median(w);
     return m ? arr[i] / m : null;
   };
-  const acc = {},
+  const KS = ["pc", "mo", "male", "female", "under19", ...SEG_AGES],
+    wtOf = (m) => (typeof m.pc === "number" ? m.pc : 0) + (typeof m.mobile === "number" ? m.mobile : 0),
     drivers = [];
   for (const m of data.models) {
-    const wt = (typeof m.pc === "number" ? m.pc : 0) + (typeof m.mobile === "number" ? m.mobile : 0);
+    const a = m.series && wtOf(m) ? lift(m.series.all) : null;
+    if (a != null) drivers.push({ m, keyword: m.keyword, lift: a, contrib: (a - 1) * wtOf(m) });
+  }
+  drivers.sort((a, b) => b.contrib - a.contrib);
+  // 한 키워드가 상승분의 60% 이상을 차지하면 그 키워드 패턴으로 판정(다른 키워드에 희석되지 않게)
+  const pos = drivers.filter((x) => x.contrib > 0).reduce((a, x) => a + x.contrib, 0),
+    useModels = drivers[0] && pos > 0 && drivers[0].contrib / pos >= 0.6 ? [drivers[0].m] : data.models;
+  const acc = {};
+  for (const m of useModels) {
+    const wt = wtOf(m);
     if (!wt || !m.series) continue;
-    for (const k of ["pc", "mo", "male", "female", "under19", ...SEG_AGES]) {
+    for (const k of KS) {
       const l = lift(m.series[k]);
       if (l == null) continue;
       (acc[k] ||= { s: 0, w: 0 }).s += l * wt;
       acc[k].w += wt;
     }
-    const a = lift(m.series.all);
-    if (a != null) drivers.push({ keyword: m.keyword, lift: a, contrib: (a - 1) * wt });
   }
   const r = (k) => (acc[k]?.w ? acc[k].s / acc[k].w : null),
     ages = SEG_AGES.map((k) => ({ k, v: r(k) })).filter((x) => x.v != null),
@@ -113,15 +123,17 @@ export function spikeSignature(data, i) {
     pc = r("pc"),
     male = r("male"),
     female = r("female");
-  drivers.sort((a, b) => b.contrib - a.contrib);
   let type = "혼합형",
     why = [];
-  if (mo != null && pc != null && mo >= 1.2 && pc <= 1.05 && cv != null && cv < 0.2) {
-    type = "대중 노출형";
-    why.push(pc < 0.9 ? "모바일만 상승(PC는 감소)" : "모바일만 상승(PC 변화 없음)", "전 연령 고르게 상승");
-  } else if (pc != null && pc >= 1.2 && !weekend) {
-    type = "뉴스형";
-    why.push("평일 PC 동반 상승");
+  if (mo != null && pc != null && mo >= 1.2 && pc < 1.1) {
+    type = "모바일 노출형";
+    why.push("같은 요일 대비 모바일만 상승", "TV·영상·SNS·모바일 광고 노출 가능성");
+  } else if (mo != null && pc != null && mo >= 1.2 && pc >= 1.2 && cv != null && cv < 0.2) {
+    type = "대중 화제형";
+    why.push("모바일·PC 함께 상승", "전 연령 고르게 상승");
+  } else if (pc != null && pc >= 1.2 && (mo == null || mo < 1.2)) {
+    type = "PC 정보탐색형";
+    why.push("같은 요일 대비 PC 위주 상승", "기사·공지·구매 정보 탐색 가능성");
   } else if (cv != null && cv >= 0.2) {
     type = "관심층형";
     const top = [...ages].sort((a, b) => b.v - a.v).slice(0, 2).map((x) => x.k);
@@ -145,9 +157,10 @@ export function spikeSignature(data, i) {
 }
 /* 유형별로 붙이는 검색어 */
 export function querySuffix(type) {
-  if (type === "대중 노출형") return ["드라마", "예능", "방송", "광고", "연예인", "PPL", "유튜브"];
+  if (type === "모바일 노출형") return ["드라마", "예능", "방송", "광고", "연예인", "PPL", "유튜브", "인스타"];
+  if (type === "대중 화제형") return ["화제", "논란", "사고", "화재", "연예인", "방송"];
   if (type === "관심층형") return ["시승기", "리뷰", "유튜버", "커뮤니티"];
-  if (type === "뉴스형") return ["출시", "발표", "가격", "리콜"];
+  if (type === "PC 정보탐색형") return ["출시", "발표", "가격", "한정", "프로모션", "리콜"];
   return [];
 }
 

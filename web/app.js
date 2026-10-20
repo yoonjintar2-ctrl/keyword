@@ -236,6 +236,7 @@ function adopt(data, gs, label = "현재 결과") {
   selected = new Set(data.models.map((m) => key(m.keyword)));
   trendFocus = groups[0]?.id || "";
   days = 0;
+  resetPan();
   setDraft(gs);
   $("startDate").value = data.start_date;
   $("endDate").value = data.end_date;
@@ -313,7 +314,7 @@ function filters() {
     "개 그룹";
   $("selectionHint").textContent =
     selected.size +
-    "개 키워드 선택 · 세부 그래프에 반영 · 메인 일별 흐름은 전체 키워드 합계";
+    "개 키워드 선택 · 선택한 키워드 합계가 일별 흐름에 반영됩니다";
 }
 function deviceColumns() {
   const el = $("deviceColumns");
@@ -381,7 +382,10 @@ function setOptions(id, items, current) {
 function render() {
   if (!dataset?.models.length) return;
   filters();
-  deviceColumns();
+  $("filterCount").textContent =
+    selected.size === dataset.models.length
+      ? ""
+      : selected.size + "/" + dataset.models.length;
   $("resultDate").textContent =
     dataset.start_date +
     " ~ " +
@@ -395,12 +399,17 @@ function render() {
     }) +
     " 저장";
   document
+    .querySelectorAll("#segToggle button")
+    .forEach((b) => {
+      b.classList.toggle("active", b.dataset.seg === segMode);
+      b.setAttribute("aria-pressed", String(b.dataset.seg === segMode));
+    });
+  document
     .querySelectorAll("#periods button")
     .forEach((b) =>
       b.classList.toggle("active", Number(b.dataset.days) === days),
     );
-  mainFlow();
-  trendChart();
+  mainFlow({ animate: true });
 }
 function trendChart() {
   if (!dataset) return;
@@ -743,14 +752,31 @@ $("periods").onclick = (e) => {
   const b = e.target.closest("button[data-days]");
   if (b) {
     days = Number(b.dataset.days);
+    resetPan();
     render();
   }
 };
-$("toggleFilters").onclick = () => {
-  const open = $("filterPanel").hidden;
+$("segToggle").onclick = (e) => {
+  const b = e.target.closest("button[data-seg]");
+  if (!b || b.dataset.seg === segMode) return;
+  segMode = b.dataset.seg;
+  render();
+};
+function setFilterPop(open) {
   $("filterPanel").hidden = !open;
   $("toggleFilters").setAttribute("aria-expanded", String(open));
-};
+}
+$("toggleFilters").onclick = () => setFilterPop($("filterPanel").hidden);
+document.addEventListener("pointerdown", (e) => {
+  if (!$("filterPanel").hidden && !e.target.closest(".filter-wrap"))
+    setFilterPop(false);
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !$("filterPanel").hidden) {
+    setFilterPop(false);
+    $("toggleFilters").focus();
+  }
+});
 async function recommendKeywords() {
   if (busy || recommending) return;
   const brand = $("brandName").value.trim(),
@@ -923,8 +949,8 @@ async function init() {
   setDraft([
     { id: "analysis", name: "BMW", keywords: ["BMW", "BMWX3", "BMWX5"] },
   ]);
+  await loadInsights();
   await Promise.allSettled([
-    loadInsights().then(() => dataset?.models?.length && mainFlow()),
     reloadData(),
     (async () => {
       try {

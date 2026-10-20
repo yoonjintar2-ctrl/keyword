@@ -1511,6 +1511,171 @@
           padding: 0 12px;
         }
       }
+
+      /* ===== 2차 개편 ===== */
+      .filter-wrap {
+        position: relative;
+      }
+      .filter-btn {
+        font-size: 11px;
+        padding: 3px 11px;
+        border-radius: 999px;
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .filter-count {
+        font-size: 10px;
+        color: var(--green);
+        font-weight: 700;
+      }
+      .filter-pop {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 8px);
+        z-index: 45;
+        width: 380px;
+        max-width: calc(100vw - 24px);
+        max-height: 60vh;
+        overflow: auto;
+        padding: 14px 16px;
+        box-shadow: 0 16px 40px #0f2a2533;
+        animation: pop 0.18s ease-out;
+      }
+      .filter-pop-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        margin-bottom: 4px;
+      }
+      @keyframes pop {
+        from {
+          opacity: 0;
+          transform: translateY(-6px) scale(0.98);
+        }
+      }
+      .pan-layer,
+      .pan-layer * {
+        pointer-events: none;
+      }
+      .pan-layer .issue-pill,
+      .pan-layer .issue-pill * {
+        pointer-events: auto;
+      }
+      .issue-pill {
+        cursor: pointer;
+        outline: none;
+      }
+      .issue-pill rect {
+        fill: #fbfcfc;
+        stroke: #9aa3a8;
+        stroke-width: 1.3;
+        stroke-dasharray: 4 3;
+        transition: fill 0.15s;
+      }
+      .issue-pill text {
+        fill: #5d676c;
+        font-size: 11px;
+        font-weight: 600;
+        transition: fill 0.15s;
+      }
+      .issue-pill:hover rect,
+      .issue-pill:focus-visible rect,
+      .issue-pill.active rect {
+        fill: #59646a;
+        stroke: #59646a;
+      }
+      .issue-pill:hover text,
+      .issue-pill:focus-visible text,
+      .issue-pill.active text {
+        fill: #fff;
+      }
+      .issue-card {
+        border-color: #dfe3e5;
+      }
+      .issue-card .meta {
+        color: #6b7478;
+      }
+      .pan-btn {
+        position: absolute;
+        z-index: 4;
+        transform: translateY(-50%);
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid #d5e0da;
+        background: #ffffffd9;
+        backdrop-filter: blur(4px);
+        font-size: 22px;
+        line-height: 1;
+        padding: 0;
+        color: #2d4a42;
+        box-shadow: 0 4px 14px #0f2a251f;
+        transition: opacity 0.2s, transform 0.15s;
+      }
+      .pan-btn.left {
+        left: 10px;
+      }
+      .pan-btn.right {
+        right: 10px;
+      }
+      .pan-btn:hover:not(:disabled) {
+        transform: translateY(-50%) scale(1.08);
+        background: #fff;
+      }
+      .pan-btn:disabled {
+        opacity: 0.25;
+      }
+      .fade-in {
+        animation: fadeIn 0.8s ease-out 0.25s both;
+      }
+      .pop-in {
+        animation: popIn 0.45s cubic-bezier(0.3, 1.4, 0.5, 1) 0.85s both;
+        transform-box: fill-box;
+        transform-origin: left center;
+      }
+      .drop-in {
+        animation: dropIn 0.5s cubic-bezier(0.25, 1.2, 0.4, 1) both;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+      }
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(0.7);
+        }
+      }
+      @keyframes dropIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+      }
+      .series-toggles button {
+        transition: opacity 0.2s, background 0.2s;
+      }
+      .stage .flow-card {
+        transition: box-shadow 0.3s;
+      }
+      #results:not([hidden]) .flow-card {
+        animation: fadeIn 0.4s ease-out both;
+      }
+      .flow-tooltip {
+        transition: left 0.08s linear;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .fade-in,
+        .pop-in,
+        .drop-in,
+        .filter-pop,
+        #results:not([hidden]) .flow-card {
+          animation: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1651,10 +1816,38 @@
                   role="group"
                   aria-label="그래프에 표시할 지표"
                 ></div>
+                <div id="segToggle" class="segments" role="group" aria-label="성·연령 분리">
+                  <button data-seg="all" class="active" aria-pressed="true">합계</button
+                  ><button data-seg="gender" aria-pressed="false">성별</button
+                  ><button data-seg="age" aria-pressed="false">연령</button>
+                </div>
                 <div id="periods" class="segments">
                   <button data-days="30">30일</button
-                  ><button data-days="90">90일</button
-                  ><button data-days="0" class="active">전체 기간</button>
+                  ><button data-days="0" class="active">전체</button>
+                </div>
+                <div class="filter-wrap">
+                  <button
+                    id="toggleFilters"
+                    class="filter-btn"
+                    aria-expanded="false"
+                    aria-controls="filterPanel"
+                  >
+                    필터 <span id="filterCount" class="filter-count"></span>
+                  </button>
+                  <div id="filterPanel" class="filter-pop card" hidden>
+                    <div class="filter-pop-head">
+                      <strong>그래프에 반영할 키워드</strong>
+                      <span class="inline-tools">
+                        <button id="selectAll" class="text-button">전체</button
+                        ><button id="selectNone" class="text-button">해제</button>
+                      </span>
+                    </div>
+                    <p id="filterSummary" class="hint"></p>
+                    <table class="selection-table">
+                      <tbody id="selectionRows"></tbody>
+                    </table>
+                    <p id="selectionHint" class="selection-hint"></p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1663,61 +1856,6 @@
             </div>
             <p id="flowFoot" class="chart-foot"></p>
           </section>
-          <div class="below">
-            <section class="card selection-card">
-              <div class="section-head">
-                <div>
-                  <h2>세부 분석 키워드</h2>
-                  <p id="filterSummary">전체 키워드 선택</p>
-                </div>
-                <button
-                  id="toggleFilters"
-                  aria-expanded="false"
-                  aria-controls="filterPanel"
-                >
-                  필터 <span aria-hidden="true">⌄</span>
-                </button>
-              </div>
-              <div id="filterPanel" hidden>
-                <div class="inline-tools filter-tools">
-                  <button id="selectAll" class="text-button">전체</button
-                  ><button id="selectNone" class="text-button">해제</button>
-                </div>
-                <table class="selection-table">
-                  <tbody id="selectionRows"></tbody>
-                </table>
-                <p id="selectionHint" class="selection-hint"></p>
-              </div>
-            </section>
-            <section class="card chart-card">
-              <div class="chart-head">
-                <div>
-                  <h2>키워드별 일별 추정 쿼리수</h2>
-                  <p>세부 키워드의 추정 검색량을 비교합니다.</p>
-                </div>
-              </div>
-              <div id="trendLegend" class="legend chart-controls"></div>
-              <div id="trendChart" class="chart"></div>
-              <div id="trendFoot" class="chart-foot"></div>
-            </section>
-            <section class="card device-card">
-              <div class="section-head">
-                <div>
-                  <h2>키워드별 PC · 모바일 추정 쿼리</h2>
-                  <p>선택한 조회 기간의 일별 추정 쿼리 합계</p>
-                </div>
-                <div class="legend">
-                  <span><i class="dot" style="background: #628bd0"></i>PC</span
-                  ><span
-                    ><i class="dot" style="background: #2da58b"></i>MO</span
-                  >
-                </div>
-              </div>
-              <div class="device-scroll">
-                <div id="deviceColumns" class="device-columns"></div>
-              </div>
-            </section>
-          </div>
         </section>
       </main>
       <footer class="methodology">

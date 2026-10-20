@@ -1,4 +1,9 @@
 "use strict";
+/* ============================================================
+   일별 흐름 메인 그래프
+   - 네이버 추정 쿼리(굵은 선+그라데이션) / 보조 지표(구글·유튜브, 별도 축)
+   - 이슈 마커(무채색 점선) / 성·연령 분리 / 30일 보기 좌우 이동
+   ============================================================ */
 function smoothPath(points) {
   let d = "",
     part = [];
@@ -9,9 +14,7 @@ function smoothPath(points) {
       const n = part.length,
         slopes = part
           .slice(0, -1)
-          .map(
-            (p, i) => (part[i + 1][1] - p[1]) / (part[i + 1][0] - p[0] || 1),
-          ),
+          .map((p, i) => (part[i + 1][1] - p[1]) / (part[i + 1][0] - p[0] || 1)),
         t = part.map((p, i) =>
           i === 0
             ? slopes[0]
@@ -47,8 +50,9 @@ function smoothPath(points) {
   return d;
 }
 
+/* 필터로 선택한 키워드의 일별 추정 쿼리 합계 */
 function queryTotals() {
-  const values = dataset.models.map((m) => estimates(m));
+  const values = chosen().map((m) => estimates(m));
   return dataset.dates.map((_, i) => {
     const valid = values.map((v) => v[i]).filter((v) => v != null);
     return {
@@ -83,10 +87,8 @@ async function loadInsights() {
 function matchInsight() {
   if (!insights?.analyses || !dataset) return null;
   const byJob =
-    dataset.job_id &&
-    insights.analyses.find((a) => a.job_id === dataset.job_id);
+    dataset.job_id && insights.analyses.find((a) => a.job_id === dataset.job_id);
   if (byJob) return byJob;
-  // 같은 분석(수집 시각) 또는 키워드가 겹치는 수동 정리본
   const ks = new Set(dataset.models.map((m) => key(m.keyword)));
   return (
     insights.analyses.find((a) => a.collected_from === dataset.collected_at) ||
@@ -97,18 +99,10 @@ function matchInsight() {
   );
 }
 
-const SERIES_DEFAULT = {
-  google_web: true,
-  google_youtube: true,
-  issues: true,
-  spikes: true,
-};
+const SERIES_DEFAULT = { google_web: true, google_youtube: true, issues: true };
 const seriesOn = (() => {
   try {
-    return {
-      ...SERIES_DEFAULT,
-      ...JSON.parse(localStorage.getItem("nq-series") || "{}"),
-    };
+    return { ...SERIES_DEFAULT, ...JSON.parse(localStorage.getItem("nq-series") || "{}") };
   } catch {
     return { ...SERIES_DEFAULT };
   }
@@ -119,26 +113,46 @@ function saveSeries() {
   } catch {}
 }
 
-/* 전후 7일 중앙값 대비 15% 이상 높은 국소 최고점 */
-function detectSpikes(totals) {
-  const v = totals.map((t) => t.value),
-    out = [];
-  for (let i = 0; i < v.length; i++) {
-    if (v[i] == null) continue;
-    const win = [];
-    for (let j = i - 7; j <= i + 7; j++)
-      if (j !== i && j >= 0 && j < v.length && v[j] != null) win.push(v[j]);
-    if (win.length < 6) continue;
-    win.sort((a, b) => a - b);
-    const med =
-      win.length % 2
-        ? win[(win.length - 1) / 2]
-        : (win[win.length / 2 - 1] + win[win.length / 2]) / 2;
-    let localMax = true;
-    for (let j = i - 2; j <= i + 2; j++)
-      if (j !== i && v[j] != null && v[j] > v[i]) localMax = false;
-    if (localMax && med > 0 && v[i] >= med * 1.15)
-      out.push({ i, pct: (v[i] / med - 1) * 100, med });
+/* 보조 지표 스타일: 네이버와 같은 굵기, 반투명 */
+const AUX_STYLE = {
+  google_web: { color: "#8b949a", opacity: 0.32, band: 0.34 },
+  google_youtube: { color: "#e0574f", opacity: 0.3, band: null }, // 네이버 선에 살짝 닿도록 동적 계산
+  social_blog: { color: "#9a6fc9", opacity: 0.3, band: 0.3 },
+};
+
+/* ---------- 성·연령 ---------- */
+let segMode = "all"; // all | gender | age
+const SEGMENTS = {
+  gender: [
+    { id: "male", name: "남성", color: "#3f7fd6" },
+    { id: "female", name: "여성", color: "#e0688b" },
+  ],
+  age: [
+    { id: "under19", name: "18세 이하", color: "#9ccfc4" },
+    { id: "age19_29", name: "19~29세", color: "#46b39d" },
+    { id: "age30_39", name: "30대", color: "#138b7c" },
+    { id: "age40_49", name: "40대", color: "#2f6f9f" },
+    { id: "age50_59", name: "50대", color: "#6a5aa8" },
+    { id: "age60plus", name: "60세 이상", color: "#a35a8f" },
+  ],
+};
+/* 집단별 상대 추이: 키워드별 지수를 기간 평균으로 나눠 월간 검색수로 가중 합산.
+   네이버가 집단마다 지수를 따로 정규화하므로 실제 집단별 건수가 아니라 추이 비교용이다. */
+function segmentSeries(segId) {
+  const n = dataset.dates.length,
+    out = new Array(n).fill(null);
+  for (const m of chosen()) {
+    const s = m.series?.[segId];
+    if (!s) continue;
+    const ok = s.filter((v) => v != null);
+    if (ok.length < n * 0.8) continue;
+    const mean = ok.reduce((a, b) => a + b, 0) / ok.length,
+      w = (typeof m.pc === "number" ? m.pc : 0) + (typeof m.mobile === "number" ? m.mobile : 0);
+    if (!mean || !w) continue;
+    s.forEach((v, i) => {
+      if (v == null) return;
+      out[i] = (out[i] || 0) + (v / mean) * w;
+    });
   }
   return out;
 }
@@ -148,13 +162,16 @@ const weekday = (d) => new Date(d + "T00:00:00Z").getUTCDay();
 const md = (d) => +d.slice(5, 7) + "." + +d.slice(8, 10);
 
 let measureCtx = null;
-function textWidth(text, font = "650 11px sans-serif") {
+function textWidth(text, font = "600 11px sans-serif") {
   measureCtx ||= document.createElement("canvas").getContext("2d");
   measureCtx.font = font;
   return measureCtx.measureText(text).width;
 }
+const reduceMotion = () =>
+  typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function seriesToggles(aux, hasIssues, hasSpikes) {
+/* ---------- 범례·토글 ---------- */
+function seriesToggles(aux, hasIssues, segList) {
   const box = $("mainLegend");
   box.replaceChildren();
   const chip = (label, color, id, opts = {}) => {
@@ -162,17 +179,17 @@ function seriesToggles(aux, hasIssues, hasSpikes) {
     b.type = "button";
     const i = document.createElement("i");
     if (opts.dot) i.className = "dot";
+    if (opts.soft) i.style.opacity = 0.55;
     b.style.setProperty("--c", color);
     b.append(i, document.createTextNode(label));
     if (opts.title) b.title = opts.title;
-    if (opts.disabled) {
-      b.disabled = true;
-    } else if (id) {
+    if (opts.disabled) b.disabled = true;
+    else if (id) {
       b.setAttribute("aria-pressed", String(seriesOn[id] !== false));
       b.onclick = () => {
         seriesOn[id] = seriesOn[id] === false;
         saveSeries();
-        mainFlow();
+        mainFlow({ animate: true });
       };
     } else {
       b.setAttribute("aria-pressed", "true");
@@ -181,26 +198,30 @@ function seriesToggles(aux, hasIssues, hasSpikes) {
     }
     box.append(b);
   };
-  chip(
-    "네이버 추정 쿼리 · " + dataset.models.length + "개",
-    "var(--naver)",
-    null,
-    { title: "메인 지표 · 전체 키워드의 일별 추정 쿼리 합계" },
-  );
-  for (const a of aux)
-    chip(a.name, a.color, a.id, { title: a.kind + " · " + a.basis });
-  if (!aux.some((a) => a.id === "social_blog"))
-    chip("소셜 발화량", "var(--social)", null, {
-      disabled: true,
-      title:
-        "소셜 발화량은 네이버 검색 API 키를 등록하면 자동 수집됩니다(블로그 일별 게시물 수).",
+  if (segList) {
+    for (const s of segList) chip(s.name, s.color, null, { title: "집단 내 상대 추이" });
+  } else {
+    chip("네이버 추정 쿼리 · " + chosen().length + "개", "var(--naver)", null, {
+      title: "메인 지표 · 선택한 키워드의 일별 추정 쿼리 합계",
     });
-  if (hasIssues) chip("이슈", "var(--issue)", "issues", { dot: true });
-  if (hasSpikes) chip("급등일", "#9aaba0", "spikes", { dot: true });
+    for (const a of aux)
+      chip(a.name, a.color, a.id, { soft: true, title: a.kind + " · " + a.basis });
+    if (!aux.some((a) => a.id === "social_blog"))
+      chip("소셜 발화량", "var(--social)", null, {
+        disabled: true,
+        title: "네이버 검색 API 키를 등록하면 블로그 일별 게시물 수가 자동 수집됩니다.",
+      });
+  }
+  if (hasIssues && !segList) chip("이슈", "#7a8388", "issues", { dot: true });
 }
 
+/* ---------- 상태 ---------- */
 let chartObserver = null,
-  lastSize = "";
+  lastSize = "",
+  panStart = null, // 30일 보기의 첫 날짜 인덱스
+  panTimer = 0,
+  lastNaverYs = null; // 성·연령 전환 시 모핑 출발점
+
 function watchChartSize() {
   if (chartObserver || typeof ResizeObserver === "undefined") return;
   chartObserver = new ResizeObserver(() => {
@@ -208,338 +229,282 @@ function watchChartSize() {
       size = el.clientWidth + "x" + el.clientHeight;
     if (size === lastSize || !dataset?.models?.length) return;
     lastSize = size;
-    requestAnimationFrame(mainFlow);
+    requestAnimationFrame(() => mainFlow({ animate: false }));
   });
   chartObserver.observe($("mainChart"));
 }
 
-function mainFlow() {
-  const root = $("mainChart");
+function resetPan() {
+  panStart = null;
+}
+
+/* ============================================================ */
+function mainFlow(opts = {}) {
+  const animate = opts.animate !== false && !reduceMotion(),
+    root = $("mainChart");
   watchChartSize();
   root.replaceChildren();
-  const index = ix(),
-    dates = index.map((x) => x.date);
-  if (!dates.length) return;
+  if (!dataset?.dates?.length) return;
   lastSize = root.clientWidth + "x" + root.clientHeight;
-  const W = Math.max(320, root.clientWidth),
-    H = Math.max(240, root.clientHeight),
-    totals = queryTotals(),
-    values = index.map(({ i }) => totals[i]),
-    valid = values.map((v) => v.value).filter((v) => v != null),
+
+  const dates = dataset.dates,
+    n = dates.length,
+    windowed = days > 0 && n > days,
+    W = Math.max(320, root.clientWidth),
+    H = Math.max(260, root.clientHeight),
+    L = 24,
+    R = 24,
+    B = 30,
+    pw = W - L - R;
+  if (windowed) {
+    if (panStart == null) panStart = n - days;
+    panStart = Math.max(0, Math.min(n - days, panStart));
+  }
+  const vis0 = windowed ? panStart : 0,
+    vis1 = windowed ? panStart + days - 1 : n - 1,
+    dayW = pw / Math.max(1, (windowed ? days : n) - 1),
+    cx = (k) => L + k * dayW, // 콘텐츠 좌표
+    shift = windowed ? -panStart * dayW : 0,
+    sx = (k) => cx(k) + shift; // 화면 좌표
+
+  const totals = queryTotals(),
+    values = totals.map((t) => t.value),
+    visVals = values.slice(vis0, vis1 + 1).filter((v) => v != null),
+    allVals = values.filter((v) => v != null),
     match = matchInsight(),
-    aux = (match?.aux || [])
-      .map((a) => ({ ...a, vals: dates.map((d) => a.values?.[d] ?? null) }))
-      .filter((a) => a.vals.some((v) => v != null)),
+    segList = segMode === "all" ? null : SEGMENTS[segMode],
+    aux = segList
+      ? []
+      : (match?.aux || [])
+          .map((a) => ({
+            ...a,
+            ...(AUX_STYLE[a.id] || { color: a.color, opacity: 0.3, band: 0.3 }),
+            vals: dates.map((d) => a.values?.[d] ?? null),
+          }))
+          .filter((a) => a.vals.some((v) => v != null)),
     pos = new Map(dates.map((d, k) => [d, k])),
-    news = (match?.issues || [])
-      .filter((s) => pos.has(s.date))
-      .map((s) => ({ ...s, k: pos.get(s.date), type: "news" })),
-    spikeAll = detectSpikes(totals)
-      .map((s) => ({ ...s, date: dataset.dates[s.i] }))
+    issues = (match?.issues || [])
       .filter((s) => pos.has(s.date))
       .map((s) => ({ ...s, k: pos.get(s.date) }));
+  seriesToggles(aux, issues.length > 0, segList);
+  const markers = seriesOn.issues !== false && !segList ? issues.sort((a, b) => a.k - b.k) : [];
 
-  // 뉴스와 ±1일 내 급등은 뉴스 마커에 합침
-  const spikes = [];
-  for (const s of spikeAll) {
-    const near = news.find((n) => Math.abs(n.k - s.k) <= 1);
-    if (near) near.spike = s;
-    else
-      spikes.push({
-        ...s,
-        type: "spike",
-        note: match?.spike_notes?.[s.date] || null,
-      });
-  }
-  seriesToggles(aux, news.length > 0, spikes.length > 0);
-
-  const markers = [
-    ...(seriesOn.issues !== false ? news : []),
-    ...(seriesOn.spikes !== false ? spikes : []),
-  ].sort((a, b) => a.k - b.k);
-
-  const L = 22,
-    R = 22,
-    B = 30,
-    laneH = 26,
-    pw = W - L - R,
-    x = (k) => L + (k / Math.max(1, dates.length - 1)) * pw;
-
-  // 이슈 라벨 줄 배치
-  const rows = [];
+  // 이슈 라벨 줄 배치(콘텐츠 좌표)
+  const laneTop = 30,
+    laneH = 27,
+    rows = [];
   for (const m of markers) {
-    m.label =
-      m.type === "news" ? m.title : "급등 +" + Math.round(m.pct) + "%";
-    m.w = Math.min(200, Math.ceil(textWidth(m.label, "650 11px sans-serif") * 1.08) + 26);
-    let cx = Math.min(Math.max(x(m.k), L + m.w / 2), W - R - m.w / 2),
-      row = rows.findIndex((right) => cx - m.w / 2 > right + 6);
-    if (row < 0 && rows.length < (W < 700 ? 6 : 3)) row = rows.length;
+    m.label = m.title;
+    m.w = Math.min(210, Math.ceil(textWidth(m.label) * 1.06) + 24);
+    const minX = windowed ? -1e9 : L + m.w / 2,
+      maxX = windowed ? 1e9 : W - R - m.w / 2;
+    m.cx = Math.min(Math.max(cx(m.k), minX), maxX);
+    let row = rows.findIndex((right) => m.cx - m.w / 2 > right + 8);
+    if (row < 0 && rows.length < (W < 700 ? 5 : 3)) row = rows.length;
     if (row < 0) row = rows.indexOf(Math.min(...rows));
-    rows[row] = cx + m.w / 2;
+    rows[row] = m.cx + m.w / 2;
     m.row = row;
-    m.cx = cx;
+    m.ly = laneTop + row * laneH;
   }
-  const T = (rows.length ? rows.length * laneH + 14 : 14) + 18,
+  const T = laneTop + Math.max(1, rows.length) * laneH + 22,
     ph = H - T - B,
-    // y축은 숨기고 값 범위에 맞춰 화면을 꽉 채움(최저~최고 + 여백)
-    vmin = valid.length ? Math.min(...valid) : 0,
-    vmax = valid.length ? Math.max(...valid) : 1,
-    pad = Math.max((vmax - vmin) * 0.12, vmax * 0.02, 1),
-    lo = Math.max(0, vmin - pad),
-    hi = vmax + pad * 0.6,
-    // 네이버는 위쪽 띠(상단 72%), 보조 지표는 아래쪽 띠에 배치
-    NAV_H = ph * 0.72,
-    y = (v) => T + NAV_H - ((v - lo) / (hi - lo)) * NAV_H,
-    ns = "http://www.w3.org/2000/svg",
+    NAV_TOP = T + ph * 0.16,
+    NAV_BOT = T + ph * 0.8;
+
+  // 네이버 y: 전체 기간 범위 고정(30일 이동 시에도 높이가 흔들리지 않게)
+  const vmin = allVals.length ? Math.min(...allVals) : 0,
+    vmax = allVals.length ? Math.max(...allVals) : 1,
+    span = Math.max(vmax - vmin, vmax * 0.05, 1),
+    lo = vmin - span * 0.04,
+    hi = vmax,
+    y = (v) => NAV_BOT - ((v - lo) / (hi - lo)) * (NAV_BOT - NAV_TOP);
+
+  const ns = "http://www.w3.org/2000/svg",
     svg = document.createElementNS(ns, "svg");
   svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
   svg.setAttribute("role", "img");
-  svg.setAttribute(
-    "aria-label",
-    "전체 키워드 합계 일별 추정 쿼리수와 보조 지표",
-  );
-  function add(tag, attrs, text, parent = svg) {
+  svg.setAttribute("aria-label", "선택 키워드 일별 추정 쿼리수와 보조 지표");
+  function add(tag, attrs = {}, text, parent = svg) {
     const el = document.createElementNS(ns, tag);
     for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
     if (text !== undefined) el.textContent = text;
     parent.append(el);
     return el;
   }
+  const defs = add("defs"),
+    clip = add("clipPath", { id: "plotClip" }, undefined, defs);
+  add("rect", { x: L - 14, y: 0, width: pw + 28, height: H }, undefined, clip);
+  const grad = add("linearGradient", { id: "naverFill", x1: 0, y1: 0, x2: 0, y2: 1 }, undefined, defs);
+  add("stop", { offset: "0%", "stop-color": "#138b7c", "stop-opacity": 0.3 }, undefined, grad);
+  add("stop", { offset: "65%", "stop-color": "#138b7c", "stop-opacity": 0.07 }, undefined, grad);
+  add("stop", { offset: "100%", "stop-color": "#138b7c", "stop-opacity": 0 }, undefined, grad);
 
-  // x축 눈금: 화면 폭에 맞춰 일·2일·주·2주·월 단위로 촘촘하게
-  const dayPx = pw / Math.max(1, dates.length - 1),
-    MIN = 40,
-    mode =
-      dayPx >= MIN
-        ? 1
-        : dayPx * 2 >= MIN
-          ? 2
-          : dayPx * 7 >= MIN
-            ? 7
-            : dayPx * 14 >= MIN
-              ? 14
-              : 30;
-  add("line", {
-    x1: L,
-    x2: W - R,
-    y1: T + ph,
-    y2: T + ph,
-    stroke: "#cfdcd5",
-  });
+  const view = add("g", { "clip-path": "url(#plotClip)" }),
+    content = add("g", { class: "pan-layer", transform: `translate(${shift},0)` }, undefined, view);
+  const g = (cls) => add("g", { class: cls }, undefined, content);
+  const gGrid = g("grid"),
+    gAux = g("aux"),
+    gArea = g("area"),
+    gMain = g("main"),
+    gIssue = g("issues"),
+    gPeak = g("peak");
+
+  /* --- x축 --- */
+  const MIN = 40,
+    mode = dayW >= MIN ? 1 : dayW * 2 >= MIN ? 2 : dayW * 7 >= MIN ? 7 : dayW * 14 >= MIN ? 14 : 30;
+  add("line", { x1: L, x2: W - R, y1: T + ph, y2: T + ph, stroke: "#d5e0da" });
   let lastX = -1e9;
   dates.forEach((d, k) => {
     const wd = weekday(d),
       first = d.endsWith("-01"),
-      px = x(k);
-    if (dayPx >= 5)
-      add("line", {
-        x1: px,
-        x2: px,
-        y1: T + ph,
-        y2: T + ph + (wd === 1 ? 5 : 3),
-        stroke: wd === 0 ? "#e2a8a0" : "#cfdcd5",
-      });
+      px = cx(k);
+    if (dayW >= 5)
+      add("line", { x1: px, x2: px, y1: T + ph, y2: T + ph + (wd === 1 ? 5 : 3), stroke: wd === 0 ? "#e2a8a0" : "#d5e0da" }, undefined, gGrid);
     const take =
-      mode === 1
-        ? true
-        : mode === 2
-          ? k % 2 === 0
-          : mode === 7
-            ? wd === 1
-            : mode === 14
-              ? wd === 1 && Math.floor(k / 7) % 2 === 0
-              : first;
+      mode === 1 ? true : mode === 2 ? k % 2 === 0 : mode === 7 ? wd === 1 : mode === 14 ? wd === 1 && Math.floor(k / 7) % 2 === 0 : first;
     if (!take && !(first && mode >= 7)) return;
     if (px - lastX < MIN - 6) return;
     lastX = px;
-    add("line", {
-      x1: px,
-      x2: px,
-      y1: T,
-      y2: T + ph,
-      stroke: first ? "#dde8e2" : "#eef3f0",
-    });
+    add("line", { x1: px, x2: px, y1: T, y2: T + ph, stroke: first ? "#e1eae5" : "#f0f4f2" }, undefined, gGrid);
     add(
       "text",
       {
         x: px,
         y: H - 10,
-        "text-anchor": k === 0 ? "start" : k === dates.length - 1 ? "end" : "middle",
+        "text-anchor": !windowed && k === 0 ? "start" : !windowed && k === n - 1 ? "end" : "middle",
         fill: wd === 0 && mode <= 2 ? "#c0675b" : first ? "#3f5a50" : "#7d8e85",
         "font-size": 10.5,
         "font-weight": first ? 700 : 400,
       },
-      (first && mode >= 7 ? +d.slice(5, 7) + "월 " : "") +
-        (first && mode >= 7 ? "" : md(d)) +
-        (mode === 1 ? "(" + WEEK[wd] + ")" : ""),
+      (first && mode >= 7 ? +d.slice(5, 7) + "월" : md(d)) + (mode === 1 ? "(" + WEEK[wd] + ")" : ""),
+      gGrid,
     );
   });
 
-  // 보조 지표: 각자의 축(0~자기 최대)
+  /* --- 보조 지표: 굵은 반투명 선, 아래쪽 띠 --- */
   const auxShown = aux.filter((a) => seriesOn[a.id] !== false);
   for (const a of auxShown) {
     const av = a.vals.filter((v) => v != null),
       amin = Math.min(...av),
       amax = Math.max(...av),
-      apad = Math.max((amax - amin) * 0.12, 1),
+      apad = Math.max((amax - amin) * 0.06, 1),
       alo = Math.max(0, amin - apad),
-      ahi = amax + apad * 0.6,
-      ay = (v) => T + ph - ((v - alo) / (ahi - alo)) * ph * 0.42;
-    add("path", {
-      d: smoothPath(a.vals.map((v, k) => (v == null ? null : [x(k), ay(v)]))),
-      fill: "none",
-      "data-aux": a.id,
-      stroke: a.color,
-      "stroke-width": 1.6,
-      "stroke-opacity": 0.7,
-      "stroke-linejoin": "round",
-      "stroke-linecap": "round",
-    });
-    a.ay = ay;
+      bot = T + ph - 6;
+    let top = bot - ph * (a.band || 0.34);
+    if (a.id === "google_youtube") {
+      // 유튜브 최대일의 값이 네이버 선에 살짝 닿도록
+      const km = a.vals.indexOf(amax),
+        nv = values[km] ?? hi;
+      top = Math.min(y(nv) + 3, bot - ph * 0.3);
+    }
+    a.ay = (v) => bot - ((v - alo) / (amax - alo || 1)) * (bot - top);
+    const path = add(
+      "path",
+      {
+        d: smoothPath(a.vals.map((v, k) => (v == null ? null : [cx(k), a.ay(v)]))),
+        fill: "none",
+        stroke: a.color,
+        "stroke-width": 6.5,
+        "stroke-opacity": a.opacity,
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        class: animate ? "draw" : "",
+      },
+      undefined,
+      gAux,
+    );
+    if (animate) drawIn(path, 1100, 120);
   }
 
-  // 메인: 네이버 추정 쿼리 — 그라데이션 영역 + 굵은 선
-  const defs = add("defs", {}),
-    grad = add(
-      "linearGradient",
-      { id: "naverFill", x1: 0, y1: 0, x2: 0, y2: 1 },
-      undefined,
-      defs,
-    );
-  add("stop", { offset: "0%", "stop-color": "#138b7c", "stop-opacity": 0.32 }, undefined, grad);
-  add("stop", { offset: "70%", "stop-color": "#138b7c", "stop-opacity": 0.08 }, undefined, grad);
-  add("stop", { offset: "100%", "stop-color": "#138b7c", "stop-opacity": 0 }, undefined, grad);
-  const pts = values.map((v, k) => (v.value == null ? null : [x(k), y(v.value)])),
-    segs = [];
-  let segStart = -1;
-  pts.forEach((p, k) => {
-    if (p && segStart < 0) segStart = k;
-    if ((!p || k === pts.length - 1) && segStart >= 0) {
-      const end = p ? k : k - 1;
-      if (end > segStart) segs.push([segStart, end]);
-      segStart = -1;
-    }
-  });
-  for (const [a, b] of segs)
-    add("path", {
-      d:
-        smoothPath(pts.slice(a, b + 1)) +
-        `L${x(b)},${T + ph}L${x(a)},${T + ph}Z`,
-      fill: "url(#naverFill)",
-      stroke: "none",
+  /* --- 메인: 네이버 또는 성·연령 --- */
+  const naverPts = values.map((v, k) => (v == null ? null : [cx(k), y(v)]));
+  let segLines = null;
+  if (!segList) {
+    // 그라데이션 영역
+    let s0 = -1;
+    naverPts.forEach((p, k) => {
+      if (p && s0 < 0) s0 = k;
+      if ((!p || k === n - 1) && s0 >= 0) {
+        const e = p ? k : k - 1;
+        if (e > s0) {
+          const area = add(
+            "path",
+            { d: smoothPath(naverPts.slice(s0, e + 1)) + `L${cx(e)},${T + ph}L${cx(s0)},${T + ph}Z`, fill: "url(#naverFill)" },
+            undefined,
+            gArea,
+          );
+          if (animate) area.classList.add("fade-in");
+        }
+        s0 = -1;
+      }
     });
-  // 아래 보조 지표를 영역 위로 다시 올림
-  for (const el of svg.querySelectorAll("path[data-aux]")) svg.append(el);
-  add("path", {
-    d: smoothPath(pts),
-    fill: "none",
-    stroke: "#0f7f70",
-    "stroke-width": 6.5,
-    "stroke-linecap": "round",
-    "stroke-linejoin": "round",
-    "data-series": "query-total",
-  });
-  values.forEach((v, k) => {
-    if (
-      v.value != null &&
-      (k === 0 || values[k - 1].value == null) &&
-      (k === values.length - 1 || values[k + 1].value == null)
-    )
-      add("circle", { cx: x(k), cy: y(v.value), r: 4, fill: "#138b7c" });
-  });
+    const line = add(
+      "path",
+      { d: smoothPath(naverPts), fill: "none", stroke: "#0f7f70", "stroke-width": 6.5, "stroke-linecap": "round", "stroke-linejoin": "round" },
+      undefined,
+      gMain,
+    );
+    if (animate) drawIn(line, 1000, 0);
+    lastNaverYs = values.map((v) => (v == null ? null : y(v)));
+  } else {
+    // 집단별 선: 공통 축(가중 평균 1 기준)으로 네이버 띠 안에 표시
+    const sers = segList.map((s) => ({ ...s, vals: segmentSeries(s.id) })),
+      sv = sers.flatMap((s) => s.vals).filter((v) => v != null),
+      smin = Math.min(...sv),
+      smax = Math.max(...sv),
+      sy = (v) => NAV_BOT - ((v - smin) / (smax - smin || 1)) * (NAV_BOT - NAV_TOP);
+    segLines = sers.map((s) => {
+      const to = s.vals.map((v) => (v == null ? null : sy(v))),
+        path = add(
+          "path",
+          { fill: "none", stroke: s.color, "stroke-width": segMode === "gender" ? 5 : 3.6, "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-opacity": 0.92 },
+          undefined,
+          gMain,
+        );
+      const from = lastNaverYs && animate ? lastNaverYs : null;
+      morphPath(path, cx, from, to, animate ? 850 : 0);
+      return { ...s, to, max: Math.max(...s.vals.filter((v) => v != null)) };
+    });
+    if (!segLines.some((s) => s.to.some((v) => v != null)))
+      add("text", { x: L + pw / 2, y: T + ph / 2, "text-anchor": "middle", fill: "#7d8e85", "font-size": 13 }, "선택한 키워드에 성·연령 지수가 충분하지 않습니다.");
+  }
 
-  // 최고점만 함축 표기
-  if (valid.length) {
-    const top = Math.max(...valid),
-      k = values.findIndex((v) => v.value === top),
-      px = x(k),
+  /* --- 최고점(보이는 구간의 네이버 최대값만, 함축 표기) --- */
+  if (!segList && visVals.length) {
+    const top = Math.max(...visVals),
+      k = values.findIndex((v, i) => i >= vis0 && i <= vis1 && v === top),
+      px = cx(k),
       py = y(top),
       text = "최고 " + compactNumber(top) + " · " + md(dates[k]),
-      tw = textWidth(text, "700 12px sans-serif") + 14,
-      onLeft = px + tw + 14 > W - R,
-      bx = onLeft ? px - tw - 12 : px + 12;
-    add("circle", {
-      cx: px,
-      cy: py,
-      r: 5.5,
-      fill: "#fff",
-      stroke: "#138b7c",
-      "stroke-width": 3,
-    });
-    add("rect", {
-      x: bx,
-      y: py - 11,
-      width: tw,
-      height: 22,
-      rx: 11,
-      fill: "#138b7c",
-    });
-    add(
-      "text",
-      {
-        x: bx + tw / 2,
-        y: py + 4,
-        "text-anchor": "middle",
-        fill: "#fff",
-        "font-size": 12,
-        "font-weight": 700,
-      },
-      text,
-    );
-  } else
-    add(
-      "text",
-      {
-        x: L + pw / 2,
-        y: T + ph / 2,
-        "text-anchor": "middle",
-        fill: "#7d8e85",
-        "font-size": 13,
-      },
-      "이 기간의 쿼리 추정치를 확보하지 못했습니다.",
-    );
+      tw = textWidth(text, "700 12px sans-serif") + 16,
+      screenX = px + shift,
+      bx = screenX + tw + 16 > W - R ? px - tw - 12 : px + 12;
+    add("circle", { cx: px, cy: py, r: 6, fill: "#fff", stroke: "#0f7f70", "stroke-width": 3 }, undefined, gPeak);
+    add("rect", { x: bx, y: py - 12, width: tw, height: 24, rx: 12, fill: "#0f7f70" }, undefined, gPeak);
+    add("text", { x: bx + tw / 2, y: py + 4.5, "text-anchor": "middle", fill: "#fff", "font-size": 12, "font-weight": 700 }, text, gPeak);
+    if (animate) gPeak.classList.add("pop-in");
+  } else if (!segList && !allVals.length)
+    add("text", { x: L + pw / 2, y: T + ph / 2, "text-anchor": "middle", fill: "#7d8e85", "font-size": 13 }, chosen().length ? "이 기간의 쿼리 추정치를 확보하지 못했습니다." : "필터에서 키워드를 하나 이상 선택하세요.");
 
-  // 이슈 마커: 그래프 위 동그라미 + 연결선
-  for (const m of markers) {
-    const v = values[m.k]?.value,
-      px = x(m.k),
-      py = v == null ? T + ph : y(v),
-      ly = 8 + m.row * laneH + 22;
-    add("path", {
-      d: `M${m.cx},${ly}L${m.cx},${ly + 6}L${px},${Math.min(py - 9, ly + 18)}L${px},${py - 8}`,
-      fill: "none",
-      stroke: m.type === "news" ? "#d9822b" : "#9aaba0",
-      "stroke-width": 1.3,
-      "stroke-dasharray": m.type === "news" ? "0" : "3 3",
-    });
-    add("circle", {
-      cx: px,
-      cy: py,
-      r: m.type === "news" ? 7.5 : 6,
-      fill: "none",
-      stroke: m.type === "news" ? "#d9822b" : "#8fa39a",
-      "stroke-width": m.type === "news" ? 2.5 : 1.8,
-      "stroke-dasharray": m.type === "news" ? "0" : "3 2",
-    });
-  }
+  /* --- 이슈 마커: 무채색 점선 --- */
+  markers.forEach((m, idx) => {
+    const v = segList ? null : values[m.k],
+      px = cx(m.k),
+      py = v == null ? T + ph * 0.5 : y(v),
+      gm = add("g", { class: "issue-marker" + (animate ? " drop-in" : ""), style: animate ? `animation-delay:${450 + idx * 90}ms` : "" }, undefined, gIssue),
+      bottom = m.ly + 22;
+    add("path", { d: `M${m.cx},${bottom}L${m.cx},${bottom + 6}L${px},${Math.min(py - 12, bottom + 20)}L${px},${py - 10}`, fill: "none", stroke: "#9aa3a8", "stroke-width": 1.3, "stroke-dasharray": "3 3" }, undefined, gm);
+    if (v != null)
+      add("circle", { cx: px, cy: py, r: 8, fill: "rgba(255,255,255,.6)", stroke: "#7a8388", "stroke-width": 1.8, "stroke-dasharray": "3 2" }, undefined, gm);
+    const pill = add("g", { class: "issue-pill", tabindex: 0, role: "button", "aria-label": m.label }, undefined, gm);
+    add("rect", { x: m.cx - m.w / 2, y: m.ly, width: m.w, height: 22, rx: 11 }, undefined, pill);
+    add("text", { x: m.cx, y: m.ly + 15, "text-anchor": "middle" }, m.label.length > 26 ? m.label.slice(0, 25) + "…" : m.label, pill);
+    m.el = pill;
+  });
 
-  // 호버: 세로선 + 모든 지표 값
-  const line = add("line", {
-      x1: L,
-      x2: L,
-      y1: T,
-      y2: T + ph,
-      stroke: "#a0b8ad",
-      "stroke-dasharray": "4 4",
-      visibility: "hidden",
-    }),
-    dot = add("circle", {
-      r: 5,
-      fill: "#138b7c",
-      stroke: "#fff",
-      "stroke-width": 2,
-      visibility: "hidden",
-    }),
+  /* --- 호버 --- */
+  const line = add("line", { x1: 0, x2: 0, y1: T, y2: T + ph, stroke: "#a0b8ad", "stroke-dasharray": "4 4", visibility: "hidden" }),
+    dot = add("circle", { r: 5.5, fill: "#0f7f70", stroke: "#fff", "stroke-width": 2, visibility: "hidden" }),
     overlay = add("rect", {
       x: L,
       y: T,
@@ -550,13 +515,15 @@ function mainFlow() {
       role: "slider",
       "aria-label": "좌우 방향키 또는 마우스로 날짜별 값 확인",
       "aria-valuemin": 0,
-      "aria-valuemax": dates.length - 1,
-      "aria-valuenow": 0,
+      "aria-valuemax": n - 1,
     }),
     tip = document.createElement("div");
   tip.className = "tooltip flow-tooltip";
   tip.hidden = true;
-  let cur = 0;
+  // 이슈 라벨이 호버 영역 위에 오도록
+  svg.append(view, line, dot);
+  line.style.pointerEvents = dot.style.pointerEvents = "none";
+  let cur = vis1;
   const row = (color, label, value) => {
     const r = document.createElement("div"),
       i = document.createElement("i"),
@@ -568,71 +535,59 @@ function mainFlow() {
     return r;
   };
   function show(k) {
-    cur = Math.max(0, Math.min(dates.length - 1, k));
-    const v = values[cur],
-      px = x(cur);
+    cur = Math.max(vis0, Math.min(vis1, k));
+    const px = sx(cur);
     line.setAttribute("x1", px);
     line.setAttribute("x2", px);
     line.setAttribute("visibility", "visible");
-    if (v.value != null) {
-      dot.setAttribute("cx", px);
-      dot.setAttribute("cy", y(v.value));
-      dot.setAttribute("visibility", "visible");
-    } else dot.setAttribute("visibility", "hidden");
     tip.replaceChildren();
     const title = document.createElement("strong");
     title.textContent = dates[cur] + " (" + WEEK[weekday(dates[cur])] + ")";
-    tip.append(
-      title,
-      row(
-        "#6ed0b5",
-        "네이버 추정 쿼리",
-        v.value == null ? "미확보" : fmt(v.value) + "건",
-      ),
-    );
-    if (v.available < v.total)
-      tip.append(
-        row("#6b8a7d", "추정 가능 키워드", v.available + " / " + v.total),
-      );
-    for (const a of auxShown)
-      tip.append(
-        row(
-          a.color,
-          a.name + " 지수",
-          a.vals[cur] == null ? "–" : String(a.vals[cur]),
-        ),
-      );
+    tip.append(title);
+    if (segList) {
+      dot.setAttribute("visibility", "hidden");
+      for (const s of segLines) {
+        const v = s.vals[cur];
+        tip.append(row(s.color, s.name, v == null ? "–" : String(Math.round((v / s.max) * 100))));
+      }
+      const note = document.createElement("div");
+      note.className = "issue-line";
+      note.textContent = "집단별 최고일=100 기준 상대 지수";
+      tip.append(note);
+    } else {
+      const v = values[cur];
+      if (v != null) {
+        dot.setAttribute("cx", px);
+        dot.setAttribute("cy", y(v));
+        dot.setAttribute("visibility", "visible");
+      } else dot.setAttribute("visibility", "hidden");
+      tip.append(row("#6ed0b5", "네이버 추정 쿼리", v == null ? "미확보" : fmt(v) + "건"));
+      for (const a of auxShown) tip.append(row(a.color, a.name + " 지수", a.vals[cur] == null ? "–" : String(a.vals[cur])));
+    }
     const near = markers.find((m) => m.k === cur);
     if (near) {
       const p = document.createElement("div");
       p.className = "issue-line";
-      p.textContent =
-        near.type === "news"
-          ? "● " + near.title
-          : "◌ 급등 +" + Math.round(near.pct) + "% (원인 미확인)";
+      p.textContent = "● " + near.title;
       tip.append(p);
     }
     tip.hidden = false;
-    const tw = tip.offsetWidth || 220,
-      left = px + 16 + tw > W ? px - 16 - tw : px + 16;
-    tip.style.left = Math.max(4, left) + "px";
+    const tw = tip.offsetWidth || 220;
+    tip.style.left = Math.max(4, px + 16 + tw > W ? px - 16 - tw : px + 16) + "px";
     tip.style.top = T + 6 + "px";
     overlay.setAttribute("aria-valuenow", cur);
     overlay.setAttribute("aria-valuetext", dates[cur]);
   }
-  overlay.addEventListener("pointermove", (e) => {
-    const r = svg.getBoundingClientRect();
-    show(
-      Math.round(
-        ((((e.clientX - r.left) / r.width) * W - L) / pw) * (dates.length - 1),
-      ),
-    );
-  });
   const hide = () => {
     tip.hidden = true;
     line.setAttribute("visibility", "hidden");
     dot.setAttribute("visibility", "hidden");
   };
+  overlay.addEventListener("pointermove", (e) => {
+    const r = svg.getBoundingClientRect(),
+      px = ((e.clientX - r.left) / r.width) * W;
+    show(Math.round((px - L - shift) / dayW));
+  });
   overlay.addEventListener("pointerleave", hide);
   overlay.addEventListener("blur", hide);
   overlay.addEventListener("focus", () => show(cur));
@@ -644,161 +599,171 @@ function mainFlow() {
   });
   root.append(svg, tip);
 
-  // 이슈 라벨(HTML) + 상세 카드
+  /* --- 이슈 상세 카드 --- */
   let card = null,
     hideTimer = 0;
   const closeCard = () => {
     card?.remove();
     card = null;
-    root
-      .querySelectorAll(".issue-label.active")
-      .forEach((el) => el.classList.remove("active"));
+    root.querySelectorAll(".issue-pill.active").forEach((el) => el.classList.remove("active"));
   };
   const scheduleClose = () => {
     clearTimeout(hideTimer);
     hideTimer = setTimeout(closeCard, 220);
   };
-  function openCard(m, labelEl) {
+  function link(href, text) {
+    const a = document.createElement("a");
+    a.href = href;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.textContent = text;
+    return a;
+  }
+  function openCard(m) {
     clearTimeout(hideTimer);
     closeCard();
-    labelEl.classList.add("active");
+    m.el.classList.add("active");
     card = document.createElement("div");
     card.className = "issue-card";
     card.setAttribute("role", "dialog");
-    card.setAttribute("aria-label", m.label);
+    card.setAttribute("aria-label", m.title);
     const date = document.createElement("div"),
-      strong = document.createElement("strong");
+      strong = document.createElement("strong"),
+      p = document.createElement("p"),
+      meta = document.createElement("div");
     date.className = "date";
     date.textContent = dates[m.k] + " (" + WEEK[weekday(dates[m.k])] + ")";
-    strong.textContent = m.type === "news" ? m.title : "검색량 급등일";
-    card.append(date, strong);
-    const p = document.createElement("p");
-    const v = values[m.k]?.value;
-    if (m.type === "news") {
-      p.textContent = m.summary || "";
-      card.append(p);
-      const meta = document.createElement("div");
-      meta.className = "meta";
-      if (m.spike)
-        meta.append(
-          "이 무렵 네이버 추정 쿼리가 전후 7일 중앙값 대비 +" +
-            Math.round(m.spike.pct) +
-            "%. ",
-        );
-      if (m.url) {
-        const a = document.createElement("a");
-        a.href = m.url;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-        a.textContent = (m.source || "기사") + " 원문 보기 ↗";
-        meta.append(a);
-      } else if (m.source) meta.append(m.source);
-      card.append(meta);
-      const rel = (m.related || []).filter((r) => r.url !== m.url);
-      if (rel.length) {
-        const ul = document.createElement("ul");
-        ul.className = "cands";
-        for (const r of rel.slice(0, 4)) {
-          const li = document.createElement("li"),
-            a = document.createElement("a");
-          a.href = r.url;
-          a.target = "_blank";
-          a.rel = "noopener noreferrer";
-          a.textContent = r.title;
-          li.append(a);
-          ul.append(li);
-        }
-        card.append(ul);
+    strong.textContent = m.title;
+    p.textContent = m.summary || "";
+    meta.className = "meta";
+    if (m.url) meta.append(link(m.url, (m.source || "기사") + " 원문 보기 ↗"));
+    else if (m.source) meta.append(m.source);
+    card.append(date, strong, p, meta);
+    const rel = (m.related || []).filter((r) => r.url !== m.url);
+    if (rel.length) {
+      const ul = document.createElement("ul");
+      ul.className = "cands";
+      for (const r of rel.slice(0, 4)) {
+        const li = document.createElement("li");
+        li.append(link(r.url, r.title));
+        ul.append(li);
       }
-      if (m.auto) {
-        const n = document.createElement("div");
-        n.className = "meta";
-        n.textContent = "자동 수집 · 보도량이 많은 날의 대표 기사";
-        card.append(n);
-      }
-    } else {
-      p.textContent =
-        "네이버 추정 쿼리 " +
-        (v == null ? "미확보" : fmt(v) + "건") +
-        " · 전후 7일 중앙값(" +
-        fmt(m.med) +
-        "건) 대비 +" +
-        Math.round(m.pct) +
-        "%.";
-      card.append(p);
-      const note = m.note;
-      const p2 = document.createElement("p");
-      p2.textContent = note
-        ? note.summary
-        : "이 날짜와 맞는 보도는 아직 확인하지 못했습니다.";
-      card.append(p2);
-      if (note?.candidates?.length) {
-        const h = document.createElement("div");
-        h.className = "meta";
-        h.textContent = "원인 후보 (관련성)";
-        card.append(h);
-        const ul = document.createElement("ul");
-        ul.className = "cands";
-        for (const c of note.candidates) {
-          const li = document.createElement("li"),
-            a = document.createElement("a");
-          a.href = c.url;
-          a.target = "_blank";
-          a.rel = "noopener noreferrer";
-          a.textContent = c.title;
-          li.append(
-            a,
-            " · " +
-              (c.kind ? c.kind + " · " : "") +
-              md(c.date) +
-              " " +
-              (c.source || "") +
-              " (" +
-              c.relevance +
-              ")",
-          );
-          ul.append(li);
-        }
-        card.append(ul);
-      }
+      card.append(ul);
     }
     root.append(card);
     const cw = card.offsetWidth,
-      left = Math.min(Math.max(4, m.cx - cw / 2), W - cw - 4);
-    card.style.left = left + "px";
-    card.style.top = 8 + m.row * laneH + 26 + "px";
+      mx = m.cx + shift;
+    card.style.left = Math.min(Math.max(4, mx - cw / 2), W - cw - 4) + "px";
+    card.style.top = m.ly + 28 + "px";
     card.addEventListener("pointerenter", () => clearTimeout(hideTimer));
     card.addEventListener("pointerleave", scheduleClose);
   }
   for (const m of markers) {
-    const el = document.createElement("button");
-    el.type = "button";
-    el.className = "issue-label" + (m.type === "spike" ? " spike" : "");
-    el.textContent = m.label;
-    el.style.left = m.cx + "px";
-    el.style.top = 8 + m.row * laneH + "px";
-    el.style.maxWidth = m.w + "px";
-    el.title = "";
-    el.addEventListener("pointerenter", () => openCard(m, el));
-    el.addEventListener("pointerleave", scheduleClose);
-    el.addEventListener("focus", () => openCard(m, el));
-    el.addEventListener("blur", scheduleClose);
-    el.addEventListener("click", () => openCard(m, el));
-    el.addEventListener("keydown", (e) => e.key === "Escape" && closeCard());
-    root.append(el);
+    m.el.addEventListener("pointerenter", () => openCard(m));
+    m.el.addEventListener("pointerleave", scheduleClose);
+    m.el.addEventListener("focus", () => openCard(m));
+    m.el.addEventListener("blur", scheduleClose);
+    m.el.addEventListener("click", () => openCard(m));
+    m.el.addEventListener("keydown", (e) => e.key === "Escape" && closeCard());
   }
 
+  /* --- 30일 보기: 휠·화살표로 좌우 이동 --- */
+  if (windowed) {
+    const mk = (dir) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "pan-btn " + (dir < 0 ? "left" : "right");
+      b.textContent = dir < 0 ? "‹" : "›";
+      b.setAttribute("aria-label", dir < 0 ? "이전 기간으로 이동" : "다음 기간으로 이동");
+      b.disabled = dir < 0 ? panStart <= 0 : panStart >= n - days;
+      b.style.top = T + ph / 2 + "px";
+      b.onclick = () => panBy(dir * 7);
+      root.append(b);
+    };
+    mk(-1);
+    mk(1);
+    let wheelAcc = 0;
+    root.onwheel = (e) => {
+      const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (!d) return;
+      const atEdge = (d < 0 && panStart <= 0) || (d > 0 && panStart >= n - days);
+      if (atEdge) return; // 끝에 닿으면 페이지 스크롤 허용
+      e.preventDefault();
+      wheelAcc += d;
+      const step = Math.trunc(wheelAcc / 60);
+      if (step) {
+        wheelAcc -= step * 60;
+        panBy(step * 2, true);
+      }
+    };
+  } else root.onwheel = null;
+
+  function panBy(dd, quick = false) {
+    const next = Math.max(0, Math.min(n - days, panStart + dd));
+    if (next === panStart) return;
+    panStart = next;
+    hide();
+    closeCard();
+    const t = -panStart * dayW;
+    content.style.transition = reduceMotion() ? "none" : `transform ${quick ? 220 : 420}ms cubic-bezier(.22,.8,.3,1)`;
+    content.style.transform = `translate(${t}px,0)`;
+    root.querySelectorAll(".pan-btn").forEach((b) => {
+      b.disabled = b.classList.contains("left") ? panStart <= 0 : panStart >= n - days;
+    });
+    clearTimeout(panTimer);
+    panTimer = setTimeout(() => mainFlow({ animate: false }), quick ? 260 : 460);
+  }
+
+  /* --- 하단 설명 --- */
   const basis = auxShown.map((a) => a.name + ": " + a.basis).join(" / "),
     status = !insights
       ? ""
       : !match
         ? " 이 분석의 이슈·보조 지표는 자동 수집 대기 중입니다(새 분석 후 최대 30분)."
         : " 이슈 출처: " + (match.sources || []).join(", ") + ".";
-  $("flowFoot").textContent =
-    "굵은 선은 네이버 전체 키워드의 일별 추정 쿼리 합계입니다. 세로 범위는 기간 내 최저~최고에 맞춰 확대되어 있으니 값은 그래프에 마우스를 올려 확인하세요." +
-    (basis
-      ? " 보조 지표는 각자의 축에 그린 상대 지수로 추이만 비교합니다 — " + basis + "."
-      : "") +
-    " 결측은 0으로 채우지 않습니다." +
-    status;
+  $("flowFoot").textContent = segList
+    ? "성·연령별 선은 네이버가 집단마다 따로 정규화한 지수를 키워드 월간 검색수로 가중 합산한 상대 추이입니다. 집단별 실제 검색 건수가 아니며, 같은 축에서 오르내림의 크기만 비교하세요."
+    : "굵은 선은 선택한 키워드의 일별 추정 쿼리 합계입니다. 세로 범위는 기간 최저~최고에 맞춰 확대되어 있으니 값은 그래프에 마우스를 올려 확인하세요." +
+      (basis ? " 보조 지표는 각자의 축에 그린 상대 지수로 추이만 비교합니다 — " + basis + "." : "") +
+      (windowed ? " 30일 보기에서는 마우스 휠이나 좌우 버튼으로 기간을 옮길 수 있습니다." : "") +
+      status;
+}
+
+/* ---------- 애니메이션 ---------- */
+function drawIn(path, ms, delay) {
+  try {
+    const len = path.getTotalLength();
+    if (!len) return;
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+    path.getBoundingClientRect();
+    path.style.transition = `stroke-dashoffset ${ms}ms cubic-bezier(.45,.05,.2,1) ${delay}ms`;
+    requestAnimationFrame(() => (path.style.strokeDashoffset = 0));
+    setTimeout(() => {
+      path.style.strokeDasharray = "";
+      path.style.transition = "";
+    }, ms + delay + 50);
+  } catch {}
+}
+/* from(y 배열) → to(y 배열)로 선 모양을 보간 */
+function morphPath(path, cx, from, to, ms) {
+  const build = (ys) => smoothPath(ys.map((v, k) => (v == null ? null : [cx(k), v])));
+  if (!ms || !from) {
+    path.setAttribute("d", build(to));
+    if (ms) drawIn(path, ms, 0);
+    return;
+  }
+  const t0 = performance.now(),
+    ease = (t) => 1 - Math.pow(1 - t, 3);
+  const frame = (now) => {
+    if (!path.isConnected) return;
+    const t = Math.min(1, (now - t0) / ms),
+      e = ease(t);
+    path.setAttribute(
+      "d",
+      build(to.map((v, k) => (v == null ? null : from[k] == null ? v : from[k] + (v - from[k]) * e))),
+    );
+    if (t < 1) requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
 }

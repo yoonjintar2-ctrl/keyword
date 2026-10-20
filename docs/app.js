@@ -661,6 +661,22 @@ function setExtracting(active) {
 $("extractionGauge").addEventListener("keydown", (e) => {
   if (e.key === "Tab") e.preventDefault();
 });
+/* 네이버 API 호출 한도(429)·일시 오류는 기다렸다가 자동 재시도.
+   완료된 단계·배치는 서버가 캐시하므로 재시도해도 중복 호출되지 않는다. */
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms)),
+  STEP_GAP_MS = 350,
+  RETRY_WAITS = [2000, 4000, 8000, 15000, 25000, 40000, 60000];
+async function stepWithRetry(jobId, step) {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      return await api("/api/jobs/" + jobId + "/step?name=" + step, {});
+    } catch (e) {
+      const retryable = /429|too many|한도|rate|50[0-9]|일시|timeout|Failed to fetch|NetworkError/i.test(e.message);
+      if (!retryable || attempt >= RETRY_WAITS.length) throw e;
+      await sleep(RETRY_WAITS[attempt] + Math.random() * 500);
+    }
+  }
+}
 async function execute(job, started = false) {
   if (busy && !started) return;
   setExtracting(true);
@@ -671,7 +687,8 @@ async function execute(job, started = false) {
   try {
     for (let i = 0; i < job.steps.length; i++) {
       const step = job.steps[i];
-      await api("/api/jobs/" + job.id + "/step?name=" + step, {});
+      await stepWithRetry(job.id, step);
+      await sleep(STEP_GAP_MS);
       extractionProgress(((i + 1) / job.steps.length) * 98);
       if (i % 6 === 0) await loadQuota();
     }

@@ -1768,6 +1768,17 @@
       .logo-field i {
         background: #ffffff;
       }
+      /* 진행·실패 안내는 그래프를 밀어내지 않게 떠 있는 카드로 */
+      .stage .run-progress {
+        position: fixed;
+        z-index: 48;
+        left: 50%;
+        top: calc(var(--top-h) + 12px);
+        transform: translateX(-50%);
+        width: min(560px, calc(100vw - 24px));
+        box-shadow: 0 14px 40px #0000002a;
+        background: #fff;
+      }
       .top-meta,
       .brand .top-meta span {
         color: #9aa0a5;

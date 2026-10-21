@@ -3,6 +3,665 @@
  "note": "보조 지표·이슈 데이터. keywords 중 하나라도 현재 분석 키워드와 겹치고 날짜가 맞을 때만 표시.",
  "analyses": [
   {
+   "job_id": null,
+   "collected_from": "2026-10-21T06:12:40.484Z",
+   "keywords": [
+    "코웨이",
+    "코웨이매트리스",
+    "코웨이안마의자",
+    "코웨이침대렌탈",
+    "코웨이매트리스렌탈",
+    "코웨이비렉스",
+    "코웨이공기청정기필터",
+    "코웨이안마의자렌탈",
+    "코웨이비렉스안마의자",
+    "코웨이인덕션",
+    "코웨이공기청정기렌탈",
+    "코웨이연수기",
+    "코웨이비렉스매트리스",
+    "코웨이정수기필터교체",
+    "웅진코웨이안마의자",
+    "코웨이의류청정기",
+    "코웨이렌탈침대",
+    "웅진코웨이안마의자렌탈",
+    "코웨이안마기",
+    "코웨이프레임",
+    "코웨이비렉스렌탈",
+    "코웨이페스타",
+    "코웨이커피",
+    "코웨이인덕션렌탈",
+    "코웨이정수기카드할인",
+    "코웨이정수기설치",
+    "코웨이연수기렌탈",
+    "코웨이청정기필터",
+    "코웨이페블체어",
+    "코웨이정수기할인카드"
+   ],
+   "start_date": "2025-10-21",
+   "end_date": "2026-10-20",
+   "collected_at": "2026-10-21T10:33:35.965Z",
+   "auto": true,
+   "sources": [
+    "구글 뉴스"
+   ],
+   "search_terms": [
+    "코웨이",
+    "코웨이매트리스",
+    "코웨이안마의자",
+    "코웨이침대렌탈"
+   ],
+   "notes": [
+    "네이버 검색 API 키 없음 — 블로그 발화량·화제글 미수집"
+   ],
+   "aux": [],
+   "issues": [
+    {
+     "date": "2026-08-07",
+     "title": "코웨이, 2분기 영업익 2532억…전년비 …",
+     "summary": "이날 관련 보도 19건. 대표 기사: 코웨이, 2분기 영업익 2532억…전년비 4.3%↑ - 한국경제",
+     "source": "한국경제",
+     "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5FY2tkMV9FbklUbEVkTjdWcDg4T1RVMU1kSVNaTlJPOGRHeXVpX1F4VTZJTVNfM2lyMlRSbUZURVpXRVZjUUlJUkNlV1g1cHRac0xDQ2lHQXRUdw?oc=5",
+     "related": [
+      {
+       "title": "코웨이, 2분기 매출 1.4조…전년비 14.6% 증가 - 디일렉",
+       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1RSkhET1pDS2ZRVjNwa1J0REJkVWFHRS1IZHhrRGJ0QXJnd3p6bFhTc1E4cllaWkpJa1JhcWZxRDhIZWcyUjZuaE5EZGE1R2lxWkcxNjVTZ0pHNDBmRDBoQmlPV01wUQ?oc=5",
+       "source": "디일렉"
+      },
+      {
+       "title": "코웨이, 2Q 영업익 2532억…전년비 4.3%↑ - FETV",
+       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1NVU1rU3NMM3hQUUktYnJMTzhkd1poRWZkbVhCckxtbXZSNzlqT1J0aFMzM2FzaUxZN1FTTUJPdGVTbjVtcmdLcmxqRnRPdHlrb3VOYk1qZE1UZEg0Z3h0WExxMHRnNEk4?oc=5",
+       "source": "FETV"
+      },
+      {
+       "title": "코웨이, 2분기 영업익 2532억…전년비 4.3%↑ - 한국경제",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5FY2tkMV9FbklUbEVkTjdWcDg4T1RVMU1kSVNaTlJPOGRHeXVpX1F4VTZJTVNfM2lyMlRSbUZURVpXRVZjUUlJUkNlV1g1cHRac0xDQ2lHQXRUdw?oc=5",
+       "source": "한국경제"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-09-07",
+     "title": "코웨이, 롯데백화점 평촌점서 ‘비렉스’ 팝…",
+     "summary": "이날 관련 보도 20건. 대표 기사: 코웨이, 롯데백화점 평촌점서 ‘비렉스’ 팝업스토어 운영 - 코리아리포트",
+     "source": "코리아리포트",
+     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1WLTBKSXI2Q3RfbWhaQ1VzcFh4Z3lBWFZwM2pIdmc3M0pfR1pENjJYaXNzNTNNWE91T0FybTdFX1VaMTFMNjlYYjVOOWw2YW5ybEtXRjkxOTlxaHAtQ0ZjYzFaSFZURG80UEIyMHppOFg?oc=5",
+     "related": [
+      {
+       "title": "코웨이, 롯데백화점 평촌점에 '비렉스' 팝업스토어 운영 - 전자신문",
+       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBnVjBRUThycjhmS1Nxd204YkMwdU9IX1RjT2h5bHFaV25ZTjd3ZFZ3T0ZqdHJ2OGRIa1I0SXJCVTNPOWNHaTM1a3ZFaUxUZw?oc=5",
+       "source": "전자신문"
+      },
+      {
+       "title": "코웨이, 롯데백화점 평촌점서 ‘비렉스’ 팝업스토어 운영 - 코리아리포트",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1WLTBKSXI2Q3RfbWhaQ1VzcFh4Z3lBWFZwM2pIdmc3M0pfR1pENjJYaXNzNTNNWE91T0FybTdFX1VaMTFMNjlYYjVOOWw2YW5ybEtXRjkxOTlxaHAtQ0ZjYzFaSFZURG80UEIyMHppOFg?oc=5",
+       "source": "코리아리포트"
+      },
+      {
+       "title": "코웨이, 롯데百 평촌점서 '비렉스' 팝업스토어 운영 - 뉴스1",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE81V3V2T3dZQ290ZXhNTURzekZ1T3VReC05RXk4X29BeVFZVWhOTU43V3BhNkhFWlh1MEVCVWt1b25kMFR2b0xUQjROM3EyZ2c0VEZsVlFaOC1CY2JXQTE5MVc4b0Y?oc=5",
+       "source": "뉴스1"
+      },
+      {
+       "title": "코웨이 롯데백화점 평촌점에 '비렉스' 팝업 운영, 침대·안마의자 체험 제공 - 비즈니스포스트",
+       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE04YkFnT25pM1BWQmhEd1YxRFU3b1pweVo4OVVhajZrTjM3QUNxa2JsWVFGeDBCaWJ6QXF5MXE2SENQRW9VWFdXUklodFhscktjLVpzbERTRGttZ0JOS2dOOXVTTkFGREZIaUVDUmtST3VKYWM?oc=5",
+       "source": "비즈니스포스트"
+      },
+      {
+       "title": "코웨이, 롯데백화점 평촌점에 '비렉스' 팝업스토어 오픈 - 중소기업신문",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9FSms1S0ROb01WRWhJSUUtQU9iczRCUy05WFFyTExMQ1BDcFUzaERFLTF6anRnNlBYc0hPVTlrVFhYWHoxaUJEbHY3Wm5HV2hMc1ZJaVU0LTRrNkZVZlExd1NCbV8tZUhUTXIyTA?oc=5",
+       "source": "중소기업신문"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-09-22",
+     "title": "코웨이, 보행보조 웨어러블 로봇 공개",
+     "summary": "이날 관련 보도 20건. 대표 기사: 코웨이, 보행보조 웨어러블 로봇 공개 - 중소기업신문",
+     "source": "중소기업신문",
+     "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1KdkdnYUFqeHIxaVJ4RkFZdFZNVWpXdlpqTW5zZFI2YVRhdDFBVEFtSllKcTlRcE1xcXlVdEx0V2dvVFcwTUhPdktRQ1NwemMySFF4RjRhQWREZFY0bjZ2THBldTBta0NzekphR05B?oc=5",
+     "related": [
+      {
+       "title": "코웨이, '보행보조 웨어러블 로봇' 내달 출시 - 디일렉",
+       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5TdDRiSkRvbFBPNEpUQXFsV1RyMmttTWg3OWpMQXh2cUtkTC14c04tMkJQQU8xZlB0MnZGVWR6XzhOVDUzYmVYRzR0VUZlVUstR1ZsbnFzMWVBZ2dKbWluUkZXRHZlUQ?oc=5",
+       "source": "디일렉"
+      },
+      {
+       "title": "코웨이, 내달 보행보조 웨어러블 로봇 출시 - 연합인포맥스",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBic2s4RnBnVVY0R3Y2SGsxUGVDUmRPcUhKT0dsVnFlTEZJWUU5clJjbTdfSEo0RFNabm55VFpCUnNsZWNpdzQ5R3hHSVp3YWtybUcyYUxjVUtrWkx0N1VwOURwVFpCNXNMNXBqa195YWQ?oc=5",
+       "source": "연합인포맥스"
+      },
+      {
+       "title": "코웨이, '보행보조 웨어러블 로봇' 공개…액티브 시니어 겨냥 - 머니투데이 - 머니투데이",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBPQUxveWdtQm1mVDR5cnN6U2lfaG5JNzhDTVVfS1VJSHpGMHJ2Z3pZY1NrR0FEbXJUWEdLRzYxQ2IzWmp5aGgwNXpXMlB3eVFMdkVHUGtDWXl5MTREVFRudXMtV2FQdGJtelHSAW9BVV95cUxNUXpnUm5weWI4RWJrMmhqQWVQaTQzci1tODVfQW9UcGVENThjSEc1dldvLTl3Zk9DNmxhNnN4aFRhbjhUR2R5ZERNQ25JMENsVnFHb0dlUUltdENFWWluU0twdXFGZjFhNkJhZjhEMEE?oc=5",
+       "source": "머니투데이"
+      },
+      {
+       "title": "코웨이, 첫 로봇 렌탈 나선다…보행보조 웨어러블 로봇 공개 - 연합뉴스",
+       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1DZy1qRlZ2YlNyaEFzX0V2R2t0S0RsUUpmd3ZlNFRUazRkcmYzMVA0SGNZQkp5SnduMVNGVTBjc3pObHBjSFVMd1BxajFCejRYN05sVlgwZnFYczTSAWBBVV95cUxPMDZsS1ljRW9uSFZ6bTMzYjE0d25CZUh0MGo3NmFERWJ0LWs3aVhlenVZeWx0UDMyVE1pVGwwMC1lSlVzQzR0bU0xN1VfRUlGNjZuU0xxWUlIQmVqekx1ZkU?oc=5",
+       "source": "연합뉴스"
+      },
+      {
+       "title": "코웨이, 로봇 렌탈 사업 시작…보행보조 웨어러블 로봇 내달 출시 - 전자신문",
+       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1hc19lQXY0WXZPSVBZMkxwUE5oMUhaQk1xczByNE1pV2dyZ1FvOEJERnQ2RFllcDVnTkdtUF9vX2xrNUF2VDEyYVZHSnVCQQ?oc=5",
+       "source": "전자신문"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-09-28",
+     "title": "\"눕기만 하면 알아서 수면 분석\"…코웨이,…",
+     "summary": "이날 관련 보도 21건. 대표 기사: \"눕기만 하면 알아서 수면 분석\"…코웨이, '비렉스 슬립 싱크' 탑재 매트리스 3종 출시 - 청년일보",
+     "source": "청년일보",
+     "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE0xMkc3d1Z4bkpQX3VIUklaZGVMZ1NpUmNVNDlpNXJuUDdDdThOdkF3czc0T1dVZldNSVlnZ3djWHpoUjdEVEJra09UdDBLbUxGNzh4d0lfSjJaSzl2UWIxSzRsSDhEOE0?oc=5",
+     "related": [
+      {
+       "title": "코웨이, 수면 상태 분석하는 '비렉스 슬립 싱크' 매트리스 출시 - 연합뉴스",
+       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9XYWpjTm94RUU4U2U5MjRaNDE1YmpON2pkdkZhaVZsdExYSkRJbTJmWVFhdzBacmRaZlV1c19FMXJXdzRPY2wwRkZmWWpQYks5akNnZ2VrU255WEHSAWBBVV95cUxNTGZGR05MZHJaNmxhcXEybUZISFItSFJtVkRFblJPTzkxOF9QNkQxTjR5cllidEJ2T2VqY3RkZWdtS2dCT0dHVjVkTmdvS3l5UVFpVlV1eFdTNWNyNUxNV1A?oc=5",
+       "source": "연합뉴스"
+      },
+      {
+       "title": "코웨이, 수면 분석 기능 탑재 매트리스 3종 출시 - 디일렉",
+       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBKNVNvVlk4X1ZYVXlScUJoNEt4b0ZodGxtbmVEWWx3RU9vS0I4cjFkTDVNTGpteG1GbEZobkNQMEhDa2lsX2pPSGlleGNLOHZoZ3hFRTUxRjBlX1BEdTZsZWxwbXFJQQ?oc=5",
+       "source": "디일렉"
+      },
+      {
+       "title": "코웨이, 매트리스에 비접촉 수면센서 탑재…수면 유형 5가지 분석 - 뉴스1",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE0tUXk3cExzUkQyUVVaYTdpRlVsWkUyb2dTUTFKX2pnLU9LQmdYM1VPZWZReUJaWEl2LXQ0eUhvSWVSU2E3M3ZYYTVDUmYzUGdRdjhNOWpLQWlMRXlnN0R6bzVCSjQ?oc=5",
+       "source": "뉴스1"
+      },
+      {
+       "title": "코웨이, ‘비렉스 슬립 싱크’ 적용 확대…매트리스 3종서 수면 분석 - 매일일보",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFAtNlNkYnN3ZnhuYzVMSm1wSHhmaTFlbjRSbUZVbkl6d2xfMUl2OGhkU1FUSV8xTTdwakEyZEZmSHUtbGFHRlRYWHdKRWZwU2QtT1FyZmI4SENicjZ0NnkzbndYVl8?oc=5",
+       "source": "매일일보"
+      },
+      {
+       "title": "코웨이, 수면 중 신체 자동 측정 기능 탑재 매트리스 3종 출시 - 뉴스핌",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE92S3VKNUR4R01GT3dXQ1dMRVVzUTU0elFiVnNjalZLOHJzNVpxYjdtZDhxSFdITGxwcnpwUzJ3QkRlaWhteEhsZkc3am5PXzZyRWF6bk1ud3RUSENB?oc=5",
+       "source": "뉴스핌"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-19",
+     "title": "코웨이, 2026 굿 디자인 어워드 수상",
+     "summary": "이날 관련 보도 36건. 대표 기사: 코웨이, 2026 굿 디자인 어워드 수상 - 디일렉",
+     "source": "디일렉",
+     "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9MaXBLa2o0Ri1YZ3dLa0hNZllMZUpmaDRwWGZQZkxwZlpodndwOHNIR05JckV1TGs0VWhoM01UV3lKUk1COEtXbnZHQUxDZjdyaEJaY2dVbkV1RjhCZGJzSzVjenJzQQ?oc=5",
+     "related": [
+      {
+       "title": "코웨이, `2026 일본 굿 디자인 어워드`서 5개 본상 수상 - 디지털데일리",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1ZTktQeUh1aEJZYWhkeVYtUVZTYjhxR0RoMXl5bmNta2VKRm53UHpELWRQbzRRSWhZYlhSdmMwUzZ3bGE2YmhjanpkbkcxaUxGM0dQRGJ1T2pxbUxySnV2OEJCaXo?oc=5",
+       "source": "디지털데일리"
+      },
+      {
+       "title": "코웨이 \"日 굿 디자인 어워드 5관왕…세계 4대 디자인상 석권\" - 서울경제TV",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9Fc3B4Yl9jTF9OU0dPQzJzTVBGX2ZqSkdGTEd2YlRuUWxZWkFVR0NHdXBxZjZRNC0ydTVGY1BWNUpsMXRsQWJBLWQ5QzZ2VFRIdXVFNGF1TW54VXp2dlVuNjBtMjU?oc=5",
+       "source": "서울경제TV"
+      },
+      {
+       "title": "코웨이, 日 ‘2026 굿 디자인 어워드’ 5관왕 달성 - 매일일보",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBZQzZTQVlkWHplWlRXSFNjQm5NX19YdURYZGNmVk9hU0c2NGVWRTdGc1N6REhMaGxuMzFUT0FJMjY2VXJheUQxMHhCT2s4ZDRjcUhzRm9iY1hwSUFsUW95OFhrak0?oc=5",
+       "source": "매일일보"
+      },
+      {
+       "title": "코웨이, 2026 굿 디자인 어워드 수상 - 디일렉",
+       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9MaXBLa2o0Ri1YZ3dLa0hNZllMZUpmaDRwWGZQZkxwZlpodndwOHNIR05JckV1TGs0VWhoM01UV3lKUk1COEtXbnZHQUxDZjdyaEJaY2dVbkV1RjhCZGJzSzVjenJzQQ?oc=5",
+       "source": "디일렉"
+      },
+      {
+       "title": "코웨이, 日 ‘2026 굿 디자인 어워드’ 5관왕…세계 4대 디자인상 석권 - 조세금융신문",
+       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9Lbm9IS0hLY2xldFlKUUNiWmdhdXhOTGV6eDBKMmU4LTJpNzFKeTNRVWNOWTZLcDItUUpIT3N6M1J5czQ4QVM3T3NBQkJsZnRXZHFob2JIRGRWRGdfU3EzUXVoRQ?oc=5",
+       "source": "조세금융신문"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-20",
+     "title": "코웨이, 정수기·공기청정기·비데 등 렌탈 …",
+     "summary": "이날 관련 보도 58건. 대표 기사: 코웨이, 정수기·공기청정기·비데 등 렌탈 할인 프로모션…\"최대 1년간 월 1만원\" | - 핀포인트뉴스",
+     "source": "핀포인트뉴스",
+     "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5UYzdPMVFiSHRrSmtoMlhiVGNBUVFpTXlWbGNHQVVTY2l0eXEtTmJnMmpCRGtvaXZSZ0lOeTFVUlNvYlFKWm1yY1J6MEszRlFUc0hjYkRib0NzeWVhWFlRWGQ3QVd0ZG1Fanp3Q2lwRnRwLXdfa2Q0?oc=5",
+     "related": [
+      {
+       "title": "코웨이, 정수기·비데 렌탈 '월 1만원' 프로모션 - 디일렉",
+       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9lZXJMd1AyTUpFc3MxWWhJb01BZWMtdVNSakozUjFnRzBfYkpoVEVuZjRVQTNVZ1BfbW9BOWF5dzhENWNzWW9qX2JfYjBieFlUSFhZQXpycVN0Tk9XUm91UUVqZWw1dw?oc=5",
+       "source": "디일렉"
+      },
+      {
+       "title": "코웨이, 정수기·공기청정기·비데 렌탈료 최대 1년간 월 1만원 - 연합뉴스",
+       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1uMEg5NkJNWUJQVlY0OGtrREg2b2FjOGd1TlR6dE5WTHpuT0hGS3lUUElqT0xFQTc5b3BCZnpnVVdsTFJLUDgyV3FSdC14WFI3Y09ucjdOM0lsXzNGVHh3SdIBYEFVX3lxTE1uMEg5NkJNWUJQVlY0OGtrREg2b2FjOGd1TlR6dE5WTHpuT0hGS3lUUElqT0xFQTc5b3BCZnpnVVdsTFJLUDgyV3FSdC14WFI3Y09ucjdOM0lsXzNGVHh3SQ?oc=5",
+       "source": "연합뉴스"
+      },
+      {
+       "title": "코웨이, 정수기·비데 렌탈료 낮춘다…최대 50% 할인 - 경기신문",
+       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBGWHNBRE9VRTlBNDZfVWxsRWdaOUJvTzN5YVU5VDBBaHhPeGJWT0FkelFxZThjN1VzYlp2bVZrZi1scVd5alNsWFdlMnJyZDdzNkNSWjhjajk4Z0xQQ1RKV1Z3?oc=5",
+       "source": "경기신문"
+      },
+      {
+       "title": "가전 렌탈 시장 \"신규고객 잡아라\"... 코웨이, 렌탈료 '월 1만원' 파격 프로모션 - 녹색경제신문",
+       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBIOE83QkFodHFpVVRfT25vTVM1ZkxaY0J4SWJsVVRRY3pFR19iU2J6RU42TTlpNHJiMlJMZjZsSFZXeFphNHNZNm5fcXJzYnByVjU1NW0wY2thQlI5R3YycnlabVg4TWs?oc=5",
+       "source": "녹색경제신문"
+      },
+      {
+       "title": "코웨이, 정수기·공청기·비데 최대 12개월 '월 1만원' 행사 - 뉴스핌",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE84bm5DSU0xeUtCMmpCT3hlcnZ6RFJwcXgtV3htWHhxaEFKenJ5OW9nU3ZKYkpOVko1aHpiV21XZ1hTYnU0a0dYZWtKUWZLNDR4M2hEd2YzZDJTRi1U?oc=5",
+       "source": "뉴스핌"
+      }
+     ],
+     "auto": true
+    }
+   ],
+   "spike_notes": {
+    "2026-02-23": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 1.24,
+      "pc": 1.28,
+      "male": 1.28,
+      "female": 1.21,
+      "age_cv": 0.1,
+      "weekday": "월",
+      "driver": "코웨이"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "코웨이, 온라인 전용 제품 '플로우 360 공기청정기' 출시",
+       "date": "2026-02-20",
+       "source": "www.ebn.co.kr 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBGcVcyTW5wT1c5Xy02TENtRHAxdURkZnFsc1ZmaVZDNjBnV2pNdTlpSlltbUtqNl9SemZSTmNOZnNrdlNNZ242eUp6UDdtOFNFQlhUYzh0VmpsSGkyNTJQRW50VzAxUDdX?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "코웨이 vs 얼라인파트너스 논쟁 치열…상법개정안 여파 시작되나",
+       "date": "2026-02-23",
+       "source": "이코노미스트 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBVVExfX2dDTEh0d2ZNeFRNbF95MHFWYktxN0llS1Y2QmNZR2RFOVI4MzhNM0pGamJYRWNLcS0tQWNHNUF4MktRaC1pd3Bka05VaHd3S0V5Tm5KVW9wQVYtdGxB?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "쿠쿠, 코웨이 이어 스타트업 앳홈과도 ‘디자인 분쟁’ 확산 - 조선비즈",
+       "date": "2026-02-23",
+       "source": "Chosunbiz 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNT0tNTWRzYkQ4UGhuWmZaejB4SjNtQjlYVzJFM0l3Q0RqR0dOSE5tTDc0dDFERzd3RUNCYzhRZU5GVkt4eFRlVDZYU0xTS0I1Yzc0RnNyOUFpWmhjOHlNdUJ6cVZWMFN5clRqVExGbzNwMmVVNERLX29qU2JiVFlNZEZyaTJpNTBnMldLR0Q1QTbSAaQBQVVfeXFMTklEYWJLU1JNQVRTakI4WXZxOWE0T0lIOHBHTTdEaUhMUVpUM08yZkpzcEFJUkdQUXN0Xzh4ZVFYVUZOay04QWtyd3RyU2pLOVJGcjl0b3o1WndqRzJUb1RxSjliLThLWWtDQXFTbUtNMHFxRUJpNXdzX3VKRWRjMkR4OHd0X1hVYTZVSzRNem4tQWs2REJ6S0l1VDh1ZTRxeEIzZ1g?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "\"리비힐 / 코웨이\"캐시닥· 타임스프레드· 지니어트 용돈퀴즈 전체 문제…",
+       "date": "2026-02-23",
+       "source": "이코노미톡뉴스 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE00WEExNkZzZk1ZRTVXeEh5dlI4X0MzUjI1cHh3bDRnSlZLcHJ5RVhXUTZyT1BndV9DVkdueVZ5RFlJY0l1VnV3SVA0Q2V2a0tfQ3hGRFdSMGNobl9nYU1UMDNSd2FxSlN4S0ZRTg?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      }
+     ],
+     "auto": true
+    },
+    "2026-09-28": {
+     "signature": {
+      "type": "혼합형",
+      "why": [],
+      "mo": 1.18,
+      "pc": 1.09,
+      "male": 1.07,
+      "female": 1.23,
+      "age_cv": 0.08,
+      "weekday": "월",
+      "driver": "코웨이"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "코웨이, 수면 상태 분석하는 '비렉스 슬립 싱크' 매트리스 출시",
+       "date": "2026-09-28",
+       "source": "연합뉴스 외 13건",
+       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9XYWpjTm94RUU4U2U5MjRaNDE1YmpON2pkdkZhaVZsdExYSkRJbTJmWVFhdzBacmRaZlV1c19FMXJXdzRPY2wwRkZmWWpQYks5akNnZ2VrU255WEHSAWBBVV95cUxNTGZGR05MZHJaNmxhcXEybUZISFItSFJtVkRFblJPTzkxOF9QNkQxTjR5cllidEJ2T2VqY3RkZWdtS2dCT0dHVjVkTmdvS3l5UVFpVlV1eFdTNWNyNUxNV1A?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "코웨이, 현대백화점 울산점에 '코웨이갤러리' 오픈...고객 체험 강화 …",
+       "date": "2026-09-27",
+       "source": "머니투데이 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBmV3psQ016eUJDbGxjSTdPWWhLR3h6SHlsdmxCRkZXZmZ4TXFEWXVVM1pWUk9naVBLZHNyaXZiVGFsc3hhMktDVEd0MXB0SlRmWGMyQjR2ZHowLThpcWpGX0VGM0lwQ0tjZkHSAW9BVV95cUxQQmxIeVFoSFVvSkJBWmp0WnJEQjk0TFFxRWIyMmFXLTRERnItTnlrdzhIS3JtN0dacnhqOFplUmt4NlR3Z2hxNWFMVFBGR0k4aVotVGpCZi1oUjduRHpLTU9nV2s0NkZDbWxQVWx2X3c?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "코웨이라이프솔루션, 신혼부부 플랫폼 '메링'과 업무제휴",
+       "date": "2026-09-29",
+       "source": "디일렉 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9QT08tMEh5QWJxMWFhRVpsUEhRSk9PVFVXUEU4SjBobUR1aTc5djRRbm0xTGc4dG9VUlMxcWt4WWRKZGRVdXpSM1R6cTQxamtTV2hoWXBvWENXRGc1d3lzVUJpUVo2Zw?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "\"눈치 보지 말고 30분 동안 누워보세요\"… 코웨이, 울산 최초 백화점…",
+       "date": "2026-09-27",
+       "source": "청년투데이 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5aZE9wZ3FtNHRCcWhQSGZDNHJseVVMQW1RaWExM09UWUptV1o0ME5wZnplV3N6MjdURy1xLUZ4aDhpZnA2MURTNnpFOHJMc0w0c0NMbUI2eGdBN3hhTUdWVWRWR0VLUXltMmc?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-02-19": {
+     "signature": {
+      "type": "혼합형",
+      "why": [],
+      "mo": 1.18,
+      "pc": 1.08,
+      "male": 1.11,
+      "female": 1.17,
+      "age_cv": 0.09,
+      "weekday": "목",
+      "driver": "코웨이"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "코웨이, 온라인 전용 제품 '플로우 360 공기청정기' 출시",
+       "date": "2026-02-20",
+       "source": "www.ebn.co.kr 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBGcVcyTW5wT1c5Xy02TENtRHAxdURkZnFsc1ZmaVZDNjBnV2pNdTlpSlltbUtqNl9SemZSTmNOZnNrdlNNZ242eUp6UDdtOFNFQlhUYzh0VmpsSGkyNTJQRW50VzAxUDdX?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "\"안마가 아닌 치료\"…코웨이·세라젬·바디프랜드 '3파전'",
+       "date": "2026-02-18",
+       "source": "뉴시스",
+       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBSeFNfOVNGVnBTNlVCNDNnREZUd21GSDZkTWJvZGtrOG1Bc0wwelc4Wm1WNXFyRTJXSUl4VktIbEhpTU0wNktpR1BNVHN0NXBYalZtalpoU1YzTEJMWXhGctIBeEFVX3lxTE9BZ3psUURNcUtNMkthYkRsQy15NmE2OUFIcUdVankyUS12T3ZKeXVkbHY3WVpiNlZnbHlsNUZFbkxHUERxdU5wSFcyMFNzTXR6NmVWMGxnUWs5RWtjTDZ4WktBTUFRbGtuUUZ0dVZvSlpRNVNMbVM3SA?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "코웨이, 침대 '양강 구도' 깨고 1위 고지 눈앞",
+       "date": "2026-02-19",
+       "source": "딜사이트",
+       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBkdjduZVBnSUU4Ri0xeHFENldXSFRHYkV1MkxtRmNwU3BXSW1sbEhaSWVQWHBJMGlOR2wyQ1I4anJIVjNDM2NqSlFoYjI0YUU?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "코웨이, ‘침대 1위’ 눈앞에도 주총 긴장감… 방준혁의 100억 승부수…",
+       "date": "2026-02-19",
+       "source": "대한경제",
+       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5zVFRLQ2FDTnNvbTdEaHd3aHNUVUl3M0FNVW9iNjR1bmdVMllwX25uZkhqOFFQclBzcjBzRmVSdFVrdnAzclZFRXN3d1JNRGxKc3YxWktVR0ltbXFmNFlVNEtZenBSUFg3OFFSVTMwT2hvWlQ4?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2025-12-29": {
+     "signature": {
+      "type": "혼합형",
+      "why": [],
+      "mo": 1.02,
+      "pc": 0.92,
+      "male": 1.03,
+      "female": 0.99,
+      "age_cv": 0.02,
+      "weekday": "월",
+      "driver": "코웨이안마의자"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "코웨이, 경영인증원 'AI 인증' 11개 제품 선정",
+       "date": "2025-12-26",
+       "source": "지디넷코리아 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9LX05oc04wVmI5Mm9fMHo4UTZZQ0IyRUZIa3pSOWctOHI1NHY1eENYV3ZVVXdDbGpyVmZhZ0VFalljQWw1RmRyTnBvYVdnS3lTUDFlai13?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "“소비자 95%가 헷갈린다” 코웨이, 쿠쿠 반복된 유사 디자인 논란에 …",
+       "date": "2025-12-29",
+       "source": "르몽드디플로마티크",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE16eXNuUExHZUpFcEhlNmM0Z1QxQUc5VzlpVjZTOGduQWQ2cHhnQXBkMmJ2Yk9DaF85OUVpTmNsWHd5aUlITWI4LU1ZOEJjNzgyaEZxVVV6U1h0OThKRUUyUnNXbzF1N05OeGfSAW5BVV95cUxNUGI3Q1dZSWlIMi1tbmhFT25kcUN1Ui1fai1OVHVhQVdVeFJudzhva2paUXgyZGwyNEJQWEw0ZUVtSXQtUlJ3R1RmUnhQMWJfWTlja1BuS0ZjVnlwaTFnbjZzNU11aHQ5X2d0NzRHdw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "\"우리 갈라서\"…문제해결의 올바른 예시 보여준 코웨이 새광고",
+       "date": "2025-12-29",
+       "source": "AP신문",
+       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE96LUZMRnNPUGpwY0RwU1FDSHNxS0tCNGVWS1R4Wnk4bmFYSl9tQjMwSVlzLU1JSW8zaHQ5bmFnQlE3enNuejdCd2RkN1NGbmtpWmFlYWRuc2V2QTZDeFZyOXh6R3dWSVlU?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "경단녀부터 N잡러까지… 나이·경력 제한 없는 '코웨이 코디'",
+       "date": "2025-12-30",
+       "source": "매경헬스",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5VaExYOGRrZDU5TG5Bcms1UHlGRThCMkFPLWNOT01Ba2M5Q1FqMXNjSmtabkp6UkcxdGFXWHkzNXJTQ25XVFFVSkM2REhUR1JucVNpVEJJTy1pRUNVQjEzR0NNay1Bc0V5bFBfWQ?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-05-11": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승",
+       "남성 상승이 더 큼"
+      ],
+      "mo": 1.24,
+      "pc": 1.22,
+      "male": 1.4,
+      "female": 1.1,
+      "age_cv": 0.04,
+      "weekday": "월",
+      "driver": "코웨이"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "코웨이, 벽걸이 에어컨 출시…강력 냉방에 위생 편의 더해",
+       "date": "2026-05-11",
+       "source": "전자신문 외 10건",
+       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE0yM2RxcGdXSkZhd2JaUzBpOEpLT05XLWpQNzVLSWt1LVcxWl9rMEM2ZGF0MUpTcmVvaUxDODhmRFhOb3BGczdXRlA1X0dEUQ?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "코웨이, 1분기 영업익 2509억원으로 역대 최대 실적",
+       "date": "2026-05-08",
+       "source": "디일렉 외 3건",
+       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5WQ0xmQlVkdVJSVVd2VEE2RTVzeDR0ZTBKVFNVLUJydndUUEotV0xuNUZPbUVhbVl3c29Zc3R4R3JSRjdySjNJTEtqM21oRE9ZdWJUSmlHdklNcWZ0R0NzMU5HQkJydw?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "코웨이, 2026년 1분기 경영실적 발표",
+       "date": "2026-05-08",
+       "source": "포춘코리아 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1TeDQzWFAxWEd0Z0IyUDhmYlFWQm9HLWItRUVxSEoyVFF3MDBlVFpSTWtvNWhnQTVzZDBHM3Q4V2ZZcjBOSk4tZE1CN3ZjX3lmdVoyejNvRUdPdFlLYzZKYjU3QnlqWWQtSW4wQmwxWXdvQdIBdkFVX3lxTE0wb3FfSGN6TXI3c1FBODNRNE95OHphc1p5RlBSa0ZFWkZtU1FUNFVMZnNqVnNlNXZaYm5ETFRqeUlibVNFbHBCWTVsc1JhNklIeS1UUzQtU2M5RDhhelN2cE9GRm4yNnk3amhMb3JFdTd2WHQyeGc?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "",
+       "date": "2026-05-11",
+       "source": "퍼블릭타임스 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5WQmN4aXpmYUxLdk9ka0dPY1JzRk4tcDJFbFpFT3hDQkdCLXY1V1M4WGdfRnh1VnNZbWZ6cmNRNjhnSG93LUhYOTRFTW5DMi1Rc3BaLVM2eTdPX2hHR1VqVVN1OTh4d0xlTGfSAW5BVV95cUxNdTAzdEc2RFdxY0tWeGhTV2ZJc1BkckVzZzl2cS00SU1pcTZSelQxWlZhVUJndVZYNmNVR001NXFRMUx3X0VVdWNqQVJka2gxbUxMMmEzVVZFWUpMbmJwQTdwcERMWk5xcGpCb011Zw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      }
+     ],
+     "auto": true
+    },
+    "2026-04-27": {
+     "signature": {
+      "type": "PC 정보탐색형",
+      "why": [
+       "같은 요일 대비 PC 위주 상승",
+       "기사·공지·구매 정보 탐색 가능성"
+      ],
+      "mo": 1.02,
+      "pc": 1.43,
+      "male": 0.96,
+      "female": 1.05,
+      "age_cv": 0.09,
+      "weekday": "월",
+      "driver": "코웨이비렉스"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "코웨이, 중형 평수 겨냥한 ‘스퀘어핏 공기청정기’ 2종 출시",
+       "date": "2026-04-24",
+       "source": "아시아투데이 외 3건",
+       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB6c0ZER25JNTg4WThidnZqUS1HQ20zdm96dmp0ZmhMY0RPTWd4WTJSMzZEYWxsc25pY083TURTMFZIeHNWNG9xdy0tYkhiRG90TFJ3VTR6UWJwYzVqQU1RWUhER2RaLXdMZXNJR1R3?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "코웨이, 생산노조와 ‘2026년 임금협약 조인식’ 진행 外",
+       "date": "2026-04-27",
+       "source": "톱데일리 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9PQkdvZW1MQThhaV85c0lJd1Q1UXNHZ2FrSGxmb21xZjFmblFNUEl6VnVaZjRSazJ6U0hBS1R2SkhkMzBTa3JndGhOcFZsMGdZ?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "코웨이, 노블·스퀘어핏 `투트랙` 공략... 에어컨 렌탈 시장 본격 진출",
+       "date": "2026-04-27",
+       "source": "디지털데일리 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9FV05hS1FuSnFCN1JjeU9sWGJNRnpqZjhObWJVZ0ZDR1UxVWJRSW9kdFFWcHVnNFZvV21rZDYtRjFNVlBKVXVlaGI4bmxNRTFyQmFybkU5ZlJFcEJHU3VFRXBZUUI?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "서장원 코웨이 대표 | 렌털 해약률 0.36% 최저…매출 5조 눈앞",
+       "date": "2026-04-27",
+       "source": "매일경제 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1yVUdvUEdlc3pJYjlYTldXWkppVG1XNnJkeHFNTXM3ODNZb0VoWWR2Vk1IeWJCNWo2R0w5V2xZRVlKaWszakNuTWRnOHFpWVE1TEhHOVB3?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-05-26": {
+     "signature": {
+      "type": "혼합형",
+      "why": [],
+      "mo": 1.26,
+      "pc": 1.13,
+      "male": 1.22,
+      "female": 1.24,
+      "age_cv": 0.06,
+      "weekday": "화",
+      "driver": "코웨이"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "코웨이, 2026 밸류업 우수기업 선정...금융위원장상 수상",
+       "date": "2026-05-27",
+       "source": "뉴스핌 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1FeFIyUmpULXgtNmRIN19PM0NEZm5LMmhCaExOb0pCR21UbE5UMmhCNVRpWHZXUTl2WjhIazg2WVJHTkE0Q0V2OXpkbFkwMDN5SFdaRktValREVms4?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "코웨이 R&D센터, 19년 연속 수질검사기관 유지",
+       "date": "2026-05-24",
+       "source": "부산파이낸셜뉴스",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBEOEpURU9UbDJJaUlJM0U4Znd4bzBhVXFuSXh2WGVCejRxZzJlSHQ2NUxTVi0weFBUYlhBRVM2Y2JGdmRVSmprcHI2Ujc5cDR4bENvdDNUNm50UnVf?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "‘집을, 호텔 스위트룸처럼 만든다’ 코웨이 비렉스 ‘스위트 호텔 프레임’",
+       "date": "2026-05-25",
+       "source": "스포츠경향",
+       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE53LXZKLUs0N0ZtNHJLbUhwR2RZSG5jMUFxWjhQOFhtelBwVmdTX1Fzd1ZaMG9CY3RBUDZVZVNudXNqZnBka1RXb3RxTHcxNkg4elE3UjhLLU00Umh0V2fSAWNBVV95cUxOUVhDQVU1bmVkVElxcE5CdV9Fajk4TGRtTjNPTEtRMjhaOEVsNlVsT2VoNXBNSjUxNkoxa2Z1TFBZME10enVkQnBwaDNHZi1JRnBxNFBkbFpOalZaNVdXSEpoZzA?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "\"누워만 있어도 스트레칭 자동으로\"...코웨이, '슬립테크'로 침대 기…",
+       "date": "2026-05-26",
+       "source": "머니투데이",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9SenFwLW9kQUJ0ZlFzbjdSVFJpUTRHd3VCODhuWXRGUWMyVHJzTlVBamdBWWVZckxaM3BWSV9RN01aSHU4YUNENkN0S2YxQnRDVmZpSHJKNU5aTFh1XzlLbDVXXzRJdzNoU0HSAW9BVV95cUxQYW9iUVppdXJRNVh6TFFJX1VENk5rZVA5bXJfazEtUTNJYW8ybjdqdVNTdllFdHR6a1hDYUlSM25pZ0VOZmFsbkxHLXF3dDhPUDFJRUk2dXBQMkRlUTZvSGIxbTBXN1BuNi11QllUUVU?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-10-06": {
+     "signature": {
+      "type": "혼합형",
+      "why": [],
+      "mo": 1.07,
+      "pc": 1.01,
+      "male": 1.09,
+      "female": 1.04,
+      "age_cv": 0.09,
+      "weekday": "화",
+      "driver": "코웨이"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "코웨이 물빛합창단, 청소년 대상 '장애 인식 개선 캠페인'",
+       "date": "2026-10-06",
+       "source": "전자신문 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE8taHViNEpESWxMMkRieF81a0dIOGNXd05KR1BJZHVxMkFZLTVCT1Fnd0QxelZOMUMxNWFPYmhWc2N6TVNEWVR5MHRPR2NqUQ?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "코웨이, 1.6kg ‘보행보조 웨어러블 로봇’ 출시…렌탈 서비스 시작",
+       "date": "2026-10-05",
+       "source": "포춘코리아 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5uTFRkZ21acV9nZTJLVENnN3dtOXI3UF9GOFE3NzlSS0FSVEc5dXdmM3dFaEJEM1BMU3doUVNGY19PZ2JFVTViN3ZyVEFGMW12Z21rZl9iRUlXVFp6dW05MWNnR0dJelZkOGR5UXRwMG1PUdIBdkFVX3lxTFBrZlZoOERlNFJvN1Z3bzhRa3BkR3RZUFczZmZIWlpyWHBTUVlQaE1jV1pDWDNHSlNGUDhZc0ZCWndOakpJb1JHLXllLVBGTmxzSjlZME9hdV9ENnVDY1pxanotNm80a2pVRl9TOTZ0b0ZEYW5zWVE?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "코웨이ㆍ바디프랜드",
+       "date": "2026-10-06",
+       "source": "대한경제",
+       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5IVVk1MDFwUi1kMS1xdGZZbVpFb1c4YzZFUDN6RV9tenVSSC1RTVhLWlVOcUkxU3FjcHNmUjJtVDNmVmFkUmQ3RFVoSGhhMXFmQnZzakVvME80S3RPcEJETFJJYmE3MjFaYlZucjllUlZ0d0U?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "“렌털 확장 기준은 케어”…코웨이, 침대·로봇까지 영토 넓힌다",
+       "date": "2026-10-06",
+       "source": "이투데이",
+       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5WY0RrUmlwRlFnaVd5UGY4Z2pvWjh4Mm90QkI3Z1dLUF9yZ21keTlqcmNDTjQ1WkpfbmUwNl9rN0JicnpoaUZGOEVpNkMtdG83dUtTdQ?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    }
+   }
+  },
+  {
    "job_id": "aa4d7a98-f99a-4758-b9ec-fc0faf6ef97c",
    "collected_from": "2026-10-20T10:37:10.812Z",
    "keywords": [

@@ -1,5 +1,88 @@
 'use strict';
-function exportWorkbook(payload){const {data,groups}=payload,rows=[['그룹','키워드','성별','연령','PC','MO','추정 쿼리수(정수)']],sexes=[['male','남성'],['female','여성']],ages=[['under19','19세 미만'],['age19_29','19–29세'],['age30_39','30–39세'],['age40_49','40–49세'],['age50_59','50–59세'],['age60plus','60세 이상']];for(const m of data.models){const gs=groups.filter(g=>g.keywords.some(k=>key(k)===key(m.keyword))),names=gs.length?gs.map(g=>g.name):['미분류'],values=deviceEstimates(m,data).filter(v=>v!=null),pc=values.length?Math.round(values.reduce((s,v)=>s+v.pc,0)):null,mo=values.length?Math.round(values.reduce((s,v)=>s+v.mo,0)):null;for(const name of names){rows.push([name,m.keyword,'전체','전체',pc,mo,pc==null||mo==null?null:pc+mo]);for(const[,gender]of sexes)rows.push([name,m.keyword,gender,'전체',null,null,null]);for(const[,age]of ages)rows.push([name,m.keyword,'전체',age,null,null,null]);for(const[,gender]of sexes)for(const[,age]of ages)rows.push([name,m.keyword,gender,age,null,null,null])}}const encoded=JSON.stringify({format:'NAVER_QUERY_ESTIMATOR_V2',data,groups}),chunks=[];for(let start=0;start<encoded.length;){let end=Math.min(encoded.length,start+20000);if(end<encoded.length&&/[\uD800-\uDBFF]/.test(encoded[end-1]))end--;chunks.push([encoded.slice(start,end)]);start=end}return [{name:'쿼리추정',rows,widths:[19,27,12,17,19,19,23]},{name:'_복원정보',hidden:true,rows:[['NAVER_QUERY_ESTIMATOR_V2'],...chunks],widths:[50]}]}
+function exportWorkbook(payload) {
+  const { data, groups } = payload,
+    r0 = (v) => (v == null ? null : Math.round(v)),
+    r2 = (v) => (v == null ? null : Math.round(v * 100) / 100),
+    brand = data.analysis?.brand || groups?.[0]?.name || "전체 키워드",
+    est = data.models.map((m) => ({ m, d: deviceEstimates(m, data) }));
+  /* 1) 일별 쿼리: 날짜 × 키워드 (정수) */
+  const daily = [["날짜", "요일", "합계(확보 키워드)", ...data.models.map((m) => m.keyword)]],
+    WD = ["일", "월", "화", "수", "목", "금", "토"];
+  data.dates.forEach((date, i) => {
+    const vals = est.map(({ d }) => (d[i] ? d[i].pc + d[i].mo : null)),
+      ok = vals.filter((v) => v != null);
+    daily.push([
+      date,
+      WD[new Date(date + "T00:00:00Z").getUTCDay()],
+      ok.length ? r0(ok.reduce((a, b) => a + b, 0)) : null,
+      ...vals.map(r0),
+    ]);
+  });
+  /* 2) 일별 PC·MO: 피벗용 세로형 */
+  const device = [["날짜", "키워드", "PC 추정", "MO 추정", "합계 추정"]];
+  data.dates.forEach((date, i) => {
+    for (const { m, d } of est) {
+      const v = d[i];
+      device.push([date, m.keyword, v ? r0(v.pc) : null, v ? r0(v.mo) : null, v ? r0(v.pc + v.mo) : null]);
+    }
+  });
+  /* 3) 키워드 합계 */
+  const summary = [["그룹", "키워드", "월간 PC(검색도구)", "월간 MO(검색도구)", "기간 PC 추정", "기간 MO 추정", "기간 합계 추정", "일평균 추정", "추정 가능 일수"]];
+  for (const { m, d } of est) {
+    const ok = d.filter(Boolean),
+      pc = ok.length ? ok.reduce((s, v) => s + v.pc, 0) : null,
+      mo = ok.length ? ok.reduce((s, v) => s + v.mo, 0) : null;
+    summary.push([brand, m.keyword, m.pc, m.mobile, r0(pc), r0(mo), pc == null ? null : r0(pc + mo), ok.length ? r0((pc + mo) / ok.length) : null, ok.length]);
+  }
+  /* 4) 성·연령 상대지수(네이버 원자료) */
+  const SEG = [
+    ["male", "남성"],
+    ["female", "여성"],
+    ["under19", "18세 이하"],
+    ["age19_29", "19~29세"],
+    ["age30_39", "30대"],
+    ["age40_49", "40대"],
+    ["age50_59", "50대"],
+    ["age60plus", "60세 이상"],
+  ];
+  const seg = [["날짜", "키워드", ...SEG.map(([, n]) => n + " 지수")]];
+  data.dates.forEach((date, i) => {
+    for (const m of data.models) seg.push([date, m.keyword, ...SEG.map(([id]) => r2(m.series?.[id]?.[i]))]);
+  });
+  const notes = [
+    ["네이버 쿼리 추정기 · 내보내기 안내"],
+    ["분석", brand],
+    ["기간", data.start_date + " ~ " + data.end_date + " (" + data.dates.length + "일)"],
+    ["키워드 수", data.models.length],
+    ["수집 시각", data.collected_at || ""],
+    [],
+    ["시트", "내용"],
+    ["일별 쿼리", "날짜별 키워드 추정 검색수(정수). 합계는 추정 가능한 키워드만 더한 값"],
+    ["일별 PC·MO", "날짜·키워드별 PC/모바일 추정 검색수(피벗 테이블용 세로형)"],
+    ["키워드 합계", "검색도구 월간 검색수와 선택 기간 합계·일평균 추정"],
+    ["성·연령 지수", "네이버 데이터랩 성·연령별 일별 상대지수 원자료"],
+    [],
+    ["추정 방식", "최근 30일 검색수(검색도구) ÷ 같은 30일 트렌드 지수 합 = 지수 1당 검색수 → 일별 지수에 곱함(PC·MO 각각)"],
+    ["성·연령", "네이버가 성·연령 집단마다 지수를 따로 정규화하고 검색도구가 성·연령별 검색수를 주지 않아, 집단별 건수는 계산할 수 없습니다. 지수는 같은 집단 안에서 날짜별 추이 비교용입니다."],
+    ["빈칸", "‘< 10’ 등으로 월간 검색수가 없거나 기준 지수가 비어 추정할 수 없는 값입니다(0이 아님)."],
+  ];
+  const encoded = JSON.stringify({ format: "NAVER_QUERY_ESTIMATOR_V2", data, groups }),
+    chunks = [];
+  for (let start = 0; start < encoded.length; ) {
+    let end = Math.min(encoded.length, start + 20000);
+    if (end < encoded.length && /[\uD800-\uDBFF]/.test(encoded[end - 1])) end--;
+    chunks.push([encoded.slice(start, end)]);
+    start = end;
+  }
+  return [
+    { name: "일별 쿼리", rows: daily, widths: [12, 6, 16, ...data.models.map((m) => Math.max(10, Math.min(24, m.keyword.length * 2 + 2)))] },
+    { name: "일별 PC·MO", rows: device, widths: [12, 24, 12, 12, 12] },
+    { name: "키워드 합계", rows: summary, widths: [14, 24, 16, 16, 14, 14, 14, 12, 12] },
+    { name: "성·연령 지수", rows: seg, widths: [12, 24, ...SEG.map(() => 12)] },
+    { name: "안내", rows: notes, widths: [16, 110] },
+    { name: "_복원정보", hidden: true, rows: [["NAVER_QUERY_ESTIMATOR_V2"], ...chunks], widths: [50] },
+  ];
+}
 function buildXlsx(sheets){const enc=new TextEncoder(),xml=v=>String(v??'').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'),col=n=>{let s='';for(n++;n;n=Math.floor((n-1)/26))s=String.fromCharCode(65+(n-1)%26)+s;return s},ns='http://schemas.openxmlformats.org/spreadsheetml/2006/main',entries=[];function add(name,text){entries.push({name:enc.encode(name),bytes:enc.encode(text)})}
 add('[Content_Types].xml','<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>'+sheets.map((_,i)=>'<Override PartName="/xl/worksheets/sheet'+(i+1)+'.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>').join('')+'</Types>');
 add('_rels/.rels','<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>');

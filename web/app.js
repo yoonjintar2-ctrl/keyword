@@ -754,6 +754,17 @@ function lockMessage(e) {
     })
     .catch(() => e.message);
 }
+/* 브랜드명은 바꿨는데 키워드는 이전 것 그대로인 경우 경고 */
+function brandMismatch(v) {
+  const brand = $("brandName").value.trim(),
+    words = v.gs.flatMap((g) => g.keywords);
+  if (!brand || brand === "전체 키워드" || !words.length) return "";
+  const b = key(brand),
+    hit = words.filter((w) => key(w).includes(b)).length;
+  return hit
+    ? ""
+    : "\n\n⚠ 브랜드명 '" + brand + "'이 들어간 키워드가 하나도 없습니다(예: " + words.slice(0, 3).join(", ") + "). 브랜드명 옆 '자동'으로 키워드를 다시 받았는지 확인하세요.";
+}
 async function extractChunked(v) {
   const brand = v.gs[0]?.name || "전체 키워드",
     words = v.gs.flatMap((g) => g.keywords),
@@ -824,7 +835,8 @@ $("extract").onclick = () => {
       " · Budget " +
       v.cost +
       "건 사용 예상" +
-      (v.n > 5 ? " · 5개씩 " + Math.ceil(v.n / 5) + "번 나눠 진행" : ""),
+      (v.n > 5 ? " · 5개씩 " + Math.ceil(v.n / 5) + "번 나눠 진행" : "") +
+      brandMismatch(v),
   );
 };
 $("confirmReplace").onclick = () => {

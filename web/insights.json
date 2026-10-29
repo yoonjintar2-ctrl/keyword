@@ -3,6 +3,347 @@
  "note": "보조 지표·이슈 데이터. keywords 중 하나라도 현재 분석 키워드와 겹치고 날짜가 맞을 때만 표시.",
  "analyses": [
   {
+   "job_id": "613dad34-1228-4815-8fe6-e03af8382780",
+   "collected_from": "2026-10-29T08:05:32.380Z",
+   "keywords": [
+    "로보락S10",
+    "로보락"
+   ],
+   "start_date": "2026-09-29",
+   "end_date": "2026-10-28",
+   "collected_at": "2026-10-29T09:50:58.729Z",
+   "auto": true,
+   "sources": [
+    "구글 뉴스"
+   ],
+   "search_terms": [
+    "로보락",
+    "로보락 S10"
+   ],
+   "notes": [
+    "네이버 검색 API 키 없음 — 블로그 발화량·화제글 미수집"
+   ],
+   "aux": [],
+   "issues": [
+    {
+     "date": "2026-09-29",
+     "title": "로보락, 글로벌 로봇청소기 1위…점유율 2…",
+     "summary": "이날 관련 보도 18건. 대표 기사: 로보락, 글로벌 로봇청소기 1위…점유율 23.7% - 아이뉴스24",
+     "source": "아이뉴스24",
+     "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBKZHJjT3NxV1RDZWp4YWtIR1NZcWtYNzNOODh1MTYxNkdrTkxGTHdjdkZxd3k4bVZIbmhEdjBoeU15dUVpTmV0ZlE4QQ?oc=5",
+     "related": [
+      {
+       "title": "점유율 23.7%, 세계 1위 달성… 로보락, 2분기 글로벌 로봇청소기 시장 석권 - 디지털포스트",
+       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9rMjZIcGltaWRKZGVqZk1OZ1F2VjV3WjBjY0U2REdDMkpvWmFhaHNuVlhOUkQ2N2ZrWGpkQmpudVEyMXZTVXh0dWpqUmlXWENRaFlKLW0yMzZjRVBEUnlZcGdWV3Nyazk2TFdB?oc=5",
+       "source": "디지털포스트"
+      },
+      {
+       "title": "로보락, 글로벌 로봇청소기 시장 1위…점유율 23.7% - 전자신문",
+       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBYMFd6ZW1fdE1DdmgyVW9lV1lMQ1cxdjE4ZjRjSFhkRUlOMEQxZndQZXVBTXRNOWJNN0lDUW5MMmhxUTJ0SnZ2RjUwaEFUQQ?oc=5",
+       "source": "전자신문"
+      },
+      {
+       "title": "로보락, 2분기 글로벌 로봇청소기 시장 출하량 1위 - 서울경제TV",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9XczlJc1RvY2ZTVW0tNEpYcS1VVXFIQUpucG9wTXZPR2JRVHJ6TWs2ay12ZFBaaVBKaWRGTVc3NUJKQ3pPSWxCalRmOGUzaWpDb0RDVE5jeVdUWWh3ajMyWjYtS2s?oc=5",
+       "source": "서울경제TV"
+      },
+      {
+       "title": "로보락, 상반기 글로벌 로봇청소기 1위 - 지디넷코리아",
+       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE0xR05Cc3dMeEVCTEZMXzIxMzROWTlfaTBMU0FkTVBvTkpWMEdIbWxBdHZycXRDRnhDUGl1eEJ0ODMySFBOLUdEX0VuMEtJdXNZZEtBelpn?oc=5",
+       "source": "지디넷코리아"
+      },
+      {
+       "title": "로보락, 2분기 글로벌 로봇청소기 시장 점유율 23.7%… 출하량 기준 1위 - 브릿지경제",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBKYXhqWWZOb0VuWEhUelVEQ3Bwckg2ZGFjTVpra3Q2OXgtSFpQVmt5aDF5WHo4eVZfbDFUQWh1OWphM05hbWpocXhPZmY2MUlYWWZzRXY0R0d3Zw?oc=5",
+       "source": "브릿지경제"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-01",
+     "title": "로보락, 국내에서 'S10 맥스V 울트라 …",
+     "summary": "이날 관련 보도 11건. 대표 기사: 로보락, 국내에서 'S10 맥스V 울트라 스팀' 글로벌 최초 출시 - 전자신문",
+     "source": "전자신문",
+     "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9LNmhoMG5mOWZiRHBVcWxrWjU0b1FGbkRoRFctZWZsbmhmc0VpbWFiMUMxYXo1YVNtWlNRd3lKM3BiOWd2NFJJQjJ6QkVIZw?oc=5",
+     "related": [
+      {
+       "title": "로보락, 국내에서 'S10 맥스V 울트라 스팀' 글로벌 최초 출시 - 전자신문",
+       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9LNmhoMG5mOWZiRHBVcWxrWjU0b1FGbkRoRFctZWZsbmhmc0VpbWFiMUMxYXo1YVNtWlNRd3lKM3BiOWd2NFJJQjJ6QkVIZw?oc=5",
+       "source": "전자신문"
+      },
+      {
+       "title": "로보락, 플래그십 'S10 MaxV 울트라 스팀' 한국서 글로벌 최초 출시 - 지디넷코리아",
+       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE16MENZMklyTkNqcGMycmZnYUhTdGJGWEVadWxOTlg2TkpFSkMxYnJDaHhVeTdsbHdnM09TUjFqaWs3RWlGNFZOZVVfeXExWHhTSzExS3hn?oc=5",
+       "source": "지디넷코리아"
+      },
+      {
+       "title": "로보락, 신제품 ‘S10 맥스V 울트라 스팀’ 국내 사전예약 돌입 - 서울경제TV",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1UUXVyR3pYQzB0UTNhMzloeXB3RDZwUzg5aUZ2Z2pvRWdjTy03dHkxcnlKaUtJcURhVGhRQlBVYnlRZ2hjdFlvTl84T2x4cjdPc1BDTENqbGxyOFNGNWd1ZDZDUEM?oc=5",
+       "source": "서울경제TV"
+      },
+      {
+       "title": "로보락, 한국서 S10 맥스V 울트라 스팀 세계 첫 출시…프리미엄 수성 나서 - 아주경제",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE05dmdkY2VwSUpoNWhqQzZFcExtTFlwbnRpeEgwVTNULU8zSC1Ra3QxNG9yZVptMDZya3B0Ynl2ZGlWN3JqTDV3WTFQZmY5VjVDV3NUWHhpTS1EQdIBWEFVX3lxTFBub3BVUC1Ud0hTc0hfVzRyQ0lvbHVjeFVaQXFpVzN4U3JTZ1ZEVzJjd1hVMEZJeHlzYTlCZE9SRmdXWE14OHF0SHg1dTJlVERISVBxS3pCUjI?oc=5",
+       "source": "아주경제"
+      },
+      {
+       "title": "로보락, 최신형 로청 'S10 맥스 V 울트라 스팀' 사전예약 시작 - 시장경제신문",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE55N3JmWUp2Ykc5WUIzcUFSQlpjYzc1Mm1oYmFCQ3M1ZGwwQ0hITGgzenZyWFRsVnFWMkNNdEpieFJhWDhPQXVkRUg4bTdTcUUyTlM0ZjNaUFQ4bkpydV9yV3laU3JSS040YmdNbGREVno?oc=5",
+       "source": "시장경제신문"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-02",
+     "title": "로보락, 고객만족도(KCSI) 로봇청소기 …",
+     "summary": "이날 관련 보도 10건. 대표 기사: 로보락, 고객만족도(KCSI) 로봇청소기 부문 2년 연속 1위 - 시장경제신문",
+     "source": "시장경제신문",
+     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE16MmxibldnUlhsanFOZXZGNGIzTTFOTFkzdk9FTjgzcGlFaWtOUGFUbmhYRHhZTjJyUVF6ZXBkRFNrdmdIeW5CZElMcUFyUDRZTWNhV3oyVEFDTnZ3MlJzV2ZKb0czS1hUcDJmem5sblE?oc=5",
+     "related": [
+      {
+       "title": "[게시판] 로보락, 2026 고객만족도 조사서 2년 연속 1위 - 연합뉴스",
+       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5BYzNBRXdSNVlqZ1FST3NiTzRiRnk4Wi14aC1LaGJWNm5mTWU2THlLd1Z2QmNXcjk2UVQtZjE4SGc4d1FKV2tnWnZOczhRQS03WlA5bFZkWGVpQjjSAWBBVV95cUxPX20xMERpdWRPajJSSnlJTXp5N1hUa0hvUnZqLVVNUTBFcFlxTVBHellnM1NJU2RXdTZhYkYwV3RZMnRlYmFvX1R0b3N3LUZ1Ty1nd0pRTm04ZGNyYzFMSmM?oc=5",
+       "source": "연합뉴스"
+      },
+      {
+       "title": "로보락, 소비자 만족도 잡았다…로봇청소기 2년 연속 1위 - 서울경제TV",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1pUDVpMUpDczB6NTllT2tSTTlkc0w5VHhmR1RQcFdBLWxSdkdVazFzcVRjSEZLRW90WGVtU0dUamVpOWlJUTJDLUNOWEdkYWJoLUtpcGZPVHdLVlBpOGlVRmMtem4?oc=5",
+       "source": "서울경제TV"
+      },
+      {
+       "title": "사후지원 강화 나선 로보락... ‘KCSI 고객만족도’ 로봇청소기 부문 2년 연속 1위 - 디지털포스트",
+       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9Kaml2QU9BYU5hSHctMFdmNmp2QTB3THpzWG9FWGdLdnItUVJEalFERkJ2cVFtZE93SnJWd0xHNmlOc2xkX1RheUlrYTc3T2NiVUhGZ1VRLXVkWDJXOS0tbXBhUm91VEVXejZz?oc=5",
+       "source": "디지털포스트"
+      },
+      {
+       "title": "中 로보락, 韓 고객만족도 조사서 로봇청소기 부문 2년 연속 1위 - Chosunbiz",
+       "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNcFV4enRqQTEyNFRBeWI5ZzR6N1prdFplM0VpMVdnUHJCZGNraHpHRENCcWJ2cHNlV1lHdXpDS0pTSk9FNlo4bEptT1JDay03WjZzWktiVXc4Si1HOU9qUDNrTlZEbE1IYXZmVjlNRU04UUFSUlRTYWZiOWUyejVHaE5B0gGWAUFVX3lxTE1YeF93YkdZbXNXcFdhcmdpWVZVMVhKQy1sMFlOdmVLZDBzTnFGcjFlZXJmZ2FDZEYtNlg0TVB6b2dVNlAtYUpWc241LVpWNENFTnlwMktBZkdlR1g5RUw2OF93dUxNY200VDhXX185YUR3SE51Z2RjQUItcGxqWjE4dlNTVXBXUkdyR1FfczJXZEVCRmhiUQ?oc=5",
+       "source": "Chosunbiz"
+      },
+      {
+       "title": "로보락, 고객만족도(KCSI) 로봇청소기 부문 2년 연속 1위 - 시장경제신문",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE16MmxibldnUlhsanFOZXZGNGIzTTFOTFkzdk9FTjgzcGlFaWtOUGFUbmhYRHhZTjJyUVF6ZXBkRFNrdmdIeW5CZElMcUFyUDRZTWNhV3oyVEFDTnZ3MlJzV2ZKb0czS1hUcDJmem5sblE?oc=5",
+       "source": "시장경제신문"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-07",
+     "title": "로보락, 스팀 분사량 2.5배 높인 ‘F2…",
+     "summary": "이날 관련 보도 14건. 대표 기사: 로보락, 스팀 분사량 2.5배 높인 ‘F25 울트라 스팀 젠 2’ 출시 - 이뉴스투데이",
+     "source": "이뉴스투데이",
+     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE05TEJjQ1ROTUFQZjFrY0UyOWtGQVhCM0dFVnZiTXo4WFNxWFJLRjNPcnBKV0J6OGVkT0s0Tk5TYjlySWFXOFcxZUFXc3dyb29OcHN2eFJqX05wTWp6czFtUmplZnpVNXJOSFdlRWtFYzHSAXRBVV95cUxOQ1RoTXY3WUo4eGg5eVFnV3EzZ015S3hTWUdxMHRnREVFcmxBZllVV0NCLWNERE9XZmt0Y2oySks5OXJnTEtxdzBTNUtXNlo4TndYTWNQdmNlaVM4V2IzTGdiZ2lyUU5hbHdCX0pHVUl0WnJ6bw?oc=5",
+     "related": [
+      {
+       "title": "로보락, 스팀 청소 성능 강화 ‘로보락 F25 울트라 스팀 젠 2’ 출시 - 브릿지경제",
+       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1vbTVPRzd5eUltZ3Q4Y0cwOFg2WlBLLVhWUENSdGlzak1NSy0zTUg5RVBsWk5Telp3M2xLS2ZYU3pEMDYyajB2SnVKdVp0NzE0WEUzUnlTSQ?oc=5",
+       "source": "브릿지경제"
+      },
+      {
+       "title": "로보락, 진공 물걸레 청소기 'F25 울트라 스팀 젠 2' 출시…“스팀으로 찌든 때 제거” - 전자신문",
+       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFAtS2lnS3F0TExvb1dJS0pQdkpJZjFycmg3c01qc29KSHhhVFB4QVo4LWdvSVA2NFlVTVBjNTI1SGZ3TEZqTGpIazB2OVhlUQ?oc=5",
+       "source": "전자신문"
+      },
+      {
+       "title": "벽 끝 ‘틈새’까지…로보락, 프리미엄 ‘F25 울트라 스팀 젠2’ 선보인다 - 에너지경제신문",
+       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9ZeFExUEl5dTFsTnFPM3FwRHFsdkxoTl8tV0I5WXJJWGFXYWlKYnd1NDY2aFJkbVJxVnA0WFp4dmo0X2dEZkhFd2ZQNUsyS0dEQzVabmNIb0l4Ync?oc=5",
+       "source": "에너지경제신문"
+      },
+      {
+       "title": "\"스팀 분사량 2.5배 높였다\"…로보락, ‘F25 Ultra Steam Gen 2’ 출시 - 서울경제TV",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9XSjJCNGF6eDlJd2VBSVdlYmFzWlNXSFliYW9MTENfMU9sQXBOSi1NQm9IV3BDMkZmOFBjSFhuNVFSc1BBajhDZ0RublNScDNoazY2bGxFZHAxYnRmS01HYXRscDc?oc=5",
+       "source": "서울경제TV"
+      },
+      {
+       "title": "로보락, 진공 물걸레 청소기 'F25 울트라 스팀' 신형 출시 - 시장경제신문",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE55aHdrV2RneFNJLW0wU1FNWWo1V3lQS2p5c1NRZ0FpTVJfVWtsUHRpWF9vcWk1TmZKTFk1UDVodE9Hci0wQXJST3lIVFZqeDlublcyeExxR3JmbW1GLVpxUTF5UkFURDg3RzY5MUVDczE?oc=5",
+       "source": "시장경제신문"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-12",
+     "title": "로보락, 韓 특화 로봇청소기 'S10 맥스…",
+     "summary": "이날 관련 보도 23건. 대표 기사: 로보락, 韓 특화 로봇청소기 'S10 맥스V 울트라 스팀' 출시 - 전자신문",
+     "source": "전자신문",
+     "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9ZUl9wRzN6LVl4NlRMd191TklaNWdxLWExQ0ZRSG1iNEVSRXZ4MWxyVW1nend4SVpxMDBfZmNkZjZHczhpRDA5b0FURmY0Zw?oc=5",
+     "related": [
+      {
+       "title": "로보락은 왜 ‘110도 스팀’을 꺼냈나…S10 맥스V 울트라 스팀 국내 출시 - 에너지경제신문",
+       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE16cG9qdTdRYkRpZTh3eFdkb2hPSmFFOTNiY29QTkU2U0s1SGd3UF90V0VwYVRXWERPYy01SjA5LTYxTk1MOG04U0VBVDM1Z1R5SGNDT0pVb2VMT0k?oc=5",
+       "source": "에너지경제신문"
+      },
+      {
+       "title": "로보락 '한국 특화' 로봇청소기 출시…\"온수 100도·스팀 110도\" - 한국경제",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1lMG1ldHpGSF9mV25jalZUbldZZFhkU2lJY3N1RlhmcFNRcGlUSnlBTWx5dlBhQ3ZjLV9QSU9aeTFuQVlvWmRzMzhaODJJN1RHZ0RsVk5SRnZsUQ?oc=5",
+       "source": "한국경제"
+      },
+      {
+       "title": "로보락, 한국 시장 특화 플래그십 로봇청소기 ‘S10 MaxV Ultra Steam’ 국내 출시 - 케이벤치",
+       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5rajdpSUItUkVNamdUUDI2SmthM0dvVEctREVNV2YweGdDOUxNSWNiZERsdUE3OUo0M19BZHFmZmY5R1ZteTRHRQ?oc=5",
+       "source": "케이벤치"
+      },
+      {
+       "title": "로보락, 한국 특화 `S10 맥스V 울트라 스팀` 출시…최대 110℃ 스팀 - 디지털데일리",
+       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBXNF92WjFoMk1qR2htQUtQMGp3WlRpQ0hjYl9WcFhTZXhJX3JqSG9mbGVuN3ZPTDVpd2k4ZW14ZW9zV3VPeVV6Vi10RGxXZTQ2NHNWcFR3WThXRVBiY2s2SGV3?oc=5",
+       "source": "디지털데일리"
+      },
+      {
+       "title": "로보락, 한국형 로봇청소기 'S10 맥스V 울트라 스팀' 국내 출시 - 뉴스1",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5WWVJVb3MteFgxcnBuNkViZ2dnTkxfR0FabHBoNS0yYVBoRkVaX25ZU0xqU0VyQXByTXVjUDJ4alAzbm5ycEVLdW1lYmoyR0ZXV3RYTUhzODh3eEpJOEo2ZWdtSTU?oc=5",
+       "source": "뉴스1"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-27",
+     "title": "\"집에서 불꽃놀이 감상\"…오나미, 한강뷰 …",
+     "summary": "이날 관련 보도 9건. 대표 기사: \"집에서 불꽃놀이 감상\"…오나미, 한강뷰 꼭대기층 집 공개 - https://spt.co.kr/",
+     "source": "https://spt.co.kr/",
+     "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE4xTl9PTldUSE1wT1BmTl9veUlycEpkR2d2VG45eFpkcUJ2VFY1X1d6SUFiTGMtdkVqS2VaTUduc0UtVzVaNTBpWXVQMmEwdDlBaktoZVQtUk5DY0xE?oc=5",
+     "related": [
+      {
+       "title": "\"수입가 14만원 보청기가 130만원\"…건보공단, 급여 가격 재조사 추진 - https://spt.co.kr/",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBxYTctdDVidVZ1NHpYUFo1MHNYaHllOXBlVk1HeVREM1V3UThWMW5jSFV3VU5yTW5DelhnVE9zcjVBMUNsUHZlbHBHeV9LUVBPM1h0ZkI5Z3V0bjVn?oc=5",
+       "source": "https://spt.co.kr/"
+      },
+      {
+       "title": "46만평 규모 고흥 우주발사체 국가산단 조성… 내년 보상 착수 - https://spt.co.kr/",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFB2ampVUFRWOUJOY044bUowdzRrc1lMRlR6SlJsYzkwcDdkUEw3bnRROTg4YlRYMkRIV19KX2xUSTFiMV9qMDhyeWZTaDJfejVXZ1V1MFdZQTEwN2h6?oc=5",
+       "source": "https://spt.co.kr/"
+      },
+      {
+       "title": "‘갤럭시 성능 제한’ 삼성 GOS 기만광고에 과징금 200억원 - https://spt.co.kr/",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5helFQLVlnb3o1aGp6SEFOQUFkcFFGSzB3ZGZlR1BnNTRkVWM3cDNxbDBVaUYzb1FhaENJVHZITm82c3Atdm5xMmdVU3dhYUJReklCWXdDbUl2Q1ht?oc=5",
+       "source": "https://spt.co.kr/"
+      },
+      {
+       "title": "\"집에서 불꽃놀이 감상\"…오나미, 한강뷰 꼭대기층 집 공개 - https://spt.co.kr/",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE4xTl9PTldUSE1wT1BmTl9veUlycEpkR2d2VG45eFpkcUJ2VFY1X1d6SUFiTGMtdkVqS2VaTUduc0UtVzVaNTBpWXVQMmEwdDlBaktoZVQtUk5DY0xE?oc=5",
+       "source": "https://spt.co.kr/"
+      },
+      {
+       "title": "미국 사전투표 4년 전보다 37% 증가…뜨거운 민주당·무당층 참여 열기 - https://spt.co.kr/",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1RSmRDMG1QUnVjM19reEVfOEtETEQ0bGN2ektwM0RQYmlOMTlkeElzRXR5clNmbmxJVlRja0dLM3lpaWtyNHh2SXA4R3ptNGlxTWNFT2poZWNISHB6?oc=5",
+       "source": "https://spt.co.kr/"
+      }
+     ],
+     "auto": true
+    }
+   ],
+   "spike_notes": {
+    "2026-10-12": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 1.38,
+      "pc": 1.48,
+      "male": 1.54,
+      "female": 1.51,
+      "age_cv": 0.1,
+      "weekday": "월",
+      "driver": "로보락"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "로보락은 왜 ‘110도 스팀’을 꺼냈나…S10 맥스V 울트라 스팀 국내…",
+       "date": "2026-10-12",
+       "source": "에너지경제신문 외 18건",
+       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE16cG9qdTdRYkRpZTh3eFdkb2hPSmFFOTNiY29QTkU2U0s1SGd3UF90V0VwYVRXWERPYy01SjA5LTYxTk1MOG04U0VBVDM1Z1R5SGNDT0pVb2VMT0k?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "로보락 '한국 특화' 로봇청소기 출시…\"온수 100도·스팀 110도\"",
+       "date": "2026-10-12",
+       "source": "한국경제 외 12건",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1lMG1ldHpGSF9mV25jalZUbldZZFhkU2lJY3N1RlhmcFNRcGlUSnlBTWx5dlBhQ3ZjLV9QSU9aeTFuQVlvWmRzMzhaODJJN1RHZ0RsVk5SRnZsUQ?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "쿠팡, 하반기 최대 가전·디지털 행사 ‘쿠가세’ 개막 外",
+       "date": "2026-10-13",
+       "source": "베이비뉴스 외 10건",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9TaTdxSVd2SEdpVnFXb0NVVERBZFRMdm1UQUdkV0R6UURnOXA1X216aXluZzY0c1lBRGt2aVJVdVFaNjlqZVJwRVVRYzJZYW9YZlRBTFFpTGt0SnhGTmkxNk42V0lXbkZfb0lNTg?oc=5",
+       "relevance": "중",
+       "kind": "뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "스팀 고온 위생 관리 기능 탑재... '로보락 S10 MaxV Ultr…",
+       "date": "2026-10-12",
+       "source": "디지털포스트 외 4건",
+       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9LYnB4X2Q3R0ZMaE04b3ZVMmdqX1BUQjhmZk1hbmt0a1I4TzBFdFpUcldFTkpycmhQYTlEQ0VQQUlFa2xRcllWajBrZmR4ZERDVVRIY3JxZVZZejRYbGNRVnhqcUU5YURRRnVJ?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      }
+     ],
+     "auto": true
+    },
+    "2026-10-26": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 1.21,
+      "pc": 1.35,
+      "male": 1.3,
+      "female": 1.34,
+      "age_cv": 0.09,
+      "weekday": "월",
+      "driver": "로보락"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "기후부 \"원전 전력 직구는 전기료 인상 요인…수용 불가\"(종합)",
+       "date": "2026-10-26",
+       "source": "https://spt.co.kr/ 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5pTm9UV20tbXZMWC1peVhfVGh5UG5QQjVpUEZJTkNNcnZocnFlX3RlbmZxb3R0UVhCd2pvUmtITVh3UE9WTF9LdkJINVRvaC14Z0FKeWk3WTNvaVRw?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "\"걸레 냄새 안 나요\" 100도 온수 '콸콸'…진화하는 로봇청소기",
+       "date": "2026-10-26",
+       "source": "한국경제 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE01M2pLeUx2aG9qbnk0aEdlc3BNdUNNcGVxeFlZd2VEMnRlR2p1OEJqelNVbUxMZU9OTjg5eVZ1c1N0ZmpJT19rSFFIanpLdjBJVzI2cTlEVEFYZw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "로봇 교육·산학 협력…사회공헌 늘리는 로보락",
+       "date": "2026-10-26",
+       "source": "서울경제 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1Lei1FRnp0UDBXdm5haGdFN3gyYy1TcHpxQ2JBOFR2NUQtbThLek1kQUNOdXA4Y0dldVdBNU1ZaHFTc0dpS0lDcHZGUDhHOTYyMVHSAVNBVV95cUxPTHRqNk9HaE53a1Rqa3VCbnRlWV9BcnROVDA5U1pCc2sxUFJ4QXlZUVFIRENFZVpmdjRkZXd6UWE2VU9yX3c4SnVlVTZjU0s1Vjg0TQ?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "대만 매체 \"중국 대학생들, 국가주석 무기한 연임제 폐지 성명\" · 달…",
+       "date": "2026-10-27",
+       "source": "supple.kr 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE82M2c3d3JST0dGdUwzS3hHUHBTb0t1aDczSmtheVBmWVQ0YU5pdGt4XzJFYk1lVnpxNmhfY0ZDekFycnU2ZVlUeEE1SWdrRTRnV1ZLUHB4RXpoZmgz?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      }
+     ],
+     "auto": true
+    }
+   }
+  },
+  {
    "job_id": null,
    "collected_from": "2026-10-21T06:12:40.484Z",
    "keywords": [

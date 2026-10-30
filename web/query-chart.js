@@ -238,7 +238,10 @@ function watchChartSize() {
       size = el.clientWidth + "x" + el.clientHeight;
     if (size === lastSize || !dataset?.models?.length) return;
     lastSize = size;
-    requestAnimationFrame(() => mainFlow({ animate: false }));
+    // 애니메이션 중 범례 줄바꿈 등으로 크기가 바뀌면 애니메이션이 끝난 뒤 다시 그림
+    clearTimeout(resizeTimer);
+    const wait = Math.max(0, lastAnimAt + 1300 - Date.now());
+    resizeTimer = setTimeout(() => requestAnimationFrame(() => mainFlow({ animate: false })), wait);
   });
   chartObserver.observe($("mainChart"));
 }
@@ -248,8 +251,12 @@ function resetPan() {
 }
 
 /* ============================================================ */
+let lastAnimAt = 0,
+  resizeTimer = 0;
 function mainFlow(opts = {}) {
-  const animate = opts.animate !== false && !reduceMotion(),
+  const animate = opts.animate !== false && !reduceMotion();
+  if (animate) lastAnimAt = Date.now();
+  const
     root = $("mainChart");
   watchChartSize();
   root.replaceChildren();
@@ -500,15 +507,12 @@ function mainFlow(opts = {}) {
       });
       prevSeg = { mode: "gender", lines: segLines.map((l) => ({ color: l.color, ys: l.to })) };
     } else {
-      // 연령: 하루 추정 쿼리를 집단 비율×집단별 상대 추이로 나눈 누적 막대
+      // 연령: 하루 추정 쿼리를 집단 비율×집단별 상대 추이로 나눈 누적 영역(부드러운 곡선)
       const share = getShares("age"),
         tot = values.map((v) => v ?? 0),
-        maxTot = Math.max(1, ...values.slice(vis0, vis1 + 1).filter((v) => v != null)),
         maxAll = Math.max(1, ...values.filter((v) => v != null)),
-        yz = (v) => T + ph - (v / maxAll) * (T + ph - NAV_TOP),
-        bw = Math.max(2, Math.min(30, dayW * 0.78)),
-        rects = [];
-      segLines = sers.map((se) => ({ ...se, parts: new Array(n).fill(null) }));
+        yz = (v) => T + ph - (v / maxAll) * (T + ph - NAV_TOP);
+      segLines = sers.map((se) => ({ ...se, parts: new Array(n).fill(null), tops: new Array(n).fill(null), bots: new Array(n).fill(null) }));
       for (let k = 0; k < n; k++) {
         if (values[k] == null) continue;
         const wts = segLines.map((se) => (se.rel[k] == null ? 0 : share.v[se.id] * se.rel[k])),
@@ -518,25 +522,20 @@ function mainFlow(opts = {}) {
         segLines.forEach((se, j) => {
           const part = (tot[k] * wts[j]) / sum;
           se.parts[k] = part;
-          const bot = yz(acc),
-            top = yz(acc + part);
+          se.bots[k] = yz(acc);
+          se.tops[k] = yz(acc + part);
           acc += part;
-          const r = add("rect", { x: cx(k) - bw / 2, width: bw, y: top, height: Math.max(0, bot - top), fill: se.color, "shape-rendering": "crispEdges" }, undefined, gMain);
-          (se.mid ||= new Array(n).fill(null))[k] = (top + bot) / 2;
-          rects.push({ el: r, k, color: se.color, x: cx(k) - bw / 2, w: bw, top, bot, fromTop: baseYs[k] ?? top, fromBot: baseYs[k] ?? bot });
         });
       }
       segLines.share = share;
-      if (animate) tweenRects(rects, "split", 900);
-      // 연령별 추세선: 각 칸의 가운데 높이를 얇게 이음
-      const trendLines = segLines.map((se) => {
-        const ys = se.mid || new Array(n).fill(null),
-          path = add("path", { fill: "none", stroke: se.line, "stroke-width": 1.6, "stroke-opacity": 0.9, "stroke-linejoin": "round", "stroke-linecap": "round" }, undefined, gMain);
-        morphPath(path, cx, animate ? baseYs : null, ys, animate ? 900 : 0);
-        return { color: se.line, ys, width: 1.6 };
-      });
-      prevSeg = { mode: "age", lines: trendLines, rects: rects.map((r) => ({ k: r.k, x: r.x, w: r.w, color: r.color, top: r.top, bot: r.bot })) };
-      void maxTot;
+      const areas = segLines.map((se) => ({
+        el: add("path", { fill: se.color, stroke: "#ffffff", "stroke-width": 0.8, "stroke-opacity": 0.7, "stroke-linejoin": "round" }, undefined, gMain),
+        tops: se.tops,
+        bots: se.bots,
+        color: se.color,
+      }));
+      tweenAreas(areas, cx, animate ? baseYs : null, "split", animate ? 900 : 0);
+      prevSeg = { mode: "age", areas: areas.map((a) => ({ color: a.color, tops: a.tops, bots: a.bots })) };
     }
   }
 
@@ -929,28 +928,62 @@ function mergeInto(prev, naverYs, line, gMain, gArea, cx) {
       morphPath(p, cx, l.ys, naverYs, 750, i === 0 ? done : null);
     });
   } else {
-    const rects = prev.rects.map((r) => {
-      const el = document.createElementNS(ns, "rect");
-      el.setAttribute("x", r.x);
-      el.setAttribute("width", r.w);
-      el.setAttribute("fill", r.color);
-      el.setAttribute("shape-rendering", "crispEdges");
-      el.setAttribute("y", r.top);
-      el.setAttribute("height", Math.max(0, r.bot - r.top));
+    const areas = prev.areas.map((a) => {
+      const el = document.createElementNS(ns, "path");
+      el.setAttribute("fill", a.color);
+      el.setAttribute("stroke", "#ffffff");
+      el.setAttribute("stroke-width", 0.8);
       tmp.append(el);
-      const ny = naverYs[r.k] ?? r.top;
-      return { el, fromTop: ny, fromBot: ny, top: r.top, bot: r.bot };
+      return { el, tops: a.tops, bots: a.bots };
     });
-    for (const l of prev.lines || []) {
-      const p = document.createElementNS(ns, "path");
-      p.setAttribute("fill", "none");
-      p.setAttribute("stroke", l.color);
-      p.setAttribute("stroke-width", l.width || 1.6);
-      tmp.append(p);
-      morphPath(p, cx, l.ys, naverYs, 750);
-    }
-    tweenRects(rects, "merge", 750, done);
+    tweenAreas(areas, cx, naverYs, "merge", 750, done);
   }
+}
+/* 누적 영역 경로: 위 경계(부드러운 곡선) → 아래 경계 역방향 */
+function areaPathD(cx, tops, bots) {
+  let d = "",
+    run = [];
+  const flush = () => {
+    if (run.length > 1) {
+      const top = smoothPath(run.map((k) => [cx(k), tops[k]])),
+        back = smoothPath([...run].reverse().map((k) => [cx(k), bots[k]])).replace(/^M/, "L");
+      d += top + back + "Z";
+    }
+    run = [];
+  };
+  for (let k = 0; k < tops.length; k++) {
+    if (tops[k] == null || bots[k] == null) flush();
+    else run.push(k);
+  }
+  flush();
+  return d;
+}
+/* split: 네이버 선 위치에서 층이 갈라짐 / merge: 층이 네이버 선으로 모임 */
+function tweenAreas(areas, cx, base, dir, ms, done) {
+  const lerp = (a, b, t) => (a == null || b == null ? b : a + (b - a) * t),
+    draw = (t) => {
+      for (const a of areas) {
+        const k = dir === "split" ? t : 1 - t,
+          tp = a.tops.map((v, i) => (v == null ? null : base ? lerp(base[i], v, k) : v)),
+          bt = a.bots.map((v, i) => (v == null ? null : base ? lerp(base[i], v, k) : v));
+        a.el.setAttribute("d", areaPathD(cx, tp, bt));
+      }
+    };
+  if (!ms || !base) {
+    draw(1);
+    return done?.();
+  }
+  const t0 = performance.now(),
+    ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  draw(0);
+  const frame = (now) => {
+    if (!areas[0]?.el.isConnected) return done?.();
+    const t = Math.min(1, (now - t0) / ms);
+    draw(ease(t));
+    if (t < 1) requestAnimationFrame(frame);
+    else done?.();
+  };
+  requestAnimationFrame(frame);
 }
 /* 누적 막대 갈라짐(split: 선 위치 → 막대) / 합쳐짐(merge: 막대 → 선 위치) */
 function tweenRects(rects, dir, ms, done) {

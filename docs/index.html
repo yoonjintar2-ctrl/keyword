@@ -1564,6 +1564,21 @@
       .pan-layer .issue-pill * {
         pointer-events: auto;
       }
+      .issue-marker path,
+      .issue-marker circle {
+        transition: stroke 0.15s, stroke-width 0.15s, fill 0.15s;
+      }
+      .issue-marker.hot path {
+        stroke: #24272b;
+        stroke-width: 2.2;
+        stroke-dasharray: none;
+      }
+      .issue-marker.hot circle {
+        stroke: #24272b;
+        stroke-width: 2.6;
+        stroke-dasharray: none;
+        fill: #ffffff;
+      }
       .issue-pill {
         cursor: pointer;
         outline: none;
@@ -2035,7 +2050,7 @@
           ></span
           ><button
             id="reloadData"
-            title="다른 PC에서 저장한 최신 결과 불러오기"
+            title="이 PC에 저장된 마지막 분석 다시 불러오기"
           >
             ↻ <span class="refresh-label">결과 새로고침</span>
           </button>
@@ -2132,7 +2147,7 @@
           <button id="closeRun" class="text-button" type="button">닫기</button>
         </div>
         <div id="empty" class="card empty-state">
-          저장된 결과를 불러오고 있습니다.
+          이 PC에 저장된 분석을 불러오고 있습니다.
         </div>
         <section id="results" hidden>
           <section class="card flow-card">

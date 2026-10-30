@@ -374,8 +374,11 @@ function mainFlow(opts = {}) {
     gPeak = g("peak");
 
   /* --- x축 --- */
-  const MIN = 40,
-    mode = dayW >= MIN ? 1 : dayW * 2 >= MIN ? 2 : dayW * 7 >= MIN ? 7 : dayW * 14 >= MIN ? 14 : 30;
+  const LBL = "10.30(수)",
+    wDay = textWidth(LBL, "400 10.5px sans-serif") + 12, // 요일까지 붙인 라벨 폭
+    wShort = textWidth("10.30", "400 10.5px sans-serif") + 12,
+    mode = dayW >= wDay ? 1 : dayW * 2 >= wShort ? 2 : dayW * 7 >= wShort ? 7 : dayW * 14 >= wShort ? 14 : 30,
+    MIN = mode === 1 ? wDay : wShort;
   add("line", { x1: L, x2: W - R, y1: T + ph, y2: T + ph, stroke: "#d5e0da" });
   let lastX = -1e9;
   dates.forEach((d, k) => {
@@ -387,7 +390,7 @@ function mainFlow(opts = {}) {
     const take =
       mode === 1 ? true : mode === 2 ? k % 2 === 0 : mode === 7 ? wd === 1 : mode === 14 ? wd === 1 && Math.floor(k / 7) % 2 === 0 : first;
     if (!take && !(first && mode >= 7)) return;
-    if (px - lastX < MIN - 6) return;
+    if (px - lastX < MIN) return;
     lastX = px;
     add("line", { x1: px, x2: px, y1: T, y2: T + ph, stroke: first ? "#e1eae5" : "#f0f4f2" }, undefined, gGrid);
     add(
@@ -568,6 +571,7 @@ function mainFlow(opts = {}) {
     add("rect", { x: m.cx - m.w / 2, y: m.ly, width: m.w, height: 22, rx: 11 }, undefined, pill);
     add("text", { x: m.cx, y: m.ly + 15, "text-anchor": "middle" }, m.label.length > 26 ? m.label.slice(0, 25) + "…" : m.label, pill);
     m.el = pill;
+    m.group = gm;
   });
 
   /* --- 호버 --- */
@@ -687,6 +691,7 @@ function mainFlow(opts = {}) {
     card?.remove();
     card = null;
     root.querySelectorAll(".issue-pill.active").forEach((el) => el.classList.remove("active"));
+    root.querySelectorAll(".issue-marker.hot").forEach((el) => el.classList.remove("hot"));
   };
   const scheduleClose = () => {
     clearTimeout(hideTimer);
@@ -704,6 +709,8 @@ function mainFlow(opts = {}) {
     clearTimeout(hideTimer);
     closeCard();
     m.el.classList.add("active");
+    m.group.classList.add("hot");
+    gIssue.append(m.group); // 겹친 마커 위로
     card = document.createElement("div");
     card.className = "issue-card";
     card.setAttribute("role", "dialog");

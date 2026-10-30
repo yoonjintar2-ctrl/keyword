@@ -217,7 +217,8 @@ function legend(id, series) {
     $(id).append(span);
   });
 }
-function adopt(data, gs, label = "현재 결과") {
+function adopt(data, gs, label = "현재 결과", opts = {}) {
+  if (opts.persist !== false) saveLocal({ data, groups: gs, label: label === "새 추출 완료" || label === "엑셀에서 복원" ? "이 PC에 저장된 결과" : label });
   dataset = {
     ...data,
     analysis: { brand: data.analysis?.brand || "전체 키워드" },
@@ -1026,19 +1027,83 @@ $("excelFile").onchange = async () => {
     $("excelFile").value = "";
   }
 };
+/* ---------- 분석 히스토리: 이 브라우저(PC)에만 보관 ----------
+   서버의 '현재 결과'는 모든 방문자가 공유하므로 화면에는 쓰지 않는다.
+   이 PC에서 직접 추출하거나 엑셀로 불러온 결과만 IndexedDB에 저장해 다시 보여준다. */
+const LOCAL_DB = "nq-history",
+  CLAIM_HASH = "05f408263e61d758c1a8ba0dd1088aa96f2a94769875a685bf08a50fd28d4612";
+function idb() {
+  return new Promise((res, rej) => {
+    try {
+      const r = indexedDB.open(LOCAL_DB, 1);
+      r.onupgradeneeded = () => r.result.createObjectStore("kv");
+      r.onsuccess = () => res(r.result);
+      r.onerror = () => rej(r.error);
+    } catch (e) {
+      rej(e);
+    }
+  });
+}
+async function saveLocal(entry) {
+  try {
+    const db = await idb();
+    await new Promise((res, rej) => {
+      const tx = db.transaction("kv", "readwrite");
+      tx.objectStore("kv").put({ ...entry, saved_at: new Date().toISOString() }, "current");
+      tx.oncomplete = res;
+      tx.onerror = () => rej(tx.error);
+    });
+  } catch {}
+}
+async function loadLocal() {
+  try {
+    const db = await idb();
+    return await new Promise((res) => {
+      const r = db.transaction("kv").objectStore("kv").get("current");
+      r.onsuccess = () => res(r.result || null);
+      r.onerror = () => res(null);
+    });
+  } catch {
+    return null;
+  }
+}
+async function sha256(t) {
+  const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t));
+  return [...new Uint8Array(b)].map((x) => x.toString(16).padStart(2, "0")).join("");
+}
+/* 주인 PC 1회 등록: ?claim=코드 로 열면 서버의 마지막 결과를 이 PC 히스토리로 가져온다 */
+async function claimFromUrl() {
+  const u = new URL(location.href),
+    code = u.searchParams.get("claim");
+  if (!code) return false;
+  u.searchParams.delete("claim");
+  history.replaceState(null, "", u.pathname + u.search + u.hash);
+  if ((await sha256(code)) !== CLAIM_HASH) return false;
+  const [data, config] = await Promise.all([api("/api/data"), api("/api/groups")]);
+  if (!data?.models?.length) return false;
+  await saveLocal({ data, groups: config.groups, label: "이 PC에 저장된 결과" });
+  toast("마지막 분석 결과를 이 PC 히스토리로 가져왔습니다.");
+  return true;
+}
+function showEmpty() {
+  dataset = null;
+  $("results").hidden = true;
+  $("empty").hidden = false;
+  $("empty").textContent =
+    "이 PC에서 조회한 분석이 없습니다. 왼쪽 위 '키워드 쿼리 추출'로 검색하거나, 상단 '기존 분석 불러오기'로 저장해 둔 엑셀을 여세요.";
+  if ($("resultDate")) $("resultDate").textContent = "";
+}
 async function reloadData() {
   if (busy) return;
   try {
-    const [data, config] = await Promise.all([
-      api("/api/data"),
-      api("/api/groups"),
-    ]);
-    adopt(data, config.groups, "서버에 저장된 결과");
-    await loadQuota();
+    await claimFromUrl().catch(() => false);
+    const local = await loadLocal();
+    if (local?.data?.models?.length) adopt(local.data, local.groups || [], local.label || "이 PC에 저장된 결과", { persist: false });
+    else showEmpty();
+    loadQuota();
   } catch (e) {
     toast(e.message);
-    $("empty").textContent =
-      "서버 연결을 확인하지 못했습니다. 결과 새로고침을 눌러 주세요.";
+    showEmpty();
   }
 }
 $("reloadData").onclick = reloadData;

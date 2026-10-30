@@ -129,12 +129,12 @@ const SEGMENTS = {
   ],
   age: [
     // 같은 색상(청록)에서 명도·채도만 단계적으로
-    { id: "under19", name: "18세 이하", color: "#d6ebe6", line: "#7fb3a7" },
-    { id: "age19_29", name: "19~29세", color: "#b0d9cf", line: "#5a9d8e" },
-    { id: "age30_39", name: "30대", color: "#82c2b4", line: "#3c8574" },
-    { id: "age40_49", name: "40대", color: "#52a593", line: "#1f6a5b" },
-    { id: "age50_59", name: "50대", color: "#2d8573", line: "#0e4d41" },
-    { id: "age60plus", name: "60세 이상", color: "#155f51", line: "#062e27" },
+    { id: "under19", name: "18세 이하", color: "#a8d8cc", line: "#6aa597" },
+    { id: "age19_29", name: "19~29세", color: "#7cc2b2", line: "#4d8f80" },
+    { id: "age30_39", name: "30대", color: "#4fa894", line: "#357566" },
+    { id: "age40_49", name: "40대", color: "#2f8a77", line: "#1f5a4d" },
+    { id: "age50_59", name: "50대", color: "#1d6b5c", line: "#0f3f35" },
+    { id: "age60plus", name: "60세 이상", color: "#0f4a3f", line: "#062520" },
   ],
 };
 /* 집단별 상대 추이: 키워드별 지수를 기간 평균으로 나눠 월간 검색수로 가중 합산.

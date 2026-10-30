@@ -3,6 +3,666 @@
  "note": "보조 지표·이슈 데이터. keywords 중 하나라도 현재 분석 키워드와 겹치고 날짜가 맞을 때만 표시.",
  "analyses": [
   {
+   "job_id": "7b6b6fd8-7051-4507-af53-17092560e7ba",
+   "collected_from": "2026-10-30T02:27:02.015Z",
+   "keywords": [
+    "BMW",
+    "BMWX3",
+    "BMWX5"
+   ],
+   "start_date": "2025-10-30",
+   "end_date": "2026-10-29",
+   "collected_at": "2026-10-30T08:32:38.695Z",
+   "auto": true,
+   "sources": [
+    "구글 뉴스"
+   ],
+   "search_terms": [
+    "BMW",
+    "BMW X5",
+    "BMW X3"
+   ],
+   "notes": [
+    "네이버 검색 API 키 없음 — 블로그 발화량·화제글 미수집"
+   ],
+   "aux": [],
+   "issues": [
+    {
+     "date": "2026-04-06",
+     "title": "BMW, 4월 온라인 한정 ‘4시리즈 컨버…",
+     "summary": "이날 관련 보도 25건. 대표 기사: BMW, 4월 온라인 한정 ‘4시리즈 컨버터블’ 2종 출시 - 오토뷰",
+     "source": "오토뷰",
+     "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5nSHFxUHpxOVFPQjdfTFZsSG5tUk5jZFoyUnBPQXRDbHBCYVFuTnZKVUNRU2RrWGlBcGJadGRLYUNwdzRqbnFHbjU2blp5RGhlNXJVQnY1aEx2VzQ?oc=5",
+     "related": [
+      {
+       "title": "BMW 코리아, 4월 온라인 한정 에디션 2종 출시 - 다나와 자동차",
+       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5meHhna2h5bUZCZjJYMVdMbGN4UkV6VWM4cFB6dkpyV3ZIcXhRcnd0eTBSdk1BLWlxY1pKdG9WVDFVUWszNnJUTjhQYXJlbWZ2aHV5dDZ3NTEwR2pfaUJMWENTZEtEM1RnbWM0?oc=5",
+       "source": "다나와 자동차"
+      },
+      {
+       "title": "BMW 코리아, 4월 한정판 '4시리즈 컨버터블' 2종 출시 - 전자신문",
+       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFA5di1QbmwxZnZ5Wlp6QnNfTGttOF9YanJPZlVTSG5KMlZYeGxxSGpWTkpuYmRyUmRWVmgxWXBPaXFjWFBpeU5KaFFsNUNMdw?oc=5",
+       "source": "전자신문"
+      },
+      {
+       "title": "BMW, 온라인 한정 에디션 ‘4시리즈 컨버터블’ 출시..가격은 8040만~9920만원 - 데일리카",
+       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5iZF9nRUNFeUxmZU0xMDBPQXJaUXh4aXQxckJfX2tfVkNISmNwSzQ0TC1Ha2Y1LW04Tk5fSGdFUU9jUXFvTzdXUi1GODVwal9JTHdTc0RyRnJyZWhQZGJILWVZRXBZMU85Q2laZnlsX0dmTGtOMVE?oc=5",
+       "source": "데일리카"
+      },
+      {
+       "title": "'봄 감성 담아' BMW, 4시리즈 컨버터블 온라인 한정판 2종 출시 - 다나와 자동차",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9XMWZsVW44RTN0WDkwazJFSWZkdzdRdkVlbGpuZXpQLU5keTBkNFVoZ1IzWkR6RmJKNUs5cGxQRjV1OGRqTEN5bEZlSkZUV3pTYV94elVocndpMnFINHAxdk5EX2JqVVhWR1E?oc=5",
+       "source": "다나와 자동차"
+      },
+      {
+       "title": "BMW 코리아, 4월 한정판 4시리즈 컨버터블' 2종 출시 - 뉴스핌",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE42RVNfbHYxY0l5Q3Ytd0ZHMDVJQVlHVWxlX1dSOTR0aExQSF91WU53ckt6QmRqOEg3NGNGRUN6ZTdJMUFLMFVFc2NfbFdMMVFVLTZnU1A5Sno5Z3BT?oc=5",
+       "source": "뉴스핌"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-07-01",
+     "title": "BMW, 5세대 신형 X5 공개..iX5 …",
+     "summary": "이날 관련 보도 24건. 대표 기사: BMW, 5세대 신형 X5 공개..iX5 주행거리 845km - 탑라이더",
+     "source": "탑라이더",
+     "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9NM3ZtTEZzTXA1S18xQUtGMkViMUt4TVJrQU9tRmxTRTBCRllqWkFzaW1Ybk1BajZlOF84VkozVDVmVUZCc2hGaUU2cGswZFYzUzRXN2FOSGNMX0xpN1hDY21kRVE?oc=5",
+     "related": [
+      {
+       "title": "BMW, 5세대 X5 디자인 공개... 2026년 11월 말 출시 예정 - 오토뷰",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBkMXd4ZXpUTzIzdmRyTWtfTzNDM1pkLXd3TllyZk1RYlNmSUxmNXlkZnp3Q2VlZXNaUjMyUHYyU0Q4SDVZem9TOVMwUWVIZ0RTXzV6V0NKRGhiM0hD?oc=5",
+       "source": "오토뷰"
+      },
+      {
+       "title": "BMW, 5세대 '더 뉴 X5' 공개…전기·수소 등 5개 파워트레인 적용 - 전자신문",
+       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1VN0VPa3BUMGhaZXVQNmRrSmJ0aXhXY3dFSjh4MkJIUjJTMlphSlBRQXpfajNPZ0p1VzB2cXBjQlJWU2NUME1tX0FGcGdiZw?oc=5",
+       "source": "전자신문"
+      },
+      {
+       "title": "신형 BMW X5 5세대 공개, 800V 배터리 탑재로 WLTP 기준 최대 845km 주행거리 확보 - 토픽트리",
+       "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNdDRKMmJNSTJycHRzMUNNNGRoZ1BoMUFndEpRTnc5V0Z6WDE0QUZ1dWhDcjNnUXJLUk1XN0IyR1NNOHlRZkpCdkVNNkp4WHhtSUZEVHJJSHM5YVpfbXB6bUZvTU5kTUxqU1p0ZWtHYkNsVmtXV1d4enJXUUpjMWp2YTlpNXJNNDTSAY8BQVVfeXFMUFNzcldmTjZwZVJhbF9tSnQyMERVZEo2NlVHd3l0ZGlHdWQ0Nl91VDFzUGZJNVNvdzN1RW5qUnJlZC1tVE4yNUpzbkh0ZVc1Sk1WYWVNLWdWaWhpMWdnTk1HdEVTM3pnMHN4Q0xBNlZmcmh1Rk81blFsZC1IREMzNVFXVlU1N3RmRkhOeUJvV3c?oc=5",
+       "source": "토픽트리"
+      },
+      {
+       "title": "BMW, 5세대 신형 X5 공개..iX5 주행거리 845km - 탑라이더",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9NM3ZtTEZzTXA1S18xQUtGMkViMUt4TVJrQU9tRmxTRTBCRllqWkFzaW1Ybk1BajZlOF84VkozVDVmVUZCc2hGaUU2cGswZFYzUzRXN2FOSGNMX0xpN1hDY21kRVE?oc=5",
+       "source": "탑라이더"
+      },
+      {
+       "title": "BMW, 5세대 신형 X5 공개… 노이어 클라쎄 기술 탑재한 5가지 파워트레인 구축 - 다나와 자동차",
+       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE8wZXN2dDh4SkJXUnlhUzRGMExqOFpzZVBqLTd6aHh0VEZsN1BZckk2SlVBekcwZ2NlZWppNHVFMWNaTGhtcGNuS1VmVVBOYWxIWEFjdEQ1TndVOTBBVUpwSkU0cXQxSUc5bVdmVlhQZ2NuUQ?oc=5",
+       "source": "다나와 자동차"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-08-07",
+     "title": "BMW 코리아, 8월 온라인 한정 에디션 …",
+     "summary": "이날 관련 보도 21건. 대표 기사: BMW 코리아, 8월 온라인 한정 에디션 3종 출시 - 모터트렌드",
+     "source": "모터트렌드",
+     "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBCSFVveHNNZUF3cjNPZGd0TGdyNnRaN2R5NzhfTTJ6ZGFEbF8yczZmU2J3MDJCR0xDR0UwbGF6VE5fa2NOZVJLc1ItamszMzNnOVk3Q2pTb21GVmNVa1JiTkVxUVJiZFVsS3c?oc=5",
+     "related": [
+      {
+       "title": "BMW, 온라인 한정판 3종 출시 '7시리즈 네로 루쏘 포함 89대' - 다나와 자동차",
+       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9QLWdwQklnZV9qbDJfbzl6WkhBbmNwd3RIUWJjVHhYU2oydVVLVEFwdWp3U0RYOTRKNlRwc2RsaW1RT0tfQWRPVG44TnVxWXZHS3NRVFlBM0tHM182NXV6WTRMaFAtVUxaZWFR?oc=5",
+       "source": "다나와 자동차"
+      },
+      {
+       "title": "BMW, 8월의 車 3종 출시…7시리즈부터 고성능 투어링까지 - 매일일보",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE12WTQ1WWV4X0YwWVY4SURTWjR0ZFdOZlFfeUJrelhYM3oyWmJncmNWczBYM2F4bjJBVDJqampVN0JvUXRhTndxYS1YOTlkZE1leXlDU1UtUlVnWmcycS1sMVJFemY?oc=5",
+       "source": "매일일보"
+      },
+      {
+       "title": "“7시리즈·X7·M340i 한정판 출격”…BMW코리아, 8월 한정 에디션 출시 - Daum",
+       "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5lUnVzWS1icXAyVzFtYXotTkdHY0lvbFNmZEtLUmh1S0FFQ2VsMFVaZWJGZnQtNmVfUV9SUXU2RUlQdGpfRklmZ3h6UQ?oc=5",
+       "source": "Daum"
+      },
+      {
+       "title": "BMW, '7시리즈 네로 루쏘 에디션' 등 8월 온라인 한정 에디션 3종 출시 - 오토뷰",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE91ZTZHRl92bl9KYUtQVWZTUjBjeFZjMDlzTFhPZDVJV1dPcjNNMjd5VFJqRkpyaERQOTZXQlktRjhvVHFCZk1aeElCVVRuV0lNbWNTTDBJeERNd3Jx?oc=5",
+       "source": "오토뷰"
+      },
+      {
+       "title": "BMW코리아, 8월 한정판 3종 출시…총 89대 온라인 판매 - 뉴스핌",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5kYWo1WXNYUHZnVWdnRkptWllGenN3US1IRmpLQmZwSWgyQ3Y4cm1QZDE2dUlJZHVOSWRsSW4tanJmbmJkSGtydWt3RDMzNG4tZTAzeWxETWJEUHNz?oc=5",
+       "source": "뉴스핌"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-07",
+     "title": "BMW코리아, 올해 전동화 모델 판매 1만…",
+     "summary": "이날 관련 보도 26건. 대표 기사: BMW코리아, 올해 전동화 모델 판매 1만대 돌파…프리미엄 수입차 중 처음 - 한국경제",
+     "source": "한국경제",
+     "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9FSnNycUhpNU5RMEt0Z0VrcEl1aW9kNnVPQWhIRUJxbFhmZkpDaXMwbmIzVThCNkYwVE9felpaNjZyTmZfVnBBYl9QZzgwcTVQbnZDaEx5RFAzUQ?oc=5",
+     "related": [
+      {
+       "title": "BMW, 올해 전동화 판매량 1만대 돌파… 프리미엄 수입차 중 처음 - Chosunbiz",
+       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1MV1ZRTlF4ODE5RE9pX2VmR2h5dTZsdW9kMENaMXZHTlVvRDN3eEVkRmZxYkJtNXZuS3ZENUYxc0pvY3J6TDQ0eURteklPQ29UUlcxcjlKaTBIZGhqc1FqRXFiM183bnAxOGdFOGxjd2p5MGRJWUxUckZRYWFsZHfSAZMBQVVfeXFMTjgxd0ZjcDNZQmFvTXhvcGhqaUNGOXMwamt1YWRDZHVQOWF6WElRVkg2alJLRjFZcFNfNm15bmU2bkFSWWo4NVVaaF9QVXBqTF9IUW04cEhwQk1ueTlxWEdXMDFuQm5hbVAxS1Y0LVpGQnhGeHZhSklBMUU1LUJfSkxqQ0syYjFKaTVEUDNfdU44eFlR?oc=5",
+       "source": "Chosunbiz"
+      },
+      {
+       "title": "BMW코리아, 올해 전동화 차량 판매 1만대 돌파…수입 프리미엄 최초 - 뉴스1",
+       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9sc0V1QTRVWTM3dk5MeUxVWXg3WVZMaFExdzQwajgtTWpybkVYMDgwRENNSXFZZTUxNWlEY2w4QWM3dnhRc1djb1p2b2lDaGZQNU1ncUtQaFdOME8wQ09mWA?oc=5",
+       "source": "뉴스1"
+      },
+      {
+       "title": "BMW, 올해 9월까지 전동화 모델 1만대 돌파…전체 판매의 18% - 머니투데이 - 머니투데이",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5kZGFYejNObzJSRmFzN1F1TVdKbWtCY2h1aUZiTGhfN1ZPSmtwd1lNMExucXBGel92ZE92eTFpSmNPYWtqODExR1JXdkNZWl9EYzBJV2RrUHhpT3o3ZkN5dmllaF9hOUJsRXVwQdIBckFVX3lxTE1BTVpMWXMxRE9XMW9qWFF4YzNYVzk0MmNmNDFNMUUwV21RNU90YnJVbzM0QVBFRURkQjBqa2tmWDNxU2VTeUk0N2JOY3ZZQlY1eDhUa0c5eVFJYW83MWw2YjY5ejdXR3M5M3RHdlRRMkJCQQ?oc=5",
+       "source": "머니투데이"
+      },
+      {
+       "title": "BMW 전동화 모델, 올해 韓서 1만대 넘게 팔렸다 - 이코노미스트",
+       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE43VENMekdibTYzZDBUTlRmWW1IQndSbzNDQXJpY2RKRm45Rk56RE9YeVVrOGxMUFV4OUhEZkE4MXIxbTgzNFpQUVFvMGZuT29MVGFZeE8tWXpnS0ZKWG9iMkV3?oc=5",
+       "source": "이코노미스트"
+      },
+      {
+       "title": "BMW코리아, 올해 전동화 모델 판매 1만대 돌파…프리미엄 수입차 중 처음 - 한국경제",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9FSnNycUhpNU5RMEt0Z0VrcEl1aW9kNnVPQWhIRUJxbFhmZkpDaXMwbmIzVThCNkYwVE9felpaNjZyTmZfVnBBYl9QZzgwcTVQbnZDaEx5RFAzUQ?oc=5",
+       "source": "한국경제"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-26",
+     "title": "BMW 레이디스 챔피언십 4만명 갤러리 방…",
+     "summary": "이날 관련 보도 22건. 대표 기사: BMW 레이디스 챔피언십 4만명 갤러리 방문 속 성료…·신형 7시리즈·X5 첫선 - 아시아투데이",
+     "source": "아시아투데이",
+     "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5HSTZZMjJ6MDFvaUhBQy1idzRrVUpIM05ETzBGQ2ZRazh5bEdmakRMSDk4Z1VhcHowYXJhcWRrZlZHMjlNREJrZm1WcWxDWjJxb1d5RmVVbU83dFhvdnZCcmpYRHdQTUk2eGJmRQ?oc=5",
+     "related": [
+      {
+       "title": "BMW, 신형 7시리즈·X5 국내 첫 공개…골프대회서 신차 선보여 - 뉴스핌",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1FNHVtN3F5ajhjZHBpWnZjMUYxRDJSTU5kR1pEU1l0YUtpLXdCLU95dEtlLU5uU19BNVpma3BCbHBZOWt6OXlBNWtYOEZ3bldoVC1zUU9Fcjhic2JY?oc=5",
+       "source": "뉴스핌"
+      },
+      {
+       "title": "BMW 레이디스 챔피언십 2026, 4만여 갤러리 환호 속 성황리 종료 - 글로벌이코노믹",
+       "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQME5qRy1BcTNXY0JsNWYxM1VjUTdPV0NLWWtUN182bHZseXoxbTVVUDI2N2JQQlNHN0dpUkRXTE8tczJON0pGbk9wNFlObkVENE5NeHRVX3ZLY29qOGU2QUVTZ3pZOFhZZ3gzUW9XSGxOeWNMMmVEUlpva1dhOHVnS1JhZ3o?oc=5",
+       "source": "글로벌이코노믹"
+      },
+      {
+       "title": "4만명 몰린 BMW 골프 축제…7시리즈·X5 국내 첫 공개 - 파이낸셜뉴스",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5aQ0JmN1NsOVN5aFJTN0hiODNrR2oyS0cxUWVtc2lKekRGVy1CTndUVEJzN29vM3VhWFFKSGJjR25ZV2hxLWUyV2VwSDdMSUNFejdXSFVEUnZ4Zw?oc=5",
+       "source": "파이낸셜뉴스"
+      },
+      {
+       "title": "BMW, 레이디스 챔피언십서 신형 7시리즈·X5 국내 최초 공개 - ER 이코노믹리뷰",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9WUjVSdWN1QXVDTjl4REJwWlZSbkxIUjJySlpjTENFVnBDQWUtbWdodFh4VW1aRU1VVkVUSEJTQnJRcGkzMkF3dExMUlRzS3dkZm1mMGVibWtLS29pT0xsSUdoUnh5SzFLUE12Mw?oc=5",
+       "source": "ER 이코노믹리뷰"
+      },
+      {
+       "title": "'BMW 레이디스 챔피언십 2026' 성료…”국내 골프 문화 발전에 기여\" - 팍스경제TV",
+       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4taC14RGxVTWE2T01QSFJ0TF9oS1hpb2FmZWxDTDRrUTQtTzB2VjdqdGFBV3BxU05ZdUpzemFMTzFKSVplRHZUSjQ0S0pVRzVOd3hSSVFpVXBsY3RVZ3lrQ29JQURVWDQ?oc=5",
+       "source": "팍스경제TV"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-28",
+     "title": "BMW 수입차 구매 비교·검토 1위",
+     "summary": "이날 관련 보도 29건. 대표 기사: BMW 수입차 구매 비교·검토 1위 - 뉴스클레임",
+     "source": "뉴스클레임",
+     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9YT0hIbkRtQnFZYU9uVFh0eWlRVmlUWncwcFNfaHlSdXYtUnc4ZDJUQ0tBQnJTSFFZclNQOWtpSEVvVF91ZG9hY2c3U3RLUkp3X2pfV0xYWkZnd2ZJcGpsUEZHeU9FTG5yb3BfTTV2ZmnSAXRBVV95cUxQWC1nazJxQzBDNXB4LXVzRW5ncURjUkc3WEtKMUd6RXpsY0Fxb2s1V3BJT25tZWdFQjBSVmdLZllSZG1HdDJteDh0b21yOXlBM1dTZmlnbTI3RnBZX0pFRWc3Z3RyZ0pHRVFlWThWaDM4X0ZEYw?oc=5",
+     "related": [
+      {
+       "title": "“수입차 고수는 이 브랜드 찾는다” BMW, 비교·검토 1위 - ER 이코노믹리뷰",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE83LUwtcjVOUmZZcGZLNFJmbXVaaTUwUmNhcGgwcVFuTU8wMjB4Vk5IdDRfUDAzYjJIODJESEpYUzZ1dnkyZ1BFWFhsQnVvRm9WcFhJZFhIREpDWEk5UUp4WklzX09xb3Radl95Nw?oc=5",
+       "source": "ER 이코노믹리뷰"
+      },
+      {
+       "title": "BMW, 구매시 가장 많이 비교·검토 브랜드 1위 - 부산일보",
+       "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9fdFdpa1lVTmwtb3hUbjJ5cUktbEY3a3pMTTB3QklOT3IyNjFzOHhvMDFIdFBzdmg0WDZWLXVtWHlXcE5zVWN2dVNNVDgtWnB6TDhtekotN2RoRWVKUWZPa0tobmF6U21UVmw4cFFPMzRlNTk3bzZkSQ?oc=5",
+       "source": "부산일보"
+      },
+      {
+       "title": "BMW, 수입차 구매 시 가장 많이 비교·검토하는 브랜드 1위… 반복 구매자 선호도 돋보여 - 스타뉴스",
+       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1QU2xuREhpR3NlWWxhMFJaS2tWeHh3b1hNajVpTG9aOWs5c1pNakl0bkhtSk1BTGc0ZlV0QVBXU095UnEzYmlvRjJqd1hkZ0Yta0RUcjNUN0hpN0ZtcWhDejlfQ0Z6NHI3TFBlYXZXUmJmZ2MtUF80NDVKNjBzUEk?oc=5",
+       "source": "스타뉴스"
+      },
+      {
+       "title": "BMW, 수입차 구매 비교·검토 브랜드 1위…반복 구매자도 최다 - 서울경제TV",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1YQkRnTEJMLTFDVG1XLU5ZcWpIUDhqYTZOeEtYR3J4WHJuSVpwMG0tUWQ4UGZwejJfZ3RsRHpFaTRIbXEyUGVjajMwcFNfd0JQZnBNZWlXeUdnOUo3b0hrdUl0QUk?oc=5",
+       "source": "서울경제TV"
+      },
+      {
+       "title": "수입차 구매 고려 브랜드 1위 BMW…선택 이유는 ‘주행 성능’ - www.dt.co.kr",
+       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5nWEw4NTU1a3RiSFdZZFJjWmQ5eXBMY084U1V2T1RYWTJ1MXNzRnR0SVVHVXZOTWVsVDlGbDFkVUxwM3h1cTJBTHpQR0dRZw?oc=5",
+       "source": "www.dt.co.kr"
+      }
+     ],
+     "auto": true
+    }
+   ],
+   "spike_notes": {
+    "2026-10-17": {
+     "signature": {
+      "type": "모바일 노출형",
+      "why": [
+       "같은 요일 대비 모바일만 상승",
+       "TV·영상·SNS·모바일 광고 노출 가능성",
+       "주말"
+      ],
+      "mo": 1.37,
+      "pc": 0.96,
+      "male": 0.95,
+      "female": 0.89,
+      "age_cv": 0.03,
+      "weekday": "토",
+      "driver": "BMW"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "‘BMW 레이디스 챔피언십’ 출전 선수 확정…김세영, 유해란, 김효주 …",
+       "date": "2026-10-14",
+       "source": "ER 이코노믹리뷰 외 6건",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBwSXdXZi02bUJ1YjZ2MGpBZ1hPdC1ZMVNVOUFfRFNCY0tScDJLSXQyU0h6ZHpMV1RnNjZaeFJlbHBpODdyVldWZ284MHNMdC1ldjZNMVRXY3ZyZ3dPSEtlUTVXUG9qWkFrcFI3Ug?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(모바일 노출형 표적)"
+      },
+      {
+       "title": "4년 만에 확 바뀐 BMW 7시리즈…신형 사전예약 돌입",
+       "date": "2026-10-16",
+       "source": "디지털데일리 외 6건",
+       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE8zbXVlZmdvVGgwODNXclF0VUs3a29JLXJUR0J3N2ZmeVhjaDY2bktyLWE2d0tpQnBIeFl5cUo0ZmU3UDZoZ0ZhdU9BNWtqMVFERzgxWFRfclRQMTU0dU9wZHRB?oc=5",
+       "relevance": "중",
+       "kind": "뉴스(모바일 노출형 표적)"
+      },
+      {
+       "title": "’더 뉴 BMW 7시리즈’ 사전 예약 시작",
+       "date": "2026-10-16",
+       "source": "연합뉴스TV 외 5건",
+       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1ITkkwVVVwRnNSXzY2blIzU19MV1JKelo0UGNzQ3NHVE9Ya1NTbHY0SlN1S1lGbW1KTy1zaUo4Uk5NU0xDSEE0TTVMbGVmbGc2LUZ3MEN6Ulo2VmphaTN5TWRnQ1BmR0U?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(모바일 노출형 표적)"
+      },
+      {
+       "title": "BMW 코리아, 'BMW 레이디스 챔피언십 2026'서 엑설런스 클럽 …",
+       "date": "2026-10-16",
+       "source": "다나와 자동차 외 3건",
+       "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQbnMtdm93djlYR1ZTemFHSC1NVG1nN3RXVWE5QUNIcFpUNDhZS0VzelVEdVpVS2tIWXYyaTliV3RjLV83WFRBZmpjTWYxWVBMUTJRZEU2cGQ1Tms0MDJnMHVHOHhsaUNUNkZxUUExNlRMOUczZnpoVkE1YW96RGExQkdxVE4?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(모바일 노출형 표적)"
+      }
+     ],
+     "auto": true
+    },
+    "2026-07-01": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승",
+       "남성 상승이 더 큼"
+      ],
+      "mo": 2.06,
+      "pc": 2.3,
+      "male": 2.4,
+      "female": 1.45,
+      "age_cv": 0.19,
+      "weekday": "수",
+      "driver": "BMWX5"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "\"드디어 30일 베일 벗는다\"... BMW 신형 X5 티저 공개, 진짜…",
+       "date": "2026-06-29",
+       "source": "오토트리뷴 외 6건",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFB1d0NsTnI4US11NldSSk5sN1RheVMwbUdoMklMczNTRmQtbUlHTE1nYkVwdlRLdm5kc3hHSXp4eXljUktRanlnbGxSaW1xMVljbmk2Z0h0dUxjWFc1dE5UNVhCRUVxUjdOZGFOcTZGc0s?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "BMW, 5세대 X5 디자인 공개... 2026년 11월 말 출시 예정",
+       "date": "2026-07-01",
+       "source": "오토뷰 외 3건",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBkMXd4ZXpUTzIzdmRyTWtfTzNDM1pkLXd3TllyZk1RYlNmSUxmNXlkZnp3Q2VlZXNaUjMyUHYyU0Q4SDVZem9TOVMwUWVIZ0RTXzV6V0NKRGhiM0hD?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "\"계기판이 안 보인다\"…BMW '신형 SUV'의 파격적인 디자인 [신차…",
+       "date": "2026-06-28",
+       "source": "한국경제 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE4tYUQ0MzB3VFd2TjBUQktaWjMxeEdHRnozc2xwNEJZNFI5RmJsNHZrT3dac2Yyc1FpTWVuTWxITkpaRG5iMjRmUnFjeV9FQkt3ZjdCWks1MHoxZw?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "BMW X5 공개 임박, 헤드램프에 숨겨진 ‘X’ 시그니처 눈길",
+       "date": "2026-06-30",
+       "source": "엠투데이 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFA0ajJhU202Y3FUT1ptdG5PQmpHSVhkMmJHYndCbWR4Zjh2Y01jc3BxR3NPN3NNd1Y5WEowbVd4akJWNHNRYkJ5WWtBSUhZcnVJTml0YlJEbXQ2WkpNV2VnUVlwQ0xUQmJUd1p0NHRHQQ?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      }
+     ],
+     "auto": true
+    },
+    "2026-03-19": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 1.43,
+      "pc": 1.51,
+      "male": 1.57,
+      "female": 1.28,
+      "age_cv": 0.12,
+      "weekday": "목",
+      "driver": "BMW"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "법원, ‘차량화재’ BMW코리아 321억 과징금 취소",
+       "date": "2026-03-16",
+       "source": "한겨레 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB5Q25HQVJqNTl6eDBEbzFTOWYxMms0VVVucEdFT1gwYm9hS3N0UXVXRjUzcnprZnJLT1FEakpqLTA0RW1haXROWHJCcGVFcUhVUkdEc1dyT0tEWHo3WWpVZ1N4amR2cVRCZThWSHhCQ2JwZw?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "도이치 모터스, BMW·MINI 성동 패스트레인 서비스센터 새롭게 오픈",
+       "date": "2026-03-16",
+       "source": "BMW Group 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMirwNBVV95cUxOWEpmaW9DU1hQLUVjSHFTZTJWUHRWYVZXRVVmNGxKVktEbktwdjZzVDF2Mm1SQkVBY2tQUG9jOUpzSnY4a3FnR0Z1eXNpWlpDbU0ydUw2UGhkRGp3OVFCdFVPN3V6bGNrT2RHMHdkWnJKclNaZUdCTjJONmp5TkdqMEQtYlJ3STFUMi1wdkwxeFBhOWFTYzBEMVotbFVmbnUxNjdocUJYMGJveU43ei1BOUFQTWNidHZaM2M5SUFMY1YwUEh5aE02TTdCeDJwWjF2dE1MVFJneGlYYnppMTlXeGhRazlPR0Jkc1dpT0lLQzU5bzdaYlVNeFFNaHVDd0hGWHExZ0RJOGIzTVlBZDJLbmYza2ZSMnU1M1JmVkVIU2pmdWx0M0g0NXNwLUd6NHpvelJyakF5VnFtZ2ZLYUc0U3Z2d1pzd0tXME5jemM5d3dnb0J6cl8zdmJrWEtCdE1xdTZENDJMbnEycENLTDIxNnhmTHhsWG1jYk5rUXROT1B6TTRhaElwWUtBa0JMaFZKR2xVVXROZHhnQ1RIaDlXVE5KRVU5ZFBKTlFOYXMyYw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "BMW, 이번에는 신형 ' X5 ' 디자인 유출",
+       "date": "2026-03-19",
+       "source": "오토뷰 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5sTFVFS0d6LXVmLW5KcXpORHdzOTlCOGZNQ0d0bGJ5UjBTLXFBV20taEVReDFSNHFtZVNMMmR1RjZ5end2NUVGdldjR3dPdFM0Ql9JWXdoZG01Nnc?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "BMW코리아, 차세대 전기 SUV ‘더 뉴 BMW iX3’ 사전 예약 …",
+       "date": "2026-03-19",
+       "source": "브릿지경제 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9zanpBeDBTSWRUV0FqRlJHczZjRG11a2x0R0ozczhwWHU4SzZMZDJNLUZYZVdVT2dUWklPUFc5alFYWnpJbkdMbko0S2EwbHhBVEFWeEtoNW1ndw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-09-28": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 1.26,
+      "pc": 1.2,
+      "male": 1.09,
+      "female": 1.09,
+      "age_cv": 0.04,
+      "weekday": "월",
+      "driver": "BMWX3"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "BMW 모토라드, ‘BMW 모토라드 데이즈 2026’ 티켓 판매 개시",
+       "date": "2026-09-29",
+       "source": "오토뷰 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9zRUtZcW9YREtJYW0ta3ZXOVNTTXJKdzd0cDRqS3hVc2hRN1pnQnZ4cGp2RTRGcW5ZNkg3MXVUXzBXdV9PYy1pdXJFOVFjWXRLSXpRQ3AyREt2Zlo5?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "'748마력' 고속으로 움직이는 프리미엄 라운지…BMW XM 레이블",
+       "date": "2026-09-25",
+       "source": "뉴스1",
+       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9Ebml0UGRpZ0ZaWGxuYXR4c0xiT2RWekk0dnM4WWRURGFuRzF5Sk1IOUItMTBpVXp5ZU1tX0pFdUhJYTZnVWpHc2RaT1RFZ2xFdGhyaHJBUmJZdkRmZEt6dQ?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "\"PHEV 실용성에, 특유의 운전 재미 더했다\" 두 얼굴의 BMW X5…",
+       "date": "2026-09-26",
+       "source": "뉴시스",
+       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5sLXl0UkFNaFpKRk1Va09tbVppejRMTXVJeU03d1JWd1I5ZU9qVGVCLWVZaUdDMHdqdVdHQ0MyMU9ubUFDcklYWHItOXNlaFZnYVlEUGF1VGZGb1FCcnJVMdIBeEFVX3lxTFBKazFSazg0NUV0UE1aZTNaaW5ZbWdsNTU3MzJWLUtnejdVV2J6ejZmSXRUTk83cW1ZNFQ3U1h6UXVjV0FJSzZRa2FtbmNtTW5aQVNSOGVvS1gzWFVLTjdtQi0zUzRaM1hFMEpEYjF1NGlkQVBTdkRKZg?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "'50년 만에 가장 큰 변화' BMW, 8세대 신형 3시리즈 이달 30…",
+       "date": "2026-09-28",
+       "source": "다나와 자동차",
+       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBqSHpRTHJPUjVhbzhlYjhkb3FJYWxyY25kWFVRYXlFNVdsSk5jdFRMeWNPT1ZqTFM4VzJUbDhsUjYzMG9iQUhDRHRNQWszczduVXBoVVJhVDZ1djVsMWRfMnBGdHRscGpJbTRv?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-02-17": {
+     "signature": {
+      "type": "모바일 노출형",
+      "why": [
+       "같은 요일 대비 모바일만 상승",
+       "TV·영상·SNS·모바일 광고 노출 가능성"
+      ],
+      "mo": 1.78,
+      "pc": 0.42,
+      "male": 1.42,
+      "female": 1.71,
+      "age_cv": 0.13,
+      "weekday": "화",
+      "driver": "BMWX5"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "BMW, 끄고 세워도 불 난다고?",
+       "date": "2026-02-15",
+       "source": "브런치 외 3건",
+       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE51bW1MYmZ2MFlRSkFUNFVaVDhNdDdDS2Z4aVp1a3JLaFpjZ0tzMTJBQ0lMT1pSbmNVMV85LWdqYnc4NVMzRzB0QlZGbW1GVWRkeGJxZg?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "기름 한방울 없이 도심 달린다…매력 넘친 BMW 뉴 530e[시승기] …",
+       "date": "2026-02-14",
+       "source": "머니투데이",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE95NmFDODJjNW5pRmFNbVk5elVlSGpFLW5BLXpxMGV4aDQ1ZGJhbVdhbUtBUG1kLWJBVDhLanpRSmlUYnNUMXlJa295cjQ1RHd3ZWJWc3lqR0NGb2d2cC1LQl9BYmFlakNHdHhVTtIBckFVX3lxTFBBaXU0QkROZGUxMGZVSjNwQ0Mycm9VRTNPMERUOEM0N2lySHR4NWZBYlgzQm9OLV82bGFjTFpsT1RnVXUyUXJYRUJJX00tNC1jcnYxVFF4S3dmLXFVd1pPNVh3T2RFZzZacW14aGRmbktudw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "BMW i3 전기 세단, 사전 양산 돌입... '노이어 클라쎄' 전략의…",
+       "date": "2026-02-14",
+       "source": "유카포스트",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9XcGRSUTExZS1kVndyRUxoZTVCaUNpcnBPenJjWmdlVkVYelY4WUszZE1PQk1rNDFYUEIyc3ZsQjA0dEhvcGlfWDNqSVE1c3pKdExORzF6dGRPQVN6ZGpWV0dUcWh0dWE3OXZPWmtQSjXSAXRBVV95cUxQYUZVTVVLc2p5Z09KUnplYXZNbjVNblJnall4LUJIZFZfLUVwOGs2Q3Q1d2t1VDhjS2l2MUcxUU1jbjU4c2hzdTdFZzBYOF9YWXNNRlkxbkl1Y1N4NmVJdWgyczNDeEo1ZFRoeGVVOWpIdHEtRQ?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "날렵한 디자인·경쾌한 주행감… BMW 2시리즈 그란쿠페",
+       "date": "2026-02-14",
+       "source": "Chosunbiz",
+       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9LbmJCVmotTHIyZjhwdVpqTjdESHNPaHN5X3RMTXB3VnB5d2pzbjZ1Vjg4dGJXRGcxVXRib1JORGpCWU5qZmNXeFcyVDVaR3hONXJ0Q0FNdjhrd1J3eGt3YUFzT1BCSkcwQldaQzYxOFZNaWFTU2w0QzBzV2JWY2PSAZMBQVVfeXFMT1Q3TjMxNW0wTkZxdW5zQmZVM2dvZ0IzMTByQzRzVWIwalpyYm9sLTliWUJXQndDU0ktTTVZUFVtMWg2SU9IQXVBVWtPcC1DUHltQlFQeFZJelNZVkNpWi1rNFNVbl9BU1l0dGR4cDlBdTVqaGlrVjZtN1hFVmQyX01hcUJ6alFfTWpGSThaRUMxclBB?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-01-17": {
+     "signature": {
+      "type": "PC 정보탐색형",
+      "why": [
+       "같은 요일 대비 PC 위주 상승",
+       "기사·공지·구매 정보 탐색 가능성",
+       "주말"
+      ],
+      "mo": 1.17,
+      "pc": 1.43,
+      "male": 1.22,
+      "female": 1.18,
+      "age_cv": 0.07,
+      "weekday": "토",
+      "driver": "BMW"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "BMW 320i MSP 리뷰 [1250회]",
+       "date": "2026-01-14",
+       "source": "오토뷰 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBfTXVaSE9RWXlKXzl0bUJROTg0R3lJOVZsNGtSOHhGVHhsb09WanRaOVZkaTdUN1pNdkZJWWFNMEl4emx1dFFPc21Tdmd1YkpLeFdiZkF6Y0RSVW8?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(PC 정보탐색형 표적)"
+      },
+      {
+       "title": "\"하이퍼카 급 기술 투입\" BMW 2027년 쿼드 모터 전기 M3로 판…",
+       "date": "2026-01-14",
+       "source": "Naver Blog 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFA5MFFHQTZ5NmViS2R1dllXTVViNWtIT2FGLXpsWmtsVVZZam16RW9iMUJjeWpGNEc0Si1ESk9DcEd3OWpFZlRWUnJuQlNfSWpwZXRQR2d3THhXT2FCQXluaGdPa1ZydHgyQS04WkVrYzQ4UQ?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(PC 정보탐색형 표적)"
+      },
+      {
+       "title": "BMW코리아, 지난해 SUV 3만대 넘게 판매",
+       "date": "2026-01-14",
+       "source": "조선일보 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBzWk5WcGVkeHVEYUVia2QzaTZSQ1BoYWJVbThwZGN2T2o0Sm8tZk9jajdmbHJSNVhUQThwNnp1MDIyTUgwV2YtTW9qWFp4YW9BNjhsc3hxSDA1ZHk5V3FEbkNaMF9vblloLXZzRUJJX1BveF83VVloNmhZWVRBVG8?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(PC 정보탐색형 표적)"
+      },
+      {
+       "title": "수입 전기차 판매 폭증, 테슬라·BYD가 견인...BMW·벤츠는 나란히…",
+       "date": "2026-01-14",
+       "source": "소비자가 만드는 신문 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBIMnhXT0sxd01XM3hzcXpWTTJwMDBzZlRMem1TZDdPbDZINWdqcWgtWmV4QWdvRUhfR0pMa3UyV2xDbGhuREh3WkpZMWlWeW14NGNPU1BoaDYtNkRIWEJRMk8zcE4td2JQVGNMVzBOb2E4YVE?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(PC 정보탐색형 표적)"
+      }
+     ],
+     "auto": true
+    },
+    "2026-05-24": {
+     "signature": {
+      "type": "모바일 노출형",
+      "why": [
+       "같은 요일 대비 모바일만 상승",
+       "TV·영상·SNS·모바일 광고 노출 가능성",
+       "주말"
+      ],
+      "mo": 1.22,
+      "pc": 1.06,
+      "male": 1.2,
+      "female": 1.24,
+      "age_cv": 0.03,
+      "weekday": "일",
+      "driver": "BMWX3"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "BMW, \"5세대 1 시리즈\" 2028년 후륜구동으로 출시",
+       "date": "2026-05-21",
+       "source": "오토뷰",
+       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1uTGRzWHZTSnpSWWJ3c1AxN3AybjRuWEh4c2JDWFd1OFpKT3BqeTA1S183SG56VkNpV2ZtLTVoTzU2UUJ0X0Z6cnl4RVlWOWg1UVJNdEpBODNzNjNx?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "‘BMW M’ 2년 연속 고성능차 판매 1위… 지난해 국내서 5541대…",
+       "date": "2026-05-21",
+       "source": "문화일보",
+       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBQeTdQMy1LMjA0T0gzbzlMdUJxMmFUM1gxMDBaTF9XSy1uWWVEY3ZPQ2N5RFo0UUJkTGV1OEl4M0MzQzJPSmxyMEQ5cy1meWlm?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "BMW 삼천리 모터스, 동탄 전시장 새롭게 단장해 오픈",
+       "date": "2026-05-21",
+       "source": "BMW Group",
+       "url": "https://news.google.com/rss/articles/CBMi8gJBVV95cUxOdDVCYmZpbjBNN2pzczlJUGN0QklRY3ctLUx2OHJFNzF5dW5JdkJOTng5ZFpzZjFIcnBNb1lMeWllT2wxVlhOdGlRbkhUbGtIaTZrdWljRXo5alhidkh2czdBN0JybzdmREVCUldudDBaeWxTMlJmN3NNbTlkSmhaRFBQV0VvTTdvM2FiV0NwbDc1Wk8tRDNkckpJZXBBVUoyOGZNR25STThWdzIxT1NDaGt6OFZOaGtyM2J0Q2k1MUZVUVpobWZCaklzR1M5bmU4X2tvRXZtNy1QWVEtX050VWxheHRkZnU3UkZQWkdzR045ZGE1MkRjZDZrYXJDSXNTZ3cxZS1DbmpZcXpnX1RfUm12amdDS2hRQ29MTEJSeFJWRGVrdjU3d2lhR3dhbkFoVVI3aUtHOTlDTjVuLWo2UG1fWEs2UXA0SU1SMU0ycnVMU0VWcmNtaDNYVHJqc3JTRDJqWjBzTnRQMnRGQTR0dnJn?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "7시리즈 4개월 연속 1위…BMW 질주 비결은 '경험 마케팅'",
+       "date": "2026-05-22",
+       "source": "지디넷코리아",
+       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE04V25vcmFBa3dfdnhkRi1ObUFkMVJOWXVXV2lOSEk2UGxEeGtoTFJnWVVteGQ5cHBMR0dTUEFBcmpsNHhOWEh6ZUotdFlhZ211Uy1Vd3Vn?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-07-05": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승",
+       "주말"
+      ],
+      "mo": 1.66,
+      "pc": 1.29,
+      "male": 1.73,
+      "female": 1.43,
+      "age_cv": 0.12,
+      "weekday": "일",
+      "driver": "BMWX5"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "BMW 코리아, 7월 전기차 3종 출시…\"60대 온라인 한정 판매\"",
+       "date": "2026-07-06",
+       "source": "Daum 외 4건",
+       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFBFMGEzNDM2cElGRFVLeFdXRFB0ZktiaURNMHBWcTBnR1hHaTB1dE5neUNYaVpvaXJWUXgyTDJkM3EwU3pXOUE?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "\"가격 폭등하겠네\"... BMW 신형 X5, 디젤 빼고 새로운 5가지 …",
+       "date": "2026-07-02",
+       "source": "오토트리뷴 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5OSmZJTjJYQUpvRkVRNWtIQTJFWV9wSTVZSFpJbFlmQVR4aGRzMl9OOTJtMjlCUTBFejJkMkZya2N5dU8zbTRpRGtiZlFKMV9jYjRMVGNZeFNSN3U3OTNpWV8xUXVVcnV6N1l3eUFsanI?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "KLPGA-LPGA, BMW 레이디스 챔피언십 국내선수 출전 두고 이견",
+       "date": "2026-07-02",
+       "source": "문화일보 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE56bk13SXNXLXlxbzV0NUhveWtzNmpscFpPLWxwUFgtZDJSWWRwVHVRVmhoY1ZJcGlyUG1QekRvXzRDNW1sTV9yTlB5MGFoWW9B?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "\"27년을 이어온 전통\"...BMW 신형 'X5 풀체인지 (G65)' …",
+       "date": "2026-07-03",
+       "source": "블로그 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5ZeUVBdUlhMEY3OXJRWGRpUWxENEFvaDRoRTRZTFVQenB0TlZ2UGZyVDhuQWRZUlVYcUQwNHI4ODFQWXRVRmoyMGJKLVVfdXdRZXN5ZGU5dHBGbGRkT0hNY21ISQ?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      }
+     ],
+     "auto": true
+    }
+   }
+  },
+  {
    "job_id": "613dad34-1228-4815-8fe6-e03af8382780",
    "collected_from": "2026-10-29T08:05:32.380Z",
    "keywords": [

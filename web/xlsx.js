@@ -6,24 +6,26 @@ function exportWorkbook(payload) {
     brand = data.analysis?.brand || groups?.[0]?.name || "전체 키워드",
     est = data.models.map((m) => ({ m, d: deviceEstimates(m, data) }));
   /* 1) 일별 쿼리: 날짜 × 키워드 (정수) */
-  const daily = [["날짜", "요일", "합계(확보 키워드)", ...data.models.map((m) => m.keyword)]],
+  const ym = (d) => [+d.slice(0, 4), +d.slice(5, 7)],
+    daily = [["날짜", "연", "월", "요일", "합계(확보 키워드)", ...data.models.map((m) => m.keyword)]],
     WD = ["일", "월", "화", "수", "목", "금", "토"];
   data.dates.forEach((date, i) => {
     const vals = est.map(({ d }) => (d[i] ? d[i].pc + d[i].mo : null)),
       ok = vals.filter((v) => v != null);
     daily.push([
       date,
+      ...ym(date),
       WD[new Date(date + "T00:00:00Z").getUTCDay()],
       ok.length ? r0(ok.reduce((a, b) => a + b, 0)) : null,
       ...vals.map(r0),
     ]);
   });
   /* 2) 일별 PC·MO: 피벗용 세로형 */
-  const device = [["날짜", "키워드", "PC 추정", "MO 추정", "합계 추정"]];
+  const device = [["날짜", "연", "월", "키워드", "PC 추정", "MO 추정", "합계 추정"]];
   data.dates.forEach((date, i) => {
     for (const { m, d } of est) {
       const v = d[i];
-      device.push([date, m.keyword, v ? r0(v.pc) : null, v ? r0(v.mo) : null, v ? r0(v.pc + v.mo) : null]);
+      device.push([date, ...ym(date), m.keyword, v ? r0(v.pc) : null, v ? r0(v.mo) : null, v ? r0(v.pc + v.mo) : null]);
     }
   });
   /* 3) 키워드 합계 */
@@ -45,9 +47,9 @@ function exportWorkbook(payload) {
     ["age50_59", "50대"],
     ["age60plus", "60세 이상"],
   ];
-  const seg = [["날짜", "키워드", ...SEG.map(([, n]) => n + " 지수")]];
+  const seg = [["날짜", "연", "월", "키워드", ...SEG.map(([, n]) => n + " 지수")]];
   data.dates.forEach((date, i) => {
-    for (const m of data.models) seg.push([date, m.keyword, ...SEG.map(([id]) => r2(m.series?.[id]?.[i]))]);
+    for (const m of data.models) seg.push([date, ...ym(date), m.keyword, ...SEG.map(([id]) => r2(m.series?.[id]?.[i]))]);
   });
   const notes = [
     ["네이버 쿼리 추정기 · 내보내기 안내"],
@@ -57,7 +59,7 @@ function exportWorkbook(payload) {
     ["수집 시각", data.collected_at || ""],
     [],
     ["시트", "내용"],
-    ["일별 쿼리", "날짜별 키워드 추정 검색수(정수). 합계는 추정 가능한 키워드만 더한 값"],
+    ["일별 쿼리", "날짜별 키워드 추정 검색수(정수). 연·월 열로 바로 피벗 가능. 합계는 추정 가능한 키워드만 더한 값"],
     ["일별 PC·MO", "날짜·키워드별 PC/모바일 추정 검색수(피벗 테이블용 세로형)"],
     ["키워드 합계", "검색도구 월간 검색수와 선택 기간 합계·일평균 추정"],
     ["성·연령 지수", "네이버 데이터랩 성·연령별 일별 상대지수 원자료"],
@@ -75,10 +77,10 @@ function exportWorkbook(payload) {
     start = end;
   }
   return [
-    { name: "일별 쿼리", rows: daily, widths: [12, 6, 16, ...data.models.map((m) => Math.max(10, Math.min(24, m.keyword.length * 2 + 2)))] },
-    { name: "일별 PC·MO", rows: device, widths: [12, 24, 12, 12, 12] },
+    { name: "일별 쿼리", rows: daily, widths: [12, 7, 5, 6, 16, ...data.models.map((m) => Math.max(10, Math.min(24, m.keyword.length * 2 + 2)))] },
+    { name: "일별 PC·MO", rows: device, widths: [12, 7, 5, 24, 12, 12, 12] },
     { name: "키워드 합계", rows: summary, widths: [14, 24, 16, 16, 14, 14, 14, 12, 12] },
-    { name: "성·연령 지수", rows: seg, widths: [12, 24, ...SEG.map(() => 12)] },
+    { name: "성·연령 지수", rows: seg, widths: [12, 7, 5, 24, ...SEG.map(() => 12)] },
     { name: "안내", rows: notes, widths: [16, 110] },
     { name: "_복원정보", hidden: true, rows: [["NAVER_QUERY_ESTIMATOR_V2"], ...chunks], widths: [50] },
   ];

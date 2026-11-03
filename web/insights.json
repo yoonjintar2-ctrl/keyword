@@ -3,6 +3,536 @@
  "note": "보조 지표·이슈 데이터. keywords 중 하나라도 현재 분석 키워드와 겹치고 날짜가 맞을 때만 표시.",
  "analyses": [
   {
+   "job_id": "9a52a93c-329a-47b5-84d1-6157a2fb75fd",
+   "collected_from": "2026-11-03T09:10:21.580Z",
+   "keywords": [
+    "르무통",
+    "르무통신발",
+    "르무통메이트",
+    "르무통이지",
+    "르무통코지"
+   ],
+   "start_date": "2026-01-01",
+   "end_date": "2026-10-31",
+   "collected_at": "2026-11-03T10:01:00.293Z",
+   "auto": true,
+   "sources": [
+    "구글 뉴스"
+   ],
+   "search_terms": [
+    "르무통",
+    "르무통신발",
+    "르무통메이트",
+    "르무통이지"
+   ],
+   "notes": [
+    "네이버 검색 API 키 없음 — 블로그 발화량·화제글 미수집"
+   ],
+   "aux": [],
+   "issues": [
+    {
+     "date": "2026-04-30",
+     "title": "임윤아, 신발 '르무통' 모델 발탁...\"…",
+     "summary": "이날 관련 보도 5건. 대표 기사: 임윤아, 신발 '르무통' 모델 발탁...\"밝고 편안한 매력\" - 싱글리스트",
+     "source": "싱글리스트",
+     "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9fUmRheFdfdUdRZDVtX3BZMFlmUHNUa3lHVU1kdURqM3BjalFmUHF5LXB1QXdWclFrckRMNFptb1ZmSjdXWUd1Wk9GU2VENDFZNVVEWmRHTDlpWUJ0S1BkNUs0eTYzZw?oc=5",
+     "related": [
+      {
+       "title": "윤아, 편안함의 대명사 르무통 모델 발탁 - BNT뉴스",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFB5LTRxZHBWb284bEc4cVVQeF85Wm15aExrbEJodmM2Uk13T1FGd2hqTnVuNjVyUGx2N0NKSGVxS19nbjhYSzJfNEhXS20yd1JzMlhNVEdmdUhuLVpzX3ZObmNnU0c?oc=5",
+       "source": "BNT뉴스"
+      },
+      {
+       "title": "임윤아, 신발 '르무통' 모델 발탁...\"밝고 편안한 매력\" - 싱글리스트",
+       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9fUmRheFdfdUdRZDVtX3BZMFlmUHNUa3lHVU1kdURqM3BjalFmUHF5LXB1QXdWclFrckRMNFptb1ZmSjdXWUd1Wk9GU2VENDFZNVVEWmRHTDlpWUJ0S1BkNUs0eTYzZw?oc=5",
+       "source": "싱글리스트"
+      },
+      {
+       "title": "르무통, 브랜드 모델로 배우 임윤아 발탁 - 어패럴뉴스",
+       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE44MEd0Z0hwcm9uMERYV1NldzZfblZvcVN2cURrT3U4b2R2TUthZkxPRFJkdnc4SGtRU3RhemRXVHJCV0FXOVVQV3Y0NkRMblFsOXVKNDQtR2c2WXlSTk9xWVJJSXROMDVxYmNQcjIxTklMbUdE?oc=5",
+       "source": "어패럴뉴스"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-08-24",
+     "title": "르무통, 배우 박정민 신규 모델 발탁",
+     "summary": "이날 관련 보도 9건. 대표 기사: 르무통, 배우 박정민 신규 모델 발탁 - 한스경제",
+     "source": "한스경제",
+     "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1zZDZSN0hSZzBNdTNpRnU5bGF1MmNJV2YzTGxhVHFrZnI4a2tuRUVDeFZxOXF5TEl6Si02eXRVMzR3V2JxV1V6dzlXQzZBSTJzYW1ZWFpCdC1rZHl2Ym5Mck1lemVJbDhUM21r0gFvQVVfeXFMTndGRXRpTllPZF8zT0RFbmpweFNCZVpNUXJRa3lndnozdDdYVXJ4Qlh0NG90dFZSNVRPalpGcC05bVdYQldvbHk2cG52aVd0NEFZY3pIUDBfMWkyb000TFBKejZtUVBkclA3LUMwNHBN?oc=5",
+     "related": [
+      {
+       "title": "르무통 신규 모델에 배우 박정민…‘편안함’의 가치 전달 - 글로벌이코노믹",
+       "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNTTdBWUstWHpUdjBhMk05Qk5lc0N4N25FSTRpaVJPc01GX1NHQzBLcGVvd202b3BYSUhxMzZJbXNXSEktQnVnQ0tFc2M2dEdHN1VHMTcxZ3pqWG9jZEg1enZYOUNnMkZ1S0dsTzZ5RmpKVUpqWmNSdC1OblR5TW9xSTVCNnkxMXcyS2Nv?oc=5",
+       "source": "글로벌이코노믹"
+      },
+      {
+       "title": "르무통, 배우 박정민 모델 발탁…\"평소 즐겨 신던 제품\" - 뉴스1",
+       "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9Db3dISjh4SjItMDdqamplYkZocDNsZXNEYnB2R3BTNTZ3X00wbnBvY1doc0NiYkQ3aWpXRHdQZ0QydEVvLVNUeDZsbTExUUZjS3VXSW9GRWdxS214RWVn?oc=5",
+       "source": "뉴스1"
+      },
+      {
+       "title": "르무통, 배우 박정민 신규 모델로…'편안함' 앞세워 브랜드 강화 - 머니투데이 - 머니투데이",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE03dlpGbmhKdE5BbEtxRjBhbVF3U0tBdmp0SWZOSzVxMW1UWW5mcC14UVUtQ2lzcENid2Y2NDVxNU1TaVpuT2JTYUU0emFHLWpKdkpUQ1dHbG5YRHNBU3JDN1B6WVZ5SW1VV0HSAW9BVV95cUxNRTREY2JNV3E4elJvai1rRzZrRnVOQXNRaWxKb0d4MTJ2YkVXQUR1N2IzTnZPS2t3cDl2Q3dUVHltM0ZrWFFIQkEybjVMY01xdzgzMzE2Uk1Dck0wVWJGN1Q4cTZRcFlnUlViZlUxSTQ?oc=5",
+       "source": "머니투데이"
+      },
+      {
+       "title": "배우 박정민, 걷기 편한 신발 ‘르무통’ 신규 모델 발탁 - 맥스무비",
+       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBWR3VQellJRTZ2QzdEMVhwbThSVjhJa0xsZy1CZXBqb29lcVNjWGF5RTNQODRxTWxoaGY4RU00dERpRWxkSUYtTzNXejAzOWtYd1E0SEMtYTRia3dPc05ha2NkU0xDLVNBbkhR?oc=5",
+       "source": "맥스무비"
+      },
+      {
+       "title": "박정민, 르무통 모델 발탁…’편안함’ 가치 전한다 - 싱글리스트",
+       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBFWVJqcXE0VEo0YjhuWmpURjYtSTNTMmMtOXdlYnZzbXdmV2FINzY5bWNHRGh4MHZnTGhORU1QT2xsOTBVYmlFb3RVaFlPVWxiQm5SYk9HS1JCenFpRWhZYVhHdTFkQQ?oc=5",
+       "source": "싱글리스트"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-07",
+     "title": "남양주시, 1년에 단 한 번 열리는 ‘광릉…",
+     "summary": "이날 관련 보도 7건. 대표 기사: 남양주시, 1년에 단 한 번 열리는 ‘광릉숲축제’ - 검경일보",
+     "source": "검경일보",
+     "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBxbHlwZno2NjU3ZEl5M1YtNjhmVWhUdm1HUGU1MC1QSDBMeGNaVWJTNXE5eGJ6SXh3OVpiV08wZFM3b2RJcTZjcW5KVVVHTXlTdHpnSFNxRktNUUlJOGxhd1BWSTd2Zw?oc=5",
+     "related": [
+      {
+       "title": "남양주시, ‘제21회 광릉숲축제’ 열고 이틀간 시민에게 숲길 개방 - 매일일보",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBsOWt3SWk3RXBuLXJPWGJEQ2lXLUtKd1NaMVdnbUloTHJOeVdPMnRUWUVPUlY3a2ZlejB4WTJLYXJaR3J1NFVIZEtPRDJyMTNWV05zTTk5NW1rYU55RVp1RTUxM1c?oc=5",
+       "source": "매일일보"
+      },
+      {
+       "title": "남양주시, 1년에 단 한 번 열리는 ‘광릉숲축제’ - 검경일보",
+       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBxbHlwZno2NjU3ZEl5M1YtNjhmVWhUdm1HUGU1MC1QSDBMeGNaVWJTNXE5eGJ6SXh3OVpiV08wZFM3b2RJcTZjcW5KVVVHTXlTdHpnSFNxRktNUUlJOGxhd1BWSTd2Zw?oc=5",
+       "source": "검경일보"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-15",
+     "title": "르무통, 인기 모델 ‘코지2’ 후속작 선봬…",
+     "summary": "이날 관련 보도 6건. 대표 기사: 르무통, 인기 모델 ‘코지2’ 후속작 선봬…신제품 ‘코지3’ 출시 - 스마트경제",
+     "source": "스마트경제",
+     "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5tSmFfc2tSTU9Td1JKT1NXVWJyVGJid2FnTFpPanFfQ1oyLTNvTGNlSFRmOEdtWHFncklmVERtTVo5VmdrR0ducWNsaUtFa1piQzZXdGdRNWs5VmN3eUg2aEFsR1B5ODZfUVEtZGstbw?oc=5",
+     "related": [
+      {
+       "title": "르무통, 인기 모델 ‘코지2’의 포근함을 이어갈 ‘코지3’ 출시 - 패션비즈",
+       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBmSkV2b0dPZk81YXp5cXVfcFN6ZG1fdVZCM0l4OHZsUWY1WTVUb3d3UHNURENwb1RKU1RCX3ZxaFpnNnJYZ3RObEZDOHJrblo0?oc=5",
+       "source": "패션비즈"
+      },
+      {
+       "title": "르무통, 신제품 코지3 출시…코지2 인기 이어간다 - 뉴스1",
+       "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9seGNlZkUxTl82WU1Md241Y0dCVnNEZGlEaHc1V2U3WXFVY0lYbEpiNE5vLS1neVVhVmZkeFBLdnVjYXZSTEN2ZDdDWVpzWE9kdnMwSUUyTFItRzg1bDdF?oc=5",
+       "source": "뉴스1"
+      },
+      {
+       "title": "르무통, 인기 모델 ‘코지2’ 후속작 선봬…신제품 ‘코지3’ 출시 - 스마트경제",
+       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5tSmFfc2tSTU9Td1JKT1NXVWJyVGJid2FnTFpPanFfQ1oyLTNvTGNlSFRmOEdtWHFncklmVERtTVo5VmdrR0ducWNsaUtFa1piQzZXdGdRNWs5VmN3eUg2aEFsR1B5ODZfUVEtZGstbw?oc=5",
+       "source": "스마트경제"
+      },
+      {
+       "title": "르무통, 코지2 후속 모델 코지3 출시…신규 쿠셔닝 아웃솔 적용 - 컨슈머타임스",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBKOXJzSE1yMGxTc3ZrNmxxNHc3Uld4OUJ2T0J3OUNHRXpOWXNUX241cFpRMnNpMGRmQ05xSUpBU2hWQ19IcURma2lIbFRNRVBSemE1dXlPYWh6cWVxR0l4VUljci10UHYtZmc?oc=5",
+       "source": "컨슈머타임스"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-19",
+     "title": "르무통·카카오맵, 가을 단풍 명소 65곳 …",
+     "summary": "이날 관련 보도 14건. 대표 기사: 르무통·카카오맵, 가을 단풍 명소 65곳 안내…걷기 좋은 길 10선 선정 - 스마트경제",
+     "source": "스마트경제",
+     "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9La2VTcTBIV0xZOXltb2padFdkaTVldHJYaXA3S1F2NGcyQ2VfeEw0blVyLWpBUmtuZW84LWlNT1FsS0tOX2NiSVQ3d3FxOU1sOHVZaWQxN0o5UjlqWWhlMG5ha0I3MXZ6alRyYXByMA?oc=5",
+     "related": [
+      {
+       "title": "르무통·카카오맵, 전국 단풍 명소 65곳 지도에 담는다 - 한국사회복지저널",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBTRWMtMW91V0tzSkVnTTdyaWZ3YloyS21kZjBkRUU5ekNNZ0E4MVlmMDF4TWVjSHZsR0UtcGtJX2FfMDdUT0I5X29KQ3lXOE5waE9HTkhocVBQTTdqZXJOWmxUcU1yZkdOaExiUQ?oc=5",
+       "source": "한국사회복지저널"
+      },
+      {
+       "title": "르무통·카카오맵, 가을 단풍 명소 10선 선정…걷기 코스 안내 - 컨슈머타임스",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB3Z0Y0RTFuUWZLd3lqTDJrMnZSZHEwY25Pd09uSTYwRHlHbEZJSWRzemZsUVd4Mm5FamJEeVBmXzlPU0d5bjZyeUJyVndZQmZRYzhIZUswc2hraGZURkZsZmJScVlzcTVjTFE?oc=5",
+       "source": "컨슈머타임스"
+      },
+      {
+       "title": "설악산부터 문경새재까지…르무통, ‘걷기 좋은 단풍길’ 10곳 선정 - 글로벌이코노믹",
+       "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNWElDQ2ZlaUlGMlhneDcyWmc5ay1tNG8weUJvOEVSWTVabU1veG5aV0F1QzQ4bkVNQk5qT0JibzJuNTBLbWRjRndwek05YzMwN3p2NS13SU1tc1BBalV5UVBFLXhZNnFCSVR6SnBvMk80QjNEU0UxbVVIS0F4WHBta1E0dEhYQU9BV3o4?oc=5",
+       "source": "글로벌이코노믹"
+      },
+      {
+       "title": "르무통·카카오맵, 가을 단풍 명소 65곳 안내…걷기 좋은 길 10선 선정 - 스마트경제",
+       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9La2VTcTBIV0xZOXltb2padFdkaTVldHJYaXA3S1F2NGcyQ2VfeEw0blVyLWpBUmtuZW84LWlNT1FsS0tOX2NiSVQ3d3FxOU1sOHVZaWQxN0o5UjlqWWhlMG5ha0I3MXZ6alRyYXByMA?oc=5",
+       "source": "스마트경제"
+      },
+      {
+       "title": "카카오맵, 전국 단풍 명소 65곳 담은 ‘단풍 지도’ 공개 - 이데일리",
+       "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNNUVBRWVzX29kZ2NBWlhkakl0QnFKOGFIR0poeGhYSWFLWHJRNUtLZHVzTEstQ25kZzJ1NTBpeUFTUFB4QjRlNEpMa2pXOFJmaWo3aURsTFlNZTRwMzNEZjRnMEtxeF9tbmthZjJSRFNOd0MxVHZUenVUMUdqZ2E5Nw?oc=5",
+       "source": "이데일리"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-27",
+     "title": "남양주시, 제21회 광릉숲축제 성료…시민과…",
+     "summary": "이날 관련 보도 6건. 대표 기사: 남양주시, 제21회 광릉숲축제 성료…시민과 함께한 가을 숲길 - 신아일보",
+     "source": "신아일보",
+     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE8xNXFJN01CTkhFS1lCbkV2cGtiODBpV1lmemxGY0llMDlFZ19YY082Y2xvWkVvczhGU0h0TjQxZ0ZfOTYxUUtZVE1oSXktanp1RUgwSlZsV3NFb3R3WGVBOFdCS2F3dTczUUt3WTNjeVY?oc=5",
+     "related": [
+      {
+       "title": "남양주시, 제21회 광릉숲축제 개최… 시민과 함께 숲길 개방 - 매일일보",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1yV3BzWWx4MTkwQnhyZEhOY1dtVmNNTTJOMkhPRVRBcVZzV2I4MnA3cjZGN2NfaGZzUnFGZkUzczUweUt2REYyMUhpM2hRcFBZMVhJNnV0bkh3UnQxb0Q4QU9Jbmw?oc=5",
+       "source": "매일일보"
+      },
+      {
+       "title": "남양주시, 제21회 광릉숲축제 성료…시민과 함께한 가을 숲길 - 신아일보",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE8xNXFJN01CTkhFS1lCbkV2cGtiODBpV1lmemxGY0llMDlFZ19YY082Y2xvWkVvczhGU0h0TjQxZ0ZfOTYxUUtZVE1oSXktanp1RUgwSlZsV3NFb3R3WGVBOFdCS2F3dTczUUt3WTNjeVY?oc=5",
+       "source": "신아일보"
+      },
+      {
+       "title": "의전 줄이고 시민과 숲길 열었다…남양주시, ‘제21회 광릉숲축제’성료 - 시민일보",
+       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5EZ3JVUGlpZWRKLWJaMmxROXRfdzNzRVpkamRmYTBweHFBWmpPa1dtNnl1UWNyU3lqR3FYT0U5NEw2LVZ6VjluM0lJd2t5TkJmT2NhcnQ2YUFsMWZEa1BGVkdWMXZjUllaSW5PY3M4Y9IBb0FVX3lxTE5EZ3JVUGlpZWRKLWJaMmxROXRfdzNzRVpkamRmYTBweHFBWmpPa1dtNnl1UWNyU3lqR3FYT0U5NEw2LVZ6VjluM0lJd2t5TkJmT2NhcnQ2YUFsMWZEa1BGVkdWMXZjUllaSW5PY3M4Yw?oc=5",
+       "source": "시민일보"
+      }
+     ],
+     "auto": true
+    }
+   ],
+   "spike_notes": {
+    "2026-01-13": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 2.15,
+      "pc": 1.75,
+      "male": 2.18,
+      "female": 2.05,
+      "age_cv": 0.19,
+      "weekday": "화",
+      "driver": "르무통"
+     },
+     "summary": "급등일 전후로 검색어와 맞는 게시물을 찾지 못했습니다.",
+     "candidates": [],
+     "auto": true
+    },
+    "2026-10-21": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 1.96,
+      "pc": 2.42,
+      "male": 1.96,
+      "female": 2.07,
+      "age_cv": 0.14,
+      "weekday": "수",
+      "driver": "르무통"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "르무통·카카오맵, 전국 단풍 명소 65곳 지도에 담는다",
+       "date": "2026-10-19",
+       "source": "한국사회복지저널 외 10건",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBTRWMtMW91V0tzSkVnTTdyaWZ3YloyS21kZjBkRUU5ekNNZ0E4MVlmMDF4TWVjSHZsR0UtcGtJX2FfMDdUT0I5X29KQ3lXOE5waE9HTkhocVBQTTdqZXJOWmxUcU1yZkdOaExiUQ?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "걷기 편한 신발 르무통, 카카오맵과 공동 캠페인 전개",
+       "date": "2026-10-18",
+       "source": "패션비즈 외 4건",
+       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE0wSXFjRDM3NmxDQ1JRcDhjMC16N0xCMVk4bnMzN1p3U0tyWGhtRU5MMzdaSnkzTEJNTjJXc1lSVS1tRlJpQmRzZlpSNU5sZG5r?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "카카오맵, 전국 단풍 현황 한눈에 보는 ‘단풍 지도’ 서비스 오픈",
+       "date": "2026-10-19",
+       "source": "카카오 외 3건",
+       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5oTWxfa1VQTkh1aHZMdFVQQ1cyenhpMmtIUzh3Q0V6Zk0yM21Zbk1xS0RaUnBoMV9IcG9hVGtQOHEwYkdHcExFZ1c3ZEI4WXAtVGh5MDBn?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "크록 패턴부터 겨울 보온 슈즈까지... 신발의 변신은 무죄 [최기자의 …",
+       "date": "2026-10-18",
+       "source": "시장경제신문",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1zWk43RDBWaUQtdjNVMTNSMjZsMndEdkdrOEgtRXBDS3d3TkpvRHEwMnh6M002Vzl0NFRYTXJZejFyMV8ybHZLRmVoS1VSWTJhdWRVeXdHNVJTWFh5LUpqNjY2MlZMNzExM1BqTWxHY2w?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-03-26": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승",
+       "여성 상승이 더 큼"
+      ],
+      "mo": 2.18,
+      "pc": 2.36,
+      "male": 1.89,
+      "female": 2.43,
+      "age_cv": 0.08,
+      "weekday": "목",
+      "driver": "르무통"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "SSF샵, 봄 맞이 썊핑데이 프로모션 진행",
+       "date": "2026-03-27",
+       "source": "삼성물산 뉴스룸",
+       "url": "https://news.google.com/rss/articles/CBMi5wJBVV95cUxPNVNRZWdJTHM3dGVaQzdodjkyWGIxUnVUZTVNRkwzRXJnT2dKUzVLQXpDaUprYXFXX0VfMVhxVzNOLTlCQ0hNTW1kbjEwOElGdU82WXUxcTdYOWNna2hnT1JPN2dWd0RmZ2pDdWNyZjhVVHBSNDI3T0xiRUxBYndPMTVGSHV3cFktTGFEMFIyakhmVHpPeFEzLUsxTEgwYkZ1ZUpZX2xCOWxDTi1jMnYyVWRKcllybVV3WG0yVHc4R21ib3g0c0dmbjQ5S0FlVzNSYk12S3BDblJ2bVh3cjVQYndvOTJ0LVBlbjM4ak10bHREd3ZjN3Z3WUhqUTRPVnNvaUZpMTg2T1Rrem05X01rZ1hCOXEzQzFZZEZMSnJWTHVuVVZwcU1VcTZQUVdMMUFtNlVBS3EyY3hWUDdYQlFUWjNvVTZvRWFGcHZPUFVuWE41X2I5UWJ2UWRONU9BWjEwZVhMYlFscw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "대구 지하철 1호선 진천역 화재...불 진화 완료됐지만 '원인 파악 중'",
+       "date": "2026-03-23",
+       "source": "국제뉴스",
+       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBjQTQ1MEwwdE92cGdNUHFjVFo3cWtjRWhHMFNYbktndjBaZUVOUDJWTXY3em14Y3dac2VHX08ydUFmNzVhVDVrTHVfSE1fWEF6ZnpxekFZUnNmaW5LeDNqRmZqaENzTlVMLW5Qc3Bn?oc=5",
+       "relevance": "약",
+       "kind": "뉴스(대중 화제형 표적)"
+      }
+     ],
+     "auto": true
+    },
+    "2026-09-06": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승",
+       "주말"
+      ],
+      "mo": 2.54,
+      "pc": 3.16,
+      "male": 2.42,
+      "female": 2.76,
+      "age_cv": 0.09,
+      "weekday": "일",
+      "driver": "르무통"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "‘2026 올해의 브랜드 대상’ 컴포트슈즈 2관왕 '르무통', 걷기 편…",
+       "date": "2026-09-06",
+       "source": "서울뉴스통신 외 2건",
+       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBhd2RRZU1tZjFaNUpScUNyMWdsanVDaXhkUS1DTXVBdXJwOVpNVUJudXVLT1ZlUHZWaDh5dE1IV3c3bnhWNllVT1ByenJNRkFRUGFNc3d4N3VnaVM4dHlhU2dGZDBEZmJRQ1lV?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "블랙야크·우영미·르무통 등 '리테일테인먼트'로 팬덤 키운다",
+       "date": "2026-09-03",
+       "source": "패션비즈 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE83NkF5NGtuR1JWTS0wRy1WQldEbHl3MGQycUljSzhWX2NlckdKMV9sWkxiaUI3MHFwNTkteW4wRGJlNzBrUTdrRk91MnFYUnJy?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "르무통 산책회, 함께 걷고 소통하는 즐거움 알린 '산책회'",
+       "date": "2026-09-07",
+       "source": "한국경제 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE8zcjRYbzhkTkIwdlBTSlhRNjhPdEo0QW1fVFdHQzNnTlhiWWxDVmxFU1MxTXBWeEhRU3hhMHBMMWNXd1VabHNXaXNPcHdSN1JQVEpuODdZeThKdw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "4400명과 함께 걸었다, 일상에 특별한 추억 더해",
+       "date": "2026-09-07",
+       "source": "조선일보 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNWms1Tlpab0xEV0VSc1VSUm5KZXBZOHVuR0Vyckl2aGlNeWViUHRiR0VCTHMwYzlvNzVxQWotS0x6TnV6NmR6anZWb1JYTF9QR3N5NEFSOHRiaGFWV0Mta0pPbHNfUV9YUXpLRVlfaWNvbGsxajdVcVJ5SGt2TTNVX2RraUVoNWhDZ2VoQWtR?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      }
+     ],
+     "auto": true
+    },
+    "2026-09-03": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 2.52,
+      "pc": 3.31,
+      "male": 2.91,
+      "female": 2.57,
+      "age_cv": 0.06,
+      "weekday": "목",
+      "driver": "르무통"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "르무통, 손태진 라디오 ‘산책회’ 첫 동행 성료",
+       "date": "2026-08-31",
+       "source": "시사캐스트 외 3건",
+       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4zTF9jWkxyN0NyNUVLZURkS0xHc05uajM3bU5HV3U1RmUtWGVjZHF2SWZEemhBeHVyc2tKNDBFeGd2Mmlab0RXOG9SZG1oTkh5elFoUUFNVDlJRjdLRVRha2MwaXF5S2M?oc=5",
+       "relevance": "중",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "르무통, '2026 올해의 브랜드 대상' 컴포트슈즈 부문 수상",
+       "date": "2026-09-02",
+       "source": "한국경제 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1xX3dKRE5oNC1rZUhsVjc5Z3cyZWxLLTNXN0FCM1Z6enZDWXp5T1hRakM5X1NQMnBlbXJ0ZkZ3b3F4SjFETTdwLWx6NjRfUWl1SFpTWnZPMWhUdw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "블랙야크·우영미·르무통 등 '리테일테인먼트'로 팬덤 키운다",
+       "date": "2026-09-03",
+       "source": "패션비즈 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE83NkF5NGtuR1JWTS0wRy1WQldEbHl3MGQycUljSzhWX2NlckdKMV9sWkxiaUI3MHFwNTkteW4wRGJlNzBrUTdrRk91MnFYUnJy?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "231억이 1474억으로…르무통, 2년 만에 매출 6배",
+       "date": "2026-09-04",
+       "source": "자본시장뉴스",
+       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5SY0lxZUNDVkVDRy1nNGxaS3kxWGJ5QV94WGJRSXZOODhJSTFaWkx1TEN6UzFnbUp0TnBmcC1xZ2ZXaFRmY0NCc1pDajVLMUdIOEh3WUkyelNHVndUZW12cjJWQi12NjA?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-03-10": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 1.97,
+      "pc": 1.54,
+      "male": 1.8,
+      "female": 1.99,
+      "age_cv": 0.08,
+      "weekday": "화",
+      "driver": "르무통"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "르무통 ‘사계 르무통 산책회 in 문경’ 개최",
+       "date": "2026-03-10",
+       "source": "패션비즈 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9GNlRpcmpyaGlKUnZZcjV3MlUtZV9HajFsNDZsdXRwWWFGZlNDZ3hJdW1wVWtmRTV6enI3U0dKUXhGdU5yNWp1YXJNc3BJdTVZ?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "크록스, 국내 앰배서더로 엔시티 위시 발탁 …‘Do Your Thing…",
+       "date": "2026-03-10",
+       "source": "베이비뉴스 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5OZzZDTG5nR0ZWV2hpdmVibVQwR1hVYzA0UC1CNTRNdjdIbGxTeG9qMnJjdzhncGYwdzV4Vjd6YU9pSThaZW1YMlhvSy1WN21fVjY4WEtVZlltSmJUSzJYMHMyVTN6VzZKYWJkYQ?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "'우리동네 야구대장' 박용택→김태균 감독 도전...U-10 유소년 직접…",
+       "date": "2026-03-09",
+       "source": "국제뉴스",
+       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBNQTJJbmpPdjJ5UG43aG9CMnJGRksxMEtiaE9LdTdBRGtjMjhialhLVTdGZmI0bmVscW9nUlZaWHpOaU9oRHpBRzY4VlZ6MmduUDZBclJPM3N1U3ZJNmwwOGlzdVBWWmJDQnM4VGh3?oc=5",
+       "relevance": "약",
+       "kind": "뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "아이브, '뱅뱅'으로 '인기가요' 1위 차지...음방 8관왕 달성",
+       "date": "2026-03-08",
+       "source": "국제뉴스",
+       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1Oa1pCWklkV25VSHFNeVhoam1hV0h0RGozQXVZYzZTcFVqVWZVNVd4bDZCQXBHbWJ0VjFKU3hXVTFyV3FGMWFuQ3VOMHk1eWJsWnlUWnVDSWpibE1uakFwR0VHWktMVFJFYkp0ODZn?oc=5",
+       "relevance": "약",
+       "kind": "뉴스(대중 화제형 표적)"
+      }
+     ],
+     "auto": true
+    },
+    "2026-08-20": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 2,
+      "pc": 2.71,
+      "male": 1.93,
+      "female": 2.17,
+      "age_cv": 0.03,
+      "weekday": "목",
+      "driver": "르무통"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "르무통, 광릉숲 ‘르무통 산책회’ 개최…남양주시와 ‘걷기 문화 활성화’…",
+       "date": "2026-08-20",
+       "source": "시사캐스트 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1iQ3FEYXdUeEdRNnhjcUdWVjVjb00wOHRlMVNLOEVBci0yZ2RRTEtOWktnSFJBd0t1SUhldVJuOTUzOWRCb19TenVjQWZCVHp4cTBzeGVLZGRxWmw4WHg3QnVCaXRSYlk?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "테팔, 교촌치킨, 르무통, 현대백화점, BGF로지스, GS더프레시",
+       "date": "2026-08-20",
+       "source": "에너지경제신문 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1VR1V1a1RhNW13S2VicnBCaFRqUVhFQmxPQ3UxRzBHTjBfX0ZjSUlWVWYyVkFZRm1VaUNYUDc1bVZpMlhWM3lraW5xWGdoSlNTNVNMdHFEYUNmdms?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "에이블리, T1과 '오피스 웹예능' 공개 외",
+       "date": "2026-08-20",
+       "source": "서울파이낸스",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBKbnNWbEZGOXoxeU9QNllzVExEa0hpTWNsUDE3ci0xaTBHSHZaWUZpM081eU1wSm1vWjNVNVgzcHZCc0VFNzJnbGg2ck1tdnU3VEFJcUd4cl9JWmFxYlkwRFRyNEVBeG5mY1E?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-02-10": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승"
+      ],
+      "mo": 1.65,
+      "pc": 1.54,
+      "male": 1.65,
+      "female": 1.67,
+      "age_cv": 0.05,
+      "weekday": "화",
+      "driver": "르무통"
+     },
+     "summary": "급등일 전후로 검색어와 맞는 게시물을 찾지 못했습니다.",
+     "candidates": [],
+     "auto": true
+    }
+   }
+  },
+  {
    "job_id": "7b6b6fd8-7051-4507-af53-17092560e7ba",
    "collected_from": "2026-10-30T02:27:02.015Z",
    "keywords": [

@@ -3,6 +3,558 @@
  "note": "보조 지표·이슈 데이터. keywords 중 하나라도 현재 분석 키워드와 겹치고 날짜가 맞을 때만 표시.",
  "analyses": [
   {
+   "job_id": "2c4d3923-dadd-4393-beb9-2e448dece88a",
+   "collected_from": "2026-11-06T01:21:44.853Z",
+   "keywords": [
+    "바크",
+    "barc",
+    "바크클로그",
+    "바크슬리퍼"
+   ],
+   "start_date": "2026-01-01",
+   "end_date": "2026-11-05",
+   "collected_at": "2026-11-06T02:21:01.054Z",
+   "auto": true,
+   "sources": [
+    "구글 뉴스"
+   ],
+   "search_terms": [
+    "바크",
+    "바크슬리퍼",
+    "바크클로그",
+    "barc"
+   ],
+   "notes": [
+    "네이버 검색 API 키 없음 — 블로그 발화량·화제글 미수집"
+   ],
+   "aux": [],
+   "issues": [
+    {
+     "date": "2026-01-13",
+     "title": "넥슨 '아크 레이더스' 판매량 1240만장…",
+     "summary": "이날 관련 보도 4건. 대표 기사: 넥슨 '아크 레이더스' 판매량 1240만장 돌파 - 뉴스포스트",
+     "source": "뉴스포스트",
+     "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9PUHhBQko2cmh4X0NsT0pDbXZ2ZFNDUlNXamQ3UldtNnk2SjVHREV5ZXdHc1BqbVVwMXF4d2R3YlBiYllkcFFtNzZDVHNyYVRvbzFTRDllM3lad05OTjM0RUYzRnhMVWVId2c?oc=5",
+     "related": [
+      {
+       "title": "넥슨 엠바크 스튜디오, '아크 레이더스' AI 논란 정면돌파…\"인력 대체 아닌 효율 중심\" - 지디넷코리아",
+       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9hcnVLYVJvYzk0cFhENFJJU3JhN29KZTg4RXoyZURYLUprb0ZYZGhDYjQ5Y1Nuckktdkk3ZUJCNEJXaE15R1ZpTDhNM1FNbFl0SWprZE1B?oc=5",
+       "source": "지디넷코리아"
+      },
+      {
+       "title": "넥슨 '아크 레이더스' 판매량 1240만장 돌파 - 뉴스포스트",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9PUHhBQko2cmh4X0NsT0pDbXZ2ZFNDUlNXamQ3UldtNnk2SjVHREV5ZXdHc1BqbVVwMXF4d2R3YlBiYllkcFFtNzZDVHNyYVRvbzFTRDllM3lad05OTjM0RUYzRnhMVWVId2c?oc=5",
+       "source": "뉴스포스트"
+      },
+      {
+       "title": "아크 레이더스, 두 달 만에 판매량 '1,240만 장' 대기록 - 게임메카",
+       "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5NWDNMTVkxNGRpZVVodlB2M0ZpMkVYWC0wWXlFdmFuXzUySDlaVUx1LVVJZTFuU3AtSVA5VnZoNHhWMDRmMEJ0MVhhTWUxY2RRbU1pRzExeDPSAVtBVV95cUxNSlpzRU16SjZxY1ZQVElBS3N6WkwtUkhabjQwSmxmZE1YMHJzdnFpOUVMdXRUZERPU01vOXN6OVR2N05TMXBBQWd5bElTSTFQSmtNODgxRXpWTjA0?oc=5",
+       "source": "게임메카"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-02-20",
+     "title": "넥슨, 패트릭 쇠더룬드 신임 회장 선임",
+     "summary": "이날 관련 보도 9건. 대표 기사: 넥슨, 패트릭 쇠더룬드 신임 회장 선임 - 조선일보",
+     "source": "조선일보",
+     "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOdld6UVA2N3NnVm53c2Zja01OS2Z3Z2UtUmM3Rm9VVlc3ODk3NFlmV0dqaEF1VkswOXFiM21iQ2lDdUQ4U1FMRGRRZXFkSlQyZjNpd1pvb0NOemZuSFY4UmFQNzc3VkFPR0xVeGt5aDhURlNkSVozZzEwaGo0X1RKZG9oMA?oc=5",
+     "related": [
+      {
+       "title": "엠바크 스튜디오 대표 패트릭 쇠더룬드, 넥슨 회장으로 선임 - 게임메카",
+       "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBvdlhOQ2ZsVjdYTnhmWl8xQkIxM3RSM2tGMXFrZy1pZlc0NkZhSnp0eWtLTzdfR1piZVhHWUwxTGpLaDQya3pfRlNUSHl5YWpWZDVhUnpoZkTSAVtBVV95cUxNLXdUU1ZPVFRnTjEyN0w0RzJVRGw3elZFRGZOZHU5ZlFXYWQ0SEFBZlFKeVZLZVZmRVNZZjNETWlMNTlRcVItVjNvU2x3Vk10MjVOa3FuaHV1TFNB?oc=5",
+       "source": "게임메카"
+      },
+      {
+       "title": "‘글로벌 공략 고삐’ 넥슨, 회장직 신설…엠바크스튜디오 CEO '패트릭 쇠더룬드' 선임 - 금융신문",
+       "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBSczB3S1hkUWR1N3Z2bmZwdktCZUs1bXFnaGFHSnp4X19OdzNtZzFmSVBGTkxmNU55NlprUEpPS1FoMHk2aGtQa1dVVW5aWHJNanJnYkkzREZ6bDNRQ2xnS2Jyd2dPTG1aV2Z2Z3dZeUxGMVZtTzkzRGNQZ3E?oc=5",
+       "source": "금융신문"
+      },
+      {
+       "title": "넥슨, 신임 회장에 엠바크 스튜디오 창업자 ‘패트릭 쇠더룬드’ 선임 - S저널",
+       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE80NjgtRHpIS2JDVDM2MjFEWGItWmR6d1BRU2xpNnNIVUlUM1E2Szh5QzR3WDJlMnQ4Y2tHMWl0ZUswbG96WFBncENKYUIzbHRzSzJLdHVaSVRrdHM1MnA3TG1NcnZ1UEQ1QkhUWFlR?oc=5",
+       "source": "S저널"
+      },
+      {
+       "title": "넥슨, 회장직에 패트릭 쇠더룬드 엠바크 CEO 선임…글로벌 전략 강화·차세대 성장 주도 - 지디넷코리아",
+       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE0xQi1YT0RoMkhSVGdCY283Slc4dm5KYXRnMG41YkdNcFc0ZjJxZ2RqVjE3OF9wWnY3NEdLYVlUeEFJbncxZUktdEw5TXlNQ3VKMjI4OVVR?oc=5",
+       "source": "지디넷코리아"
+      },
+      {
+       "title": "넥슨, 신임 회장에 패트릭 쇠더룬드 엠바크 대표 선임 - 더게임스",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1BOHhKMUZxZklRQUtCX0dhSGdkWTduUzVoVTlWdURGWTE3cFc1OFdLUkt4T0xhSndMNW1EU3ctam1FZzRNX1dtU256UTRkbzFNVmVXTEs0ZWptWDZYOW5UdVFFQUkyYm9TejduTg?oc=5",
+       "source": "더게임스"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-04-06",
+     "title": "\"바삭하면서도 부드럽게\" 신세계푸드, 보앤…",
+     "summary": "이날 관련 보도 4건. 대표 기사: \"바삭하면서도 부드럽게\" 신세계푸드, 보앤미 '바크슈' 출시 - 뉴시스",
+     "source": "뉴시스",
+     "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBrdW00NEJ6dmxBcXRETFJUZzZPT3RYbC1yRWlRcFN0SnV4SFFFUmF6V0JpV1ctQ05Hak41dG5Ma1RuSjhFNnVieEozVFBoV2xQNzRYdTQ0WjZFZFg0bTJCONIBeEFVX3lxTE1tT0Y5emxieVVYY3h2UDZ5X3JxcVRtejlnVXI5Qy1SRE5acVFHUzJLSDEwZ19MNUVtdzRibTRGdm8yNE53QkxGR3N5RnF6b0dZaVZKSTNRSWJfT3ZFa1Zmd1hpSy11TjYxVTMyT0piQ0xMTDhIMXB3eQ?oc=5",
+     "related": [
+      {
+       "title": "한 입에 두 가지 식감을”…신세계푸드 ‘보앤미’, MZ 취향 디저트 ‘바크슈’ 출시 - SHINSEGAE FOOD",
+       "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQTzN0Y3BCQ0wtS1pHVnRHMWVqLVc2Sno1MlBialBCeWVFMDZUSENiRlc5NlprWmhoNjJTQUx0TDZXeno3TzRYeWhKaER2ZVU1SF9USjE2TWxJcG5PTU56SThLVkVQa1pBSHk4MTNYbllDZF9jRTF2WXJ5NnYzcDJ2UlRqVQ?oc=5",
+       "source": "SHINSEGAE FOOD"
+      },
+      {
+       "title": "\"두쫀쿠·버터떡 다음은 바크슈\"...신세계푸드 '보앤미', MZ디저트 출시 - 머니투데이 - 머니투데이",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1GdVJrb1JRYk9nVFlDYWxEMllMdmFOYm5wOWVuYnlNZXRLTDVuWGU1djNkOG8tYlNEVmwtUjNqQy1oWHUwdU9JeFhvU0VxTVRlRUhpbkYwUmstYUtsZVNFMUFVUFdKbEx0NFHSAW9BVV95cUxPamZRdTVnQmo0d1M1bmhjdUJ0MVUwVU1KVHV0d01pTTBTa2J2SW9SQXhXNjMwNWF0MmRoVm05eVFYYThTOFVqTkZvN3JlV043dkwtT2NGZHIweG8xZG1fRHVHZElXRU9rZ2xJb21icWM?oc=5",
+       "source": "머니투데이"
+      },
+      {
+       "title": "\"바삭하면서도 부드럽게\" 신세계푸드, 보앤미 '바크슈' 출시 - 뉴시스",
+       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBrdW00NEJ6dmxBcXRETFJUZzZPT3RYbC1yRWlRcFN0SnV4SFFFUmF6V0JpV1ctQ05Hak41dG5Ma1RuSjhFNnVieEozVFBoV2xQNzRYdTQ0WjZFZFg0bTJCONIBeEFVX3lxTE1tT0Y5emxieVVYY3h2UDZ5X3JxcVRtejlnVXI5Qy1SRE5acVFHUzJLSDEwZ19MNUVtdzRibTRGdm8yNE53QkxGR3N5RnF6b0dZaVZKSTNRSWJfT3ZFa1Zmd1hpSy11TjYxVTMyT0piQ0xMTDhIMXB3eQ?oc=5",
+       "source": "뉴시스"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-06-17",
+     "title": "매일 30TB 데이터 수집하는 '아크 레이…",
+     "summary": "이날 관련 보도 8건. 대표 기사: [NDC 26] 매일 30TB 데이터 수집하는 '아크 레이더스'가 무사한 이유 - 게임메카",
+     "source": "게임메카",
+     "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9BRkoybjU0N3k2dkdJc3FyejlfZEVlTFJGVENhaDl1MTNVQWRtTUJzZDg1akRzVXlKOG9tUVZySUtSbXNzclFNMEpOU09LNWtBekljWUpaMVbSAVtBVV95cUxPZ1NNbUZfZlFmQUJIanEzdXd2azRWOEJKVVBkNzZydGxZTDBzaWVETWZDX1BCay1QdG1KbEpaa3BkS19lclVRV3RKM2llTUV0VmwyTHNmdkh6MXNj?oc=5",
+     "related": [
+      {
+       "title": "[NDC 26] 매일 30TB 데이터 수집하는 '아크 레이더스'가 무사한 이유 - 게임메카",
+       "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9BRkoybjU0N3k2dkdJc3FyejlfZEVlTFJGVENhaDl1MTNVQWRtTUJzZDg1akRzVXlKOG9tUVZySUtSbXNzclFNMEpOU09LNWtBekljWUpaMVbSAVtBVV95cUxPZ1NNbUZfZlFmQUJIanEzdXd2azRWOEJKVVBkNzZydGxZTDBzaWVETWZDX1BCay1QdG1KbEpaa3BkS19lclVRV3RKM2llTUV0VmwyTHNmdkh6MXNj?oc=5",
+       "source": "게임메카"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-08-26",
+     "title": "펄어비스 검은사막, ‘길드 리그 정규 시즌…",
+     "summary": "이날 관련 보도 7건. 대표 기사: 펄어비스 검은사막, ‘길드 리그 정규 시즌’ 시작 - 인벤",
+     "source": "인벤",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9zTmc3dlBYWWsxWWxZODRYMzZUNThhVjZ4bzlUR3ZMUzNsVWRlbldJTVJQNHlEb0xaekRqVnhBVFhfT0c0ZUVWVUNIWThNN0M4NERCc3dqVVpHNXJpamc?oc=5",
+     "related": [
+      {
+       "title": "펄어비스 '검은사막', 길드 리그 정규 시즌 시작 - 디스이즈게임",
+       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFAxRDQxR3ZQeXN5VmhXSmZ3TVZjaXFtVlNtV1NxcjZuVFphNXU5RHdZWmxLUTFPeFJJZzFQZ21vMEJMTTlsUjBJNFJfQnhhRFBRUkVGSQ?oc=5",
+       "source": "디스이즈게임"
+      },
+      {
+       "title": "검은사막, 12분 승부로 빨라진 ‘길드 리그’ 개막…대양 콘텐츠도 확장 - 뉴스탭",
+       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBOTGFOYU5NdmZuS3lVaExBNnp2TWI5WE0yQzJaTURQYU5Na3F0SDlPMEQ3TXpOaWtnN0ZKaVBhZVotR1Z0N1ZUdTFYMkNyTG1lYWRxTndCdGp6QjhNSEdyNEFpUmtwQlpQUWdTZg?oc=5",
+       "source": "뉴스탭"
+      },
+      {
+       "title": "펄어비스 '검은사막', 속도감 높인 길드 리그 정규 시즌 돌입 - 포인트경제",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB5aXVZajlYOTBFX1dNMUk2R09Ob1NSNjVHd2Qyb3J2UzNLWTl6TFRoa2tDUGxvZHp2T216TDV5eEZwLWdYX3dzeFpFOFlwXzg4WmlPT3JpQS00VzFoUFk5dGRTTjJ6WS1EeGc?oc=5",
+       "source": "포인트경제"
+      },
+      {
+       "title": "펄어비스 검은사막, ‘길드 리그 정규 시즌’ 본격 개막 - 서울경제TV",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE8yRjBfcnZoU29zTGdiTm5OdEx1ejZQWEhxNXUxQVlPVUJuQ25fSDl6bDg4RTZmWGlKb01Wd0pQRWs4VzRod0Q0QTJvV3ZMakNSNndrM2RrakVZbXBya3ROVlMzckg?oc=5",
+       "source": "서울경제TV"
+      },
+      {
+       "title": "펄어비스 검은사막, ‘길드 리그 정규 시즌’ 시작 - 인벤",
+       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9zTmc3dlBYWWsxWWxZODRYMzZUNThhVjZ4bzlUR3ZMUzNsVWRlbldJTVJQNHlEb0xaekRqVnhBVFhfT0c0ZUVWVUNIWThNN0M4NERCc3dqVVpHNXJpamc?oc=5",
+       "source": "인벤"
+      }
+     ],
+     "auto": true
+    },
+    {
+     "date": "2026-10-06",
+     "title": "넥슨, 체르닌 엔터와 맞손...엠바크 스튜…",
+     "summary": "이날 관련 보도 9건. 대표 기사: 넥슨, 체르닌 엔터와 맞손...엠바크 스튜디오 게임 2종 영상화 추진 - 아시아에이",
+     "source": "아시아에이",
+     "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE01cjM3bjdfYWU5dDVDbEt6R2VwZUNnaTFlWmVNcGJVTzZnR2hNLUZCaDlWQVQ5NF9NdGVNSjdEbTZGazZaWm52NC15a1NNblhCOGRCbkFUQ0RQc0pCYkRfclUwbmpOUWxQMVHSAW5BVV95cUxNSlpyTDdfcmtIMEo0SmJlWkgzRm1MQmg5SEh4QXRHX0xLQllOUzFnWUYyZVdDX2VXVkR3RXhoQnp4a2F2UTdUMEpHbmRrRk9HNkJKS0NQaTBHUUtsREdBeGljcG4xOFdHQV9QSVVwQQ?oc=5",
+     "related": [
+      {
+       "title": "넥슨 엠바크 히트작 〈아크레이더스〉 등 2종, 할리우드 영상화 착수 - 글로벌E",
+       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9PQlRINEtvaFktZl82UDl1NTU3dXRNcTZORGVJQTh1V2xOczVUdy10S2JfQzFKWXRySHd1bmt5RUJWVG1CWkRnOC1BblZkTGh2bWppTnF5bldFYXh1TFV3WGs2dDZadHFhMURz0gFvQVVfeXFMTWNCVXh0UnR6djBNRkI5VUVLN0dkWk5YYjdSZXM0YTVHaEc3WTZOUkg0TFdpQ0JGTEFNVEdIUzZpS21SVjFWRUNiSllseXlzeHNjMHJNaW9uWGhkWk9HUzNSR3pEcjNPRGVkQzl6NjM4?oc=5",
+       "source": "글로벌E"
+      },
+      {
+       "title": "넥슨-체르닌 엔터테인먼트, 엠바크 스튜디오 2종 게임 영화와 TV로 제작 - 베타뉴스",
+       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFB5b2RWd3pIUk9XUjQxS0VldDF3TXFCMTFHU09HMUo4c04tZUp0eTVjbE1KX0lmdkc1RVR5RDBKVGVTTnNXaFphVW5Sbk9ORUZYUUdoM2xFamxVeG94TkRzYUdQbmU?oc=5",
+       "source": "베타뉴스"
+      },
+      {
+       "title": "엠바크 스튜디오 인기작 2종 영화·TV 콘텐츠화 추진 - 아이러브PC방",
+       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE00RE1HaXI1UldDUTdFbGpfODFaNi1yRzFYVnVJMUZKdlpsNnV5V0l2TTBPaXBMdkZfVTJhbE1WUWNKcWI0aTVTU0YzXzl2OU5ZMGpZa1FoTHpfZkhiYll6NHpkQjQ3SW85RklPd2h2WQ?oc=5",
+       "source": "아이러브PC방"
+      },
+      {
+       "title": "넥슨, 체르닌 엔터와 맞손...엠바크 스튜디오 게임 2종 영상화 추진 - 아시아에이",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE01cjM3bjdfYWU5dDVDbEt6R2VwZUNnaTFlWmVNcGJVTzZnR2hNLUZCaDlWQVQ5NF9NdGVNSjdEbTZGazZaWm52NC15a1NNblhCOGRCbkFUQ0RQc0pCYkRfclUwbmpOUWxQMVHSAW5BVV95cUxNSlpyTDdfcmtIMEo0SmJlWkgzRm1MQmg5SEh4QXRHX0xLQllOUzFnWUYyZVdDX2VXVkR3RXhoQnp4a2F2UTdUMEpHbmRrRk9HNkJKS0NQaTBHUUtsREdBeGljcG4xOFdHQV9QSVVwQQ?oc=5",
+       "source": "아시아에이"
+      }
+     ],
+     "auto": true
+    }
+   ],
+   "spike_notes": {
+    "2026-10-09": {
+     "signature": {
+      "type": "관심층형",
+      "why": [
+       "특정 연령 집중: age60plus, age50_59",
+       "남성 상승이 더 큼"
+      ],
+      "mo": 4.1,
+      "pc": 2.4,
+      "male": 5.8,
+      "female": 3.52,
+      "age_cv": 0.96,
+      "weekday": "금",
+      "driver": "바크슬리퍼"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "넥슨 ‘아크 레이더스’, 영화로 만든다",
+       "date": "2026-10-06",
+       "source": "Chosunbiz 외 3건",
+       "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPSm5mVTFpN3hGQTREMXR1a3pvRW51SnpMb3VMMHpvc2Z5dXZHZ3JJU2dLSVU5MDFTSjhUQ2h0MDJMM0ZJSEk3eHBfLWNoNm1qenRUcFc2WDNaRC02ZnNaenlZYnNfUFdaMEZibHdoMS1IcHEzaFN0elhUVU1sc2NWVDFn0gGWAUFVX3lxTE9iODZyQ19SVEpJb0JlYUtmRG1yQVliQW5yeG9XczVHV3pGdnpaVFNMenRzdGhhTkRfY0lIQ0VMdFdVWlRWTDM1a1BlMlpnWTJEQ0hfNndoanhpcy1PSkVra0I4clE0cjZZUmd6MktocDBXS09rZFlOYTlld2ZKT2lSMzZFUXFOWFg1a1BfTXI3MDY4ME5tZw?oc=5",
+       "relevance": "중",
+       "kind": "뉴스"
+      },
+      {
+       "title": "넥슨 엠바크 히트작 〈아크레이더스〉 등 2종, 할리우드 영상화 착수",
+       "date": "2026-10-06",
+       "source": "글로벌E 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9PQlRINEtvaFktZl82UDl1NTU3dXRNcTZORGVJQTh1V2xOczVUdy10S2JfQzFKWXRySHd1bmt5RUJWVG1CWkRnOC1BblZkTGh2bWppTnF5bldFYXh1TFV3WGs2dDZadHFhMURz0gFvQVVfeXFMTWNCVXh0UnR6djBNRkI5VUVLN0dkWk5YYjdSZXM0YTVHaEc3WTZOUkg0TFdpQ0JGTEFNVEdIUzZpS21SVjFWRUNiSllseXlzeHNjMHJNaW9uWGhkWk9HUzNSR3pEcjNPRGVkQzl6NjM4?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "슬리퍼 만드는 재활의학과 의사들 \"수출길도 개척\"",
+       "date": "2026-10-09",
+       "source": "한국경제 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBQVy1aVTR5U1o2NE1ia2g4MGh0LWJCRnlGaDgwQ0tCSTRONUZUWHFWby1TYmYwNzhIQ0RlOXNFNEpnMnEyajR1YU1DNlBYX0lJT056Y0ZrcG93QQ?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(관심층형 표적)"
+      },
+      {
+       "title": "리커버리 풋웨어 브랜드 바크, 연세의료원에 발전기금 1억원 기부",
+       "date": "2026-10-06",
+       "source": "뉴시스",
+       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE4xaUxSQk42dmtpUWtJbDR5elVYWWJnZy1WamYxZTN6OFhfT3cyOHhIMUY5cFRRcVIyNVZ2SjVfUl9JbGp5ZHRZcjZGSFRrRk96QlQ3T2tjZU85b1A2S3FQb9IBeEFVX3lxTFB2RkJNRV9GZGxzUjJzNndIY1NrUzI1bHFSQXZkajZXOXlPVHk1RzUxOFB5VTY1Q3JiSTB4Vzdsb0ttZE15QWFQUXcweDRyRlcxejF1Q29ZclNMX2NOaVRFaElZQ0pxQnJDUjhjcXJIN2xadHBLc0szXw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-03-14": {
+     "signature": {
+      "type": "관심층형",
+      "why": [
+       "특정 연령 집중: age50_59, age60plus",
+       "주말",
+       "남성 상승이 더 큼"
+      ],
+      "mo": 1.89,
+      "pc": 1.61,
+      "male": 3.93,
+      "female": 1.21,
+      "age_cv": 0.32,
+      "weekday": "토",
+      "driver": "바크슬리퍼"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "리커버리 풋웨어 브랜드 바크(BARC), 광화문 교보문고서 팝업 17일…",
+       "date": "2026-03-12",
+       "source": "신아일보",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1BQTBPNDdEaTdJYUxpMjczQlpXOTI5MU9PUWswcERQakRmTEpobVZJSTdNcDhyUnR0R19Iei12aDBOdThlcTBKNHFJLXZNazFfMWREQXJtcjVDTTA0bkZJaEY1UnZtazJlVWQtX1Fld3A?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "120명에서 25명으로 - 아크 레이더스의 '리셋' 성공 신화",
+       "date": "2026-03-12",
+       "source": "인벤",
+       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE16MWpjcFdSaXdSUzVHMDNBOFRDakhxWXV2WndKMjdRdjA2OE5QMXJEd01nUTIxT2VzTlFZRTFWRTRWNE1sdWJtSElMd0cyWWNHTm5udXVBcndvQ1hmYXc?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "'원점으로 리셋하고 다시 시작하라'...실패위기 극복한 '아크 레이더스…",
+       "date": "2026-03-13",
+       "source": "테크M",
+       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5XUTZ2VEsxR0NVdlE0Vlh2TWl1Y1hCQW43YnVXbEJiZ1NHX1BwbXZPcUtVcjVhVEl4dlN1VzVJOWZsSFhKN3lKb09VcVdlYUxZWUpKWnZnaTN3ZHBhRDF0SF9aeHJ0UdIBakFVX3lxTE13Tk1aNTNfa3RCaVB2cHFQb3ZhSk1KNURIWXlEMVRoMW1WTXpDVUk3TTZzNlFfMGgwTEtRUVdJdTM3RVVSRUZ1dkRLU0FfcFNieElmdS1sN0hCV0s4ZE9TRnlWMFNhR3U3clE?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "'아크 레이더스' 거대 로봇에게 걷는 방법을 가르친 노하우(전편)",
+       "date": "2026-03-14",
+       "source": "게임뷰",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1GX1BKZ3FYUXNaSXctbzF4UmVPNDZ3aTNaR1pIZlNwdWhYNTV4S3Y2UTMzOGwzNDBnaGNVLTZubTB4TVVtelpEbzZnSVlKWFZQU0hOdUV4SnRYR25WeWlzSk1wRkxpQXV3a2c?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-04-19": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승",
+       "주말"
+      ],
+      "mo": 2.24,
+      "pc": 1.41,
+      "male": 1.95,
+      "female": 2.34,
+      "age_cv": 0.15,
+      "weekday": "일",
+      "driver": "바크"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "'제2의 배그' 논란?…에픽게임즈, '아크 레이더스' 닮은꼴 신작 강행",
+       "date": "2026-04-16",
+       "source": "seoulwire.com",
+       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5PRGNBM0pVYTdsT1A5WkNqVDMxUlZsTFNwMXZnMF9JVWN6T0EtMF9UWGdpTlRYN1BKRUtHX09uSG81ZFgwd3BISlhvWnJLRERTSnVUR1h6N2k0UE9JSjl5bU1jcHpuVmtSOWsw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스(대중 화제형 표적)"
+      },
+      {
+       "title": "\"나랑도 할 수 있지?\" 신도 간 난교 강요 및 성착취 일삼은 목사 의혹",
+       "date": "2026-04-18",
+       "source": "탐사일보",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE15STVQQk45a0Z6T0Y3LW1TbldqT25BUmhtRk9QR19GRDM1cHFDQllPek5QV1ZhdTlnSFZMclAtU05yZld3M1FwUVBKU1QweExTTDlZX2VJcVhXdjlxbUphc0VxRGg5RnY3NFE?oc=5",
+       "relevance": "약",
+       "kind": "뉴스(대중 화제형 표적)"
+      }
+     ],
+     "auto": true
+    },
+    "2026-06-28": {
+     "signature": {
+      "type": "관심층형",
+      "why": [
+       "특정 연령 집중: age50_59, age60plus",
+       "주말",
+       "남성 상승이 더 큼"
+      ],
+      "mo": 4.2,
+      "pc": 1.53,
+      "male": 4.94,
+      "female": 3.73,
+      "age_cv": 0.62,
+      "weekday": "일",
+      "driver": "바크슬리퍼"
+     },
+     "summary": "급등일 전후로 검색어와 맞는 게시물을 찾지 못했습니다.",
+     "candidates": [],
+     "auto": true
+    },
+    "2026-05-15": {
+     "signature": {
+      "type": "관심층형",
+      "why": [
+       "특정 연령 집중: age19_29, age30_39",
+       "여성 상승이 더 큼"
+      ],
+      "mo": 3.95,
+      "pc": 7.24,
+      "male": 3.28,
+      "female": 4.54,
+      "age_cv": 0.67,
+      "weekday": "금",
+      "driver": "바크"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "'아크 레이더스' 연 2회 대규모 업데이트로 전환... 10월 대격변 …",
+       "date": "2026-05-14",
+       "source": "인벤 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE01MXFkLU5ZX0c4Q3o1cXppUnQ0REp6SnNFV1NIY2Z2UmdlWDBUOEx1TEFrX1lnbnhhdnNMemREd1FFUThpRUtSV05nUklmYlZuTk5QUXgxeUFnVHBDS3c?oc=5",
+       "relevance": "약",
+       "kind": "뉴스·뉴스(관심층형 표적)"
+      },
+      {
+       "title": "식품의약품청, 프라더-윌리 증후군 환자의 극심한 식욕을 치료하기 위한 …",
+       "date": "2026-05-14",
+       "source": "TradingView",
+       "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE11NEVNUDJfRDB4NHQtQjRtbnZwNWRRbkRfT2dWVXJsZ3dPeHR3SV8wMGg3SXI5T0RhbTZhSU1qcHVJZlJFTzNRNjJpUFpNT25QRi1TSURXbDY1cjVhUkduZHN0T2o0UlphcUNscGU4aktEdlNxMHVv?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "자회사 성과 따라 투자·생존 갈려···넥슨의 '선택과 집중'",
+       "date": "2026-05-14",
+       "source": "시사저널e",
+       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5WZXluNWFkLUVlQ3RCdWFSZGQzWmZWdDlFdGRudUcxUUJqX3luMnhMTTJPYkdWVkNmOURvX2lWY09qNTJGdlhRM1pDdTlFMEtpSEhXNVJTRmJCMVFfYmhhRzJlb01VMlhZeGk5V0NndnJ1d9IBdkFVX3lxTE1uSHJRbU51V1ZSS2JITXF4ZnAwVHhjR2N0bzI4dmlubUg4V3Y5STF4UzU1U3RlaHkwdG0zeF90TlAyOVJCdnJIX0FMeWV4RDJjMXBKTG9WNThOU3J0eEt6U0drNlJnSzlEQ1o5N3JlelRPZ2pycFE?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "넥슨 ‘아크 레이더스’, 넥슨닷컴 및 PC방 서비스 사전예약 실시",
+       "date": "2026-05-14",
+       "source": "지디넷코리아",
+       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE0xNWZmNF9XSEtBOUxaRDlPSmNfel8wNlJuTG5hTFhzUjc2eVdkTGUwOUdPcGZCS0pNdFdtbXBndm1EYlV2b1pLUTVEemNNREtPOVhHWndR?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-07-05": {
+     "signature": {
+      "type": "관심층형",
+      "why": [
+       "특정 연령 집중: age50_59, age60plus",
+       "주말"
+      ],
+      "mo": 3.8,
+      "pc": 1.67,
+      "male": 3.99,
+      "female": 3.58,
+      "age_cv": 0.53,
+      "weekday": "일",
+      "driver": "바크슬리퍼"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "영화 ‘캡틴 필립스’ “생존을 건 협상! 톰 행크스, 바크하드 압디, …",
+       "date": "2026-07-04",
+       "source": "한국강사신문 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE83RTN6MmZDeWdPWjZNNmthd2d6RXBsZGE5ajlMZVhHcXdZWFJld2hLM1F1R0Uyd3Z5aUNMOWhYdlNhUkRfRVdDQkMwU3V4Y0g5MWN3MUJ4X0huTi1uU0N5SFhVc1VwSm1ueWMtN1VIaUY?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "더 베어 시즌 5 후기 | 시즌 1부터 지금 당장 정주행 시작해야 하는…",
+       "date": "2026-07-02",
+       "source": "블로그",
+       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBBLVUzYUFkam1qRXQxVUxpOWNFRHVIak9FZ09FUm1KMzhNYjVBTFVHZkg4X2s3NHlaNFQyN0FCMC1GREx2Z1NMQm5ZSElqczJOUUtsOVNUSGtOTFE?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-04-26": {
+     "signature": {
+      "type": "대중 화제형",
+      "why": [
+       "모바일·PC 함께 상승",
+       "전 연령 고르게 상승",
+       "주말",
+       "남성 상승이 더 큼"
+      ],
+      "mo": 1.74,
+      "pc": 2.87,
+      "male": 2.2,
+      "female": 1.59,
+      "age_cv": 0.19,
+      "weekday": "일",
+      "driver": "바크슬리퍼"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "넥슨 '아크 레이더스'가 범죄학자들에게 연락 받은 이유는?",
+       "date": "2026-04-23",
+       "source": "게임뷰",
+       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4xU0txZDFMaGZxa3MwcXFqUzZTR2ctaXhjay1CMEdsTHYzT0FHTWxfcFJSTXVNdGc3S1VEaDQzVEdCejlsR3pQeHlLT1BXcHdsdWxmdGgyREQxRGpoOUN3SkswZ1h0TVY2TFE?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "시흥 J교회 목사, ‘가스라이팅’ 성착취",
+       "date": "2026-04-26",
+       "source": "신앙신보",
+       "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQT3FOUFRMRkhzMUNIWWNXYmJKbXphV2tTcEQwTkpueFFINXd0clpUX3VoSmpfWHpVQ3JtRlR5UFA5QUx1N0JYUVZ3dTBJZjY3SjFZMlFLSC1fNkItR24xYjdlWlUydXhHQ0pZVUo5YW9Jd1huVWIwUjVCVVMxQXhLeTcyUFNXc05COTJxbGkwcm15akJXLXdvOUk0cUFJT3kxRjlvV1BWeWxsZXR0UDB5cWVyOEZnRlhteGlaRGp4aXNuSHg3Y1RWZWVlWURtVHQyOHl4NzVqMER2UW42ejZSNWVmOENSRktMYllRTw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "테라사이클-바크, ‘지구 회복’ 위한 EVA 슬리퍼 무료 재활용 실시",
+       "date": "2026-04-27",
+       "source": "소셜임팩트뉴스",
+       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9pSnlyNzRYWEdFMk0wSzEtdVRLTUxEZ0w0REpKLXJQRy1RNzVBa255YWpMV3VvdkQtTHZsNnpWdG5KdmVtbWxpMWxTdVNCLXcwaTBmY1pzQ0t2SzhYdUhQMk84bXNYamVTZ3hpX0hsQjE4S2_SAXdBVV95cUxOa1lwaXl3V04tRGxORGZiMF84RWEwekZsTVFlOE1vN1UzdE1pb08wYW5XZ3Q5cUZoTVREWHZpdUsyNGtYOENiRGk0X2RfMno1VlBmVUxRRFZtRWpPVzVQUHNXbEJYVDVMTXM2U3lfaXhuY0hkZ0p0MA?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "JKM, 고부가 용제 사업 본격화…반도체 소재 공급망 대응",
+       "date": "2026-04-27",
+       "source": "서울경제",
+       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE96VjMxMXNFNzk2ekhYTlRWZ2lQb09KcmdYMVU0SS1EUnJXU2QtTzhnNFVlckdUSDBXT2ctRmhBckVIdHdNOHc2a2E1dWVpeVI1MUHSAVNBVV95cUxPRTZTQkVOY0k3SU15Tk83WEtweXZ4a0kxTHZ3Q1VDTU9xMjV1NEl2SUU4SXVZSkNyaG1xUklOdWZVY25NUklvRVFOS0VQb3JDcElnMA?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    },
+    "2026-05-20": {
+     "signature": {
+      "type": "관심층형",
+      "why": [
+       "특정 연령 집중: age19_29, age30_39",
+       "여성 상승이 더 큼"
+      ],
+      "mo": 4.28,
+      "pc": 5.52,
+      "male": 2.77,
+      "female": 4.85,
+      "age_cv": 0.56,
+      "weekday": "수",
+      "driver": "바크"
+     },
+     "summary": "급등일 전후(−3~+1일) 뉴스·게시물 중 많이 언급된 주제입니다. 상관관계일 뿐 원인은 확정되지 않았습니다.",
+     "candidates": [
+      {
+       "title": "신규 상인 추가 '아크 레이더스', PC방 무료 오픈 베타 21일 시작",
+       "date": "2026-05-21",
+       "source": "인벤 외 1건",
+       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9WQVVybU9pX1daRGlnWmJiUTlfUVhteVE1SkNZN3dKVFFWdlRNTkp1VFBEd2d4aDh2bUdZWTF6dDRnZXRuLVdaZ1RKa3NWczYzX2dsRnkzTmFpQmd6VVE?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "'아크 레이더스' 1600만 대박 일군 엠바크스튜디오, 신작 2종 개발…",
+       "date": "2026-05-18",
+       "source": "아이뉴스24",
+       "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9Iek1jNHhRaEtEWUJsd216RzJSUjdndG93R0xBc1c0ZXpCU1pha0hPQ0R2clROV2RuSXFUOXFoUV9kZ0RXd1diZ3FuNA?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "'칼바람' 넥슨서 CEO 친정 신작 만 환대받는 까닭...사심 들어갔나?",
+       "date": "2026-05-18",
+       "source": "인사이트코리아",
+       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9Fek40cmxSOFlQUUJrcUo5Z2ZhYnlCNnNNdGFsZGU2VHlWYnByU0cwckd5eG5LWTVzM1JlUm5KaWlacUdLY2NLb0x6cFF5YzFOZGxSTUw4eVg3S0dwWkVYa3VVaGx3MXF5bG5wVVdESW1qMFXSAXdBVV95cUxOVTg5YmZkZFU4ZjUwT190X3hJV3YwNW5oUkh1ZHE1al80dWJvM05xdEN5ODdkWFpaOXZveV9MalNrT0U0cld6cXhJZFpMYlNfQWhWZlRpUG9tMWdGLXNHU3VEMmJ2S0F5ZzJ2VGh5ZHNjUGJhU1BkZw?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      },
+      {
+       "title": "아드바크, ‘TAS2R 작용제’ 희귀비만 3상 “FDA 중단조치”",
+       "date": "2026-05-19",
+       "source": "바이오스펙테이터",
+       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1UTFdaQ1J1YXYwckx5bG93MkF4eUVRYjA5VjFKX1lUZFVqVkt3Smt2elFES0hHZm1XYkxGVUFNSDVyQ1otd1h0Yzh0Z29iYWRNazlFRS1sWQ?oc=5",
+       "relevance": "약",
+       "kind": "뉴스"
+      }
+     ],
+     "auto": true
+    }
+   }
+  },
+  {
    "job_id": "9a52a93c-329a-47b5-84d1-6157a2fb75fd",
    "collected_from": "2026-11-03T09:10:21.580Z",
    "keywords": [
